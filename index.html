@@ -1,7 +1,18 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Krónikák Követője | FRPG Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,700;1,400&family=MedievalSharp&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
 <div class="container">
     <header>
         <h1>📜 Krónikák Követője</h1>
-        <p>Kövesd nyomon aktív kalandjaidat és meséidet.</p>
+        <p>A sorsod a te kezedben van. Kövesd nyomon kalandjaidat!</p>
     </header>
 
     <div class="filter-buttons">
@@ -12,9 +23,10 @@
     </div>
 
     <div class="card-grid">
+        
         <div class="card active">
             <div class="image-container">
-                <img src="https://picsum.photos/400/250?grayscale&random=1" alt="Helyszín">
+                <img src="https://picsum.photos/400/250?grayscale&random=1" alt="Helyszín kép">
                 <span class="badge active">Te jössz!</span>
             </div>
             <div class="card-content">
@@ -22,13 +34,15 @@
                 <h3>Éjféli Találkozó</h3>
                 <p><strong>Karakter:</strong> Alistair Thorne</p>
                 <p><strong>Helyszín:</strong> A Megtört Kancsó fogadó</p>
-                <p class="last-post">Utoljára írta: <i>Morgiana (2 órája)</i></p>
+                <div class="last-post">
+                    Utoljára írta: <i>Morgiana (2 órája)</i>
+                </div>
             </div>
         </div>
 
         <div class="card pending">
             <div class="image-container">
-                <img src="https://picsum.photos/400/250?grayscale&random=2" alt="Helyszín">
+                <img src="https://picsum.photos/400/250?grayscale&random=2" alt="Helyszín kép">
                 <span class="badge pending">Várakozik</span>
             </div>
             <div class="card-content">
@@ -36,22 +50,77 @@
                 <h3>A Suttogó Erdő</h3>
                 <p><strong>Karakter:</strong> Elara Vaelen</p>
                 <p><strong>Helyszín:</strong> Tiltott Rengeteg</p>
-                <p class="last-post">Utoljára írta: <i>Te (1 napja)</i></p>
+                <div class="last-post">
+                    Utoljára írta: <i>Te (1 napja)</i>
+                </div>
             </div>
         </div>
 
         <div class="card inactive">
             <div class="image-container">
-                <img src="https://picsum.photos/400/250?grayscale&random=3" alt="Helyszín">
+                <img src="https://picsum.photos/400/250?grayscale&random=3" alt="Helyszín kép">
                 <span class="badge inactive">Archivált</span>
             </div>
             <div class="card-content">
                 <span class="thread-id">#TR-012</span>
                 <h3>Királyi Bál</h3>
                 <p><strong>Karakter:</strong> Lord Valerius</p>
-                <p><strong>Helyszín:</strong> Fellegvár</p>
-                <p class="last-post">Státusz: <i>Befejezett történet</i></p>
+                <p><strong>Helyszín:</strong> Fellegvár díszterem</p>
+                <div class="last-post">
+                    Státusz: <i>Befejezett történet</i>
+                </div>
             </div>
         </div>
-    </div>
-</div>
+
+        <div class="card active">
+            <div class="image-container">
+                <img src="https://picsum.photos/400/250?grayscale&random=4" alt="Helyszín kép">
+                <span class="badge active">Te jössz!</span>
+            </div>
+            <div class="card-content">
+                <span class="thread-id">#TR-045</span>
+                <h3>Homokviharban</h3>
+                <p><strong>Karakter:</strong> Kaelen a Vándor</p>
+                <p><strong>Helyszín:</strong> Déli Pusztaság</p>
+                <div class="last-post">
+                    Utoljára írta: <i>Mesélő (fél órája)</i>
+                </div>
+            </div>
+        </div>
+
+    </div> </div> <script>
+    function filterSelection(status) {
+        const cards = document.getElementsByClassName("card");
+        const buttons = document.getElementsByClassName("btn");
+
+        // Gombok stílusának frissítése
+        for (let btn of buttons) {
+            btn.classList.remove("active");
+            // Megkeressük a gombot, amire kattintottunk (egyszerűsített logika)
+            if (
+                (status === 'all' && btn.innerText.includes('Minden')) ||
+                (status === 'active' && btn.innerText.includes('Saját')) ||
+                (status === 'pending' && btn.innerText.includes('Várakozik')) ||
+                (status === 'inactive' && btn.innerText.includes('Lezárt'))
+            ) {
+                btn.classList.add("active");
+            }
+        }
+
+        // Kártyák szűrése
+        for (let card of cards) {
+            if (status === "all") {
+                card.style.display = "flex";
+            } else {
+                if (card.classList.contains(status)) {
+                    card.style.display = "flex";
+                } else {
+                    card.style.display = "none";
+                }
+            }
+        }
+    }
+</script>
+
+</body>
+</html>
