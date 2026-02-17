@@ -1,200 +1,129 @@
-/* --- FRPG Témakövető Alapstílus --- */
-
-/* Google Fonts beimportálása a klasszikus fantasy hangulathoz */
-@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,700;1,400&family=MedievalSharp&display=swap');
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
+/* --- FRPG Alapstílus --- */
 body {
-    background-color: #121212; /* Mélysötét háttér */
-    background-image: url('https://www.transparenttextures.com/patterns/dark-leather.png'); /* Enyhe bőr textúra */
-    color: #e0d8c3; /* Halvány pergamen szín */
+    background-color: #1a1a1b;
+    color: #d1d1d1;
     font-family: 'Crimson Text', serif;
-    line-height: 1.6;
-    padding: 40px 20px;
+    margin: 0;
+    padding: 20px;
 }
 
 .container {
-    max-width: 1100px;
+    max-width: 900px; /* Keskenyebb konténer a 2 oszlopnak */
     margin: auto;
-}
-
-/* --- Fejléc --- */
-header {
-    text-align: center;
-    margin-bottom: 50px;
 }
 
 header h1 {
     font-family: 'MedievalSharp', cursive;
-    color: #d4af37; /* Arany szín */
-    font-size: 3rem;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
-    margin-bottom: 10px;
+    color: #c5a059;
+    text-align: center;
+    margin-bottom: 30px;
+    letter-spacing: 2px;
 }
 
-header p {
-    font-style: italic;
-    color: #8a8271;
-    font-size: 1.2rem;
-}
-
-/* --- Szűrő Gombok --- */
+/* --- Szűrők --- */
 .filter-buttons {
     text-align: center;
-    margin-bottom: 40px;
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    flex-wrap: wrap;
+    margin-bottom: 30px;
 }
 
 .btn {
-    background-color: #2a2a2a;
-    color: #bfa15f;
+    background: #252526;
     border: 1px solid #444;
-    padding: 12px 25px;
-    font-family: 'Crimson Text', serif;
-    font-size: 1.1rem;
-    font-weight: bold;
-    text-transform: uppercase;
+    color: #aaa;
+    padding: 10px 20px;
     cursor: pointer;
-    border-radius: 2px;
-    transition: all 0.4s ease;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    font-family: inherit;
+    font-size: 1rem;
+    margin: 5px;
+    transition: 0.3s;
 }
 
-.btn:hover {
-    background-color: #3a3a3a;
-    border-color: #d4af37;
-    color: #d4af37;
-    transform: translateY(-2px);
-}
+.btn:hover { border-color: #c5a059; color: #fff; }
+.btn.active { background: #c5a059; color: #1a1a1b; border-color: #fff; }
 
-.btn.active {
-    background-color: #d4af37;
-    color: #1a1a1a;
-    border-color: #fff;
-    box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
-}
-
-/* --- Kártya Rács --- */
+/* --- Kétoszlopos Rács --- */
 .card-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 30px;
+    grid-template-columns: 1fr 1fr; /* Pontosan két oszlop egymás mellett */
+    gap: 25px;
 }
 
-/* --- Egyedi Kártya Stílus --- */
+/* --- Kártya Stílus --- */
 .card {
-    background: #1e1e1e;
-    border: 1px solid #333;
+    background: #252526;
     border-radius: 4px;
     overflow: hidden;
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-    position: relative;
+    border: 1px solid #333;
     display: flex;
     flex-direction: column;
 }
 
-.card:hover {
-    transform: translateY(-8px);
-    border-color: #d4af37;
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.7);
-}
-
-/* Kép konténer és Badge */
 .image-container {
     position: relative;
-    height: 180px;
-    overflow: hidden;
-    border-bottom: 2px solid #d4af37;
+    height: 200px;
 }
 
 .image-container img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: sepia(40%) grayscale(20%) brightness(0.8);
-    transition: 0.5s ease;
-}
-
-.card:hover .image-container img {
-    filter: sepia(0%) grayscale(0%) brightness(1);
-    transform: scale(1.05);
+    opacity: 0.8;
 }
 
 .badge {
     position: absolute;
-    top: 15px;
-    right: 15px;
-    padding: 6px 12px;
-    border-radius: 3px;
-    font-size: 0.85rem;
+    top: 10px;
+    right: 10px;
+    padding: 4px 8px;
+    font-size: 0.75rem;
     font-weight: bold;
     text-transform: uppercase;
-    letter-spacing: 1px;
-    z-index: 2;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.5);
 }
 
-.badge.active { background: #27ae60; color: #fff; }    /* Saját kör */
-.badge.pending { background: #d35400; color: #fff; }   /* Várakozik */
-.badge.inactive { background: #444; color: #bbb; }     /* Lezárt */
+.badge.active { background: #2d5a27; color: #fff; }
+.badge.completed { background: #5a2727; color: #fff; }
 
-/* Kártya Tartalom */
 .card-content {
-    padding: 20px;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-}
-
-.thread-id {
-    font-size: 0.75rem;
-    color: #666;
-    letter-spacing: 1px;
-    margin-bottom: 5px;
+    padding: 15px;
 }
 
 .card-content h3 {
-    color: #fff;
     font-family: 'MedievalSharp', cursive;
-    font-size: 1.4rem;
-    margin-bottom: 12px;
-    border-bottom: 1px solid #333;
+    color: #fff;
+    margin: 0 0 10px 0;
+    font-size: 1.3rem;
+    border-bottom: 1px solid #444;
     padding-bottom: 5px;
 }
 
 .card-content p {
-    margin-bottom: 8px;
-    font-size: 1rem;
+    margin: 5px 0;
+    font-size: 0.95rem;
 }
 
 .card-content strong {
-    color: #d4af37;
-    font-weight: normal;
+    color: #c5a059;
 }
 
-/* Utolsó hozzászólás szekció */
-.last-post {
-    margin-top: auto;
-    padding-top: 15px;
-    border-top: 1px double #444;
-    font-size: 0.9rem;
-    color: #888;
+/* --- Játék Link --- */
+.game-link {
+    display: inline-block;
+    margin-top: 15px;
+    color: #c5a059;
+    text-decoration: none;
+    font-weight: bold;
     font-style: italic;
+    transition: 0.2s;
 }
 
-/* --- Reszponzivitás --- */
-@media (max-width: 600px) {
-    header h1 { font-size: 2rem; }
-    .btn { width: 100%; }
-    .card-grid { grid-template-columns: 1fr; }
+.game-link:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+
+/* --- Mobilos nézet --- */
+@media (max-width: 650px) {
+    .card-grid {
+        grid-template-columns: 1fr; /* Mobilon egymás alá kerülnek */
+    }
 }
