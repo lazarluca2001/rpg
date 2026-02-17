@@ -1,53 +1,57 @@
-<!DOCTYPE html>
-<html lang="hu">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Témakövető Dashboard</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-
 <div class="container">
-    <h1>Témakövető Dashboard</h1>
+    <header>
+        <h1>📜 Krónikák Követője</h1>
+        <p>Kövesd nyomon aktív kalandjaidat és meséidet.</p>
+    </header>
 
     <div class="filter-buttons">
-        <button class="btn active" onclick="filterSelection('all')">Összes</button>
-        <button class="btn" onclick="filterSelection('active')">Aktív</button>
-        <button class="btn" onclick="filterSelection('pending')">Folyamatban</button>
-        <button class="btn" onclick="filterSelection('inactive')">Inaktív</button>
+        <button class="btn active" onclick="filterSelection('all')">Minden kaland</button>
+        <button class="btn" onclick="filterSelection('active')">Saját kör</button>
+        <button class="btn" onclick="filterSelection('pending')">Várakozik</button>
+        <button class="btn" onclick="filterSelection('inactive')">Lezárt</button>
     </div>
 
     <div class="card-grid">
         <div class="card active">
-            <img src="https://picsum.photos/300/180?random=1" alt="Téma kép">
+            <div class="image-container">
+                <img src="https://picsum.photos/400/250?grayscale&random=1" alt="Helyszín">
+                <span class="badge active">Te jössz!</span>
+            </div>
             <div class="card-content">
-                <span class="badge active">Aktív</span>
-                <h3>Webdesign Alapok</h3>
-                <p>A modern UI/UX trendek és reszponzív technikák elsajátítása.</p>
+                <span class="thread-id">#TR-042</span>
+                <h3>Éjféli Találkozó</h3>
+                <p><strong>Karakter:</strong> Alistair Thorne</p>
+                <p><strong>Helyszín:</strong> A Megtört Kancsó fogadó</p>
+                <p class="last-post">Utoljára írta: <i>Morgiana (2 órája)</i></p>
             </div>
         </div>
 
         <div class="card pending">
-            <img src="https://picsum.photos/300/180?random=2" alt="Téma kép">
+            <div class="image-container">
+                <img src="https://picsum.photos/400/250?grayscale&random=2" alt="Helyszín">
+                <span class="badge pending">Várakozik</span>
+            </div>
             <div class="card-content">
-                <span class="badge pending">Folyamatban</span>
-                <h3>JavaScript API-k</h3>
-                <p>Fetch API és aszinkron programozás a gyakorlatban.</p>
+                <span class="thread-id">#TR-039</span>
+                <h3>A Suttogó Erdő</h3>
+                <p><strong>Karakter:</strong> Elara Vaelen</p>
+                <p><strong>Helyszín:</strong> Tiltott Rengeteg</p>
+                <p class="last-post">Utoljára írta: <i>Te (1 napja)</i></p>
             </div>
         </div>
 
         <div class="card inactive">
-            <img src="https://picsum.photos/300/180?random=3" alt="Téma kép">
+            <div class="image-container">
+                <img src="https://picsum.photos/400/250?grayscale&random=3" alt="Helyszín">
+                <span class="badge inactive">Archivált</span>
+            </div>
             <div class="card-content">
-                <span class="badge inactive">Inaktív</span>
-                <h3>Legacy PHP rendszerek</h3>
-                <p>Régi kódok karbantartása és refaktorálási stratégiák.</p>
+                <span class="thread-id">#TR-012</span>
+                <h3>Királyi Bál</h3>
+                <p><strong>Karakter:</strong> Lord Valerius</p>
+                <p><strong>Helyszín:</strong> Fellegvár</p>
+                <p class="last-post">Státusz: <i>Befejezett történet</i></p>
             </div>
         </div>
     </div>
 </div>
-
-<script src="script.js"></script>
-</body>
-</html>
