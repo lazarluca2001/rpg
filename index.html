@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Krónikák Követője | FRPG Dashboard</title>
+    <title>FRPG Játékkövető</title>
     <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,700;1,400&family=MedievalSharp&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -12,111 +12,82 @@
 <div class="container">
     <header>
         <h1>📜 Krónikák Követője</h1>
-        <p>A sorsod a te kezedben van. Kövesd nyomon kalandjaidat!</p>
     </header>
 
     <div class="filter-buttons">
-        <button class="btn active" onclick="filterSelection('all')">Minden kaland</button>
-        <button class="btn" onclick="filterSelection('active')">Saját kör</button>
-        <button class="btn" onclick="filterSelection('pending')">Várakozik</button>
-        <button class="btn" onclick="filterSelection('inactive')">Lezárt</button>
+        <button class="btn active" onclick="filterSelection('all')">Összes történet</button>
+        <button class="btn" onclick="filterSelection('active')">Aktív</button>
+        <button class="btn" onclick="filterSelection('completed')">Befejezett</button>
     </div>
 
     <div class="card-grid">
         
         <div class="card active">
             <div class="image-container">
-                <img src="https://picsum.photos/400/250?grayscale&random=1" alt="Helyszín kép">
-                <span class="badge active">Te jössz!</span>
+                <img src="https://picsum.photos/500/300?random=10" alt="Helyszín">
+                <span class="badge active">Aktív</span>
             </div>
             <div class="card-content">
-                <span class="thread-id">#TR-042</span>
-                <h3>Éjféli Találkozó</h3>
-                <p><strong>Karakter:</strong> Alistair Thorne</p>
-                <p><strong>Helyszín:</strong> A Megtört Kancsó fogadó</p>
-                <div class="last-post">
-                    Utoljára írta: <i>Morgiana (2 órája)</i>
-                </div>
-            </div>
-        </div>
-
-        <div class="card pending">
-            <div class="image-container">
-                <img src="https://picsum.photos/400/250?grayscale&random=2" alt="Helyszín kép">
-                <span class="badge pending">Várakozik</span>
-            </div>
-            <div class="card-content">
-                <span class="thread-id">#TR-039</span>
-                <h3>A Suttogó Erdő</h3>
-                <p><strong>Karakter:</strong> Elara Vaelen</p>
-                <p><strong>Helyszín:</strong> Tiltott Rengeteg</p>
-                <div class="last-post">
-                    Utoljára írta: <i>Te (1 napja)</i>
-                </div>
-            </div>
-        </div>
-
-        <div class="card inactive">
-            <div class="image-container">
-                <img src="https://picsum.photos/400/250?grayscale&random=3" alt="Helyszín kép">
-                <span class="badge inactive">Archivált</span>
-            </div>
-            <div class="card-content">
-                <span class="thread-id">#TR-012</span>
-                <h3>Királyi Bál</h3>
-                <p><strong>Karakter:</strong> Lord Valerius</p>
-                <p><strong>Helyszín:</strong> Fellegvár díszterem</p>
-                <div class="last-post">
-                    Státusz: <i>Befejezett történet</i>
-                </div>
+                <h3>A sötétség kapuja</h3>
+                <p><strong>Játékostárs:</strong> Eldrin, a kósza</p>
+                <p><strong>Időpont:</strong> 2024.03.15. 18:30</p>
+                <p><strong>Helyszín:</strong> Északi hágó</p>
+                <a href="https://pelda-frpg-link.hu/tema1" class="game-link">Ugrás a játékhoz →</a>
             </div>
         </div>
 
         <div class="card active">
             <div class="image-container">
-                <img src="https://picsum.photos/400/250?grayscale&random=4" alt="Helyszín kép">
-                <span class="badge active">Te jössz!</span>
+                <img src="https://picsum.photos/500/300?random=11" alt="Helyszín">
+                <span class="badge active">Aktív</span>
             </div>
             <div class="card-content">
-                <span class="thread-id">#TR-045</span>
-                <h3>Homokviharban</h3>
-                <p><strong>Karakter:</strong> Kaelen a Vándor</p>
-                <p><strong>Helyszín:</strong> Déli Pusztaság</p>
-                <div class="last-post">
-                    Utoljára írta: <i>Mesélő (fél órája)</i>
-                </div>
+                <h3>Városi intrikák</h3>
+                <p><strong>Játékostárs:</strong> Lady Valerica</p>
+                <p><strong>Időpont:</strong> 2024.03.14. 21:00</p>
+                <p><strong>Helyszín:</strong> Arany Sas Fogadó</p>
+                <a href="https://pelda-frpg-link.hu/tema2" class="game-link">Ugrás a játékhoz →</a>
             </div>
         </div>
 
-    </div> </div> <script>
+        <div class="card completed">
+            <div class="image-container">
+                <img src="https://picsum.photos/500/300?random=12" alt="Helyszín">
+                <span class="badge completed">Befejezett</span>
+            </div>
+            <div class="card-content">
+                <h3>A tengeri szörny vége</h3>
+                <p><strong>Játékostárs:</strong> Barnabás, a révész</p>
+                <p><strong>Időpont:</strong> 2024.01.10.</p>
+                <p><strong>Helyszín:</strong> Kikötőnegyed</p>
+                <a href="https://pelda-frpg-link.hu/tema3-lezart" class="game-link">Archívum megtekintése</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
     function filterSelection(status) {
         const cards = document.getElementsByClassName("card");
         const buttons = document.getElementsByClassName("btn");
 
-        // Gombok stílusának frissítése
         for (let btn of buttons) {
             btn.classList.remove("active");
-            // Megkeressük a gombot, amire kattintottunk (egyszerűsített logika)
             if (
-                (status === 'all' && btn.innerText.includes('Minden')) ||
-                (status === 'active' && btn.innerText.includes('Saját')) ||
-                (status === 'pending' && btn.innerText.includes('Várakozik')) ||
-                (status === 'inactive' && btn.innerText.includes('Lezárt'))
+                (status === 'all' && btn.innerText.includes('Összes')) ||
+                (status === 'active' && btn.innerText.includes('Aktív')) ||
+                (status === 'completed' && btn.innerText.includes('Befejezett'))
             ) {
                 btn.classList.add("active");
             }
         }
 
-        // Kártyák szűrése
         for (let card of cards) {
             if (status === "all") {
                 card.style.display = "flex";
             } else {
-                if (card.classList.contains(status)) {
-                    card.style.display = "flex";
-                } else {
-                    card.style.display = "none";
-                }
+                card.style.display = card.classList.contains(status) ? "flex" : "none";
             }
         }
     }
