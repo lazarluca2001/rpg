@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Témakövető Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>Témakövető Dashboard</h1>
+
+    <div class="filter-buttons">
+        <button class="btn active" onclick="filterSelection('all')">Összes</button>
+        <button class="btn" onclick="filterSelection('active')">Aktív</button>
+        <button class="btn" onclick="filterSelection('pending')">Folyamatban</button>
+        <button class="btn" onclick="filterSelection('inactive')">Inaktív</button>
+    </div>
+
+    <div class="card-grid">
+        <div class="card active">
+            <img src="https://picsum.photos/300/180?random=1" alt="Téma kép">
+            <div class="card-content">
+                <span class="badge active">Aktív</span>
+                <h3>Webdesign Alapok</h3>
+                <p>A modern UI/UX trendek és reszponzív technikák elsajátítása.</p>
+            </div>
+        </div>
+
+        <div class="card pending">
+            <img src="https://picsum.photos/300/180?random=2" alt="Téma kép">
+            <div class="card-content">
+                <span class="badge pending">Folyamatban</span>
+                <h3>JavaScript API-k</h3>
+                <p>Fetch API és aszinkron programozás a gyakorlatban.</p>
+            </div>
+        </div>
+
+        <div class="card inactive">
+            <img src="https://picsum.photos/300/180?random=3" alt="Téma kép">
+            <div class="card-content">
+                <span class="badge inactive">Inaktív</span>
+                <h3>Legacy PHP rendszerek</h3>
+                <p>Régi kódok karbantartása és refaktorálási stratégiák.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
