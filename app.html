@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Budafest 2026 - Profil</title>
+    <title>Profile - Lázár Luca (WSDC 24645)</title>
     <style>
-        /* Design Tokenek a colors.png sötét módja alapján */
         :root {
             --bg-color: #0F1115;
             --card-surface: #1C1F26;
@@ -15,313 +14,261 @@
             --text-secondary: #9CA3AF;
             --border-color: #2D333B;
             --header-bg: #161B22;
-            --nav-bg: #ffffff;
-            --nav-text: #1C2126;
-        }
-
-        * {
-            box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
+            --accent-orange: #FF9F43;
         }
 
         body {
             margin: 0;
-            padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             background-color: var(--bg-color);
             color: var(--text-primary);
-            line-height: 1.5;
+            padding-bottom: 100px;
         }
 
-        /* App Container */
-        .app-container {
-            max-width: 480px;
-            margin: 0 auto;
-            min-height: 100vh;
-            padding-bottom: 90px;
-            display: flex;
-            flex-direction: column;
-            position: relative;
-        }
+        .app-container { max-width: 480px; margin: 0 auto; }
 
         /* Profile Header */
         .profile-header {
             background-color: var(--header-bg);
-            padding: 50px 20px 30px;
+            padding: 40px 20px 25px;
             text-align: center;
             border-bottom: 1px solid var(--border-color);
         }
 
-        .avatar-container {
-            position: relative;
-            width: 100px;
-            margin: 0 auto 15px;
-        }
-
         .avatar {
-            width: 100px;
-            height: 100px;
-            background: linear-gradient(135deg, var(--primary-action), #60a5fa);
+            width: 90px; height: 90px;
+            background: linear-gradient(135deg, var(--primary-action), #00d2ff);
             border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 36px;
-            font-weight: 800;
-            color: #000;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            margin: 0 auto 15px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 32px; font-weight: bold; color: #000;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.4);
         }
 
-        .level-badge {
-            position: absolute;
-            bottom: -5px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--success);
-            color: #fff;
-            font-size: 11px;
-            font-weight: bold;
-            padding: 4px 12px;
-            border-radius: 20px;
-            white-space: nowrap;
-            border: 2px solid var(--header-bg);
-        }
+        .profile-name { margin: 10px 0 0; font-size: 24px; letter-spacing: -0.5px; }
+        .wsdc-id { color: var(--text-secondary); font-size: 14px; margin-top: 4px; }
 
-        .profile-name { margin: 15px 0 5px; font-size: 24px; letter-spacing: -0.5px; }
-        .wsdc-id { color: var(--text-secondary); font-size: 14px; margin: 0; }
-
-        /* Stats Grid */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
+        /* Progress Tracker - NEW */
+        .progress-section {
             padding: 20px;
+            background: linear-gradient(180deg, var(--header-bg), var(--bg-color));
         }
 
-        .stat-card {
+        .progress-card {
             background: var(--card-surface);
-            padding: 15px;
+            padding: 16px;
             border-radius: 16px;
-            text-align: center;
             border: 1px solid var(--border-color);
-            transition: transform 0.2s;
         }
 
-        .stat-card:active { transform: scale(0.98); }
+        .progress-header {
+            display: flex; justify-content: space-between;
+            font-size: 12px; margin-bottom: 10px;
+            color: var(--text-secondary);
+        }
 
-        .stat-label { display: block; color: var(--text-secondary); font-size: 12px; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 1px; }
-        .stat-value { font-size: 22px; font-weight: 800; color: var(--primary-action); }
+        .progress-bar-bg {
+            height: 10px; background: #2D333B;
+            border-radius: 5px; overflow: hidden;
+            margin-bottom: 8px;
+        }
 
-        /* Profile Sections */
-        .profile-section { padding: 0 20px 20px; }
-        .profile-section h3 { font-size: 16px; margin-bottom: 12px; color: var(--text-secondary); font-weight: 600; }
+        .progress-bar-fill {
+            height: 100%; background: var(--success);
+            width: 40%; /* 12 pont a 30-ból (Intermediate -> Advanced példa) */
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(72, 177, 110, 0.4);
+        }
 
-        /* Active Event Card */
+        .progress-footer {
+            font-size: 11px; text-align: center; color: var(--text-secondary);
+        }
+
+        .progress-footer strong { color: var(--success); }
+
+        /* Stats Table (Scoring.dance stílus) */
+        .section-title { padding: 0 20px; font-size: 16px; color: var(--text-secondary); margin: 25px 0 12px; font-weight: 600; }
+
+        .chart-container {
+            margin: 0 20px; padding: 20px;
+            background: var(--card-surface);
+            border-radius: 16px; border: 1px solid var(--border-color);
+        }
+
+        .visual-chart {
+            height: 100px; display: flex; align-items: flex-end; gap: 10px;
+            border-bottom: 1px solid var(--border-color); padding-bottom: 5px;
+        }
+
+        .bar {
+            flex: 1; background: var(--primary-action);
+            border-radius: 4px 4px 0 0; position: relative;
+            min-height: 2px;
+        }
+
+        .bar::after {
+            content: attr(data-pts);
+            position: absolute; top: -18px; left: 50%;
+            transform: translateX(-50%); font-size: 10px; color: var(--primary-action);
+            font-weight: bold;
+        }
+
+        /* My Events List */
+        .event-list { padding: 0 20px; }
+
         .event-card {
             background: var(--card-surface);
-            border-radius: 20px;
-            padding: 18px;
-            border: 1px solid var(--border-color);
-            position: relative;
+            border-radius: 16px; padding: 16px;
+            margin-bottom: 12px; border: 1px solid var(--border-color);
+            display: flex; justify-content: space-between; align-items: center;
+        }
+
+        .event-card.current { border-left: 4px solid var(--success); }
+        .event-card.upcoming { border-left: 4px solid var(--primary-action); }
+
+        .event-info h4 { margin: 0; font-size: 15px; }
+        .event-info p { margin: 4px 0 0; font-size: 12px; color: var(--text-secondary); }
+
+        .badge {
+            font-size: 10px; padding: 4px 8px; border-radius: 6px; font-weight: 800;
+        }
+
+        .badge-current { background: rgba(72, 177, 110, 0.15); color: var(--success); }
+        .badge-upcoming { background: rgba(74, 140, 255, 0.15); color: var(--primary-action); }
+
+        /* History Table */
+        .history-card {
+            margin: 0 20px; background: var(--card-surface);
+            border-radius: 16px; border: 1px solid var(--border-color);
             overflow: hidden;
         }
 
-        .event-card::before {
-            content: "";
-            position: absolute;
-            left: 0; top: 0; bottom: 0;
-            width: 5px;
-            background: var(--primary-action);
+        .row {
+            display: grid; grid-template-columns: 1fr 60px 40px;
+            padding: 12px 16px; border-bottom: 1px solid var(--border-color);
+            font-size: 13px; align-items: center;
         }
 
-        .event-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 20px;
-        }
-
-        .event-title h4 { margin: 0; font-size: 18px; }
-        .event-title p { margin: 4px 0 0; font-size: 13px; color: var(--text-secondary); }
-
-        .status-pill {
-            background: rgba(74, 140, 255, 0.15);
-            color: var(--primary-action);
-            padding: 5px 12px;
-            border-radius: 10px;
-            font-size: 11px;
-            font-weight: 700;
-            text-transform: uppercase;
-        }
-
-        .registration-details {
-            display: flex;
-            gap: 25px;
-            border-top: 1px solid var(--border-color);
-            padding-top: 15px;
-        }
-
-        .reg-item span { display: block; font-size: 11px; color: var(--text-secondary); margin-bottom: 2px; }
-        .reg-item strong { font-size: 15px; color: var(--text-primary); }
-
-        /* History Items */
-        .history-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: var(--card-surface);
-            padding: 14px 18px;
-            border-radius: 14px;
-            margin-bottom: 10px;
-            border: 1px solid var(--border-color);
-        }
-
-        .history-info strong { font-size: 15px; display: block; }
-        .history-info p { margin: 2px 0 0; font-size: 12px; color: var(--text-secondary); }
+        .row.header { background: rgba(255,255,255,0.03); color: var(--text-secondary); font-size: 11px; text-transform: uppercase; }
+        .row:last-child { border-bottom: none; }
         
-        .history-result { text-align: right; }
-        .place { display: block; font-size: 14px; font-weight: 700; color: var(--text-primary); }
-        .points { font-size: 12px; color: var(--success); font-weight: 600; }
+        .pts-win { color: var(--success); font-weight: bold; }
 
-        /* Bottom Nav - Világos stílus a terv szerint */
-        .bottom-nav {
-            position: fixed;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100%;
-            max-width: 480px;
-            height: 75px;
-            background: var(--nav-bg);
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            border-top: 1px solid #ddd;
-            padding: 0 10px;
-            z-index: 100;
+        /* Bottom Nav */
+        .nav-bar {
+            position: fixed; bottom: 0; left: 0; right: 0;
+            height: 75px; background: #FFFFFF;
+            display: flex; justify-content: space-around; align-items: center;
+            border-top: 1px solid #DDD; z-index: 1000;
         }
 
-        .nav-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            color: #57606A;
-            text-decoration: none;
-            flex: 1;
-        }
-
+        .nav-item { color: #57606A; text-decoration: none; text-align: center; font-size: 10px; font-weight: 600; }
         .nav-item.active { color: #1A56B0; }
-        .nav-item svg { width: 24px; height: 24px; margin-bottom: 4px; }
-        .nav-item small { font-size: 10px; font-weight: 600; }
+        .nav-icon { font-size: 24px; display: block; margin-bottom: 2px; }
 
-        .scanner-btn {
-            width: 54px;
-            height: 54px;
-            background: #1A56B0;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-top: -40px;
-            border: 5px solid var(--bg-color);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+        .scanner-fab {
+            width: 58px; height: 58px; background: #1A56B0;
+            border-radius: 50%; margin-top: -40px;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3); border: 5px solid var(--bg-color);
         }
-
-        .scanner-btn svg { width: 28px; height: 28px; fill: white; }
-
     </style>
 </head>
 <body>
 
 <div class="app-container">
     <header class="profile-header">
-        <div class="avatar-container">
-            <div class="avatar">LL</div>
-            <div class="level-badge">Intermediate</div>
-        </div>
+        <div class="avatar">LL</div>
         <h2 class="profile-name">Lázár Luca</h2>
-        <p class="wsdc-id">WSDC ID: 24645</p>
+        <p class="wsdc-id">WSDC #24645 • Intermediate</p>
     </header>
 
-    <div class="stats-grid">
-        <div class="stat-card">
-            <span class="stat-label">WSDC Points</span>
-            <span class="stat-value">12</span>
-        </div>
-        <div class="stat-card">
-            <span class="stat-label">Global Rank</span>
-            <span class="stat-value">#142</span>
+    <div class="progress-section">
+        <div class="progress-card">
+            <div class="progress-header">
+                <span>Intermediate Level Progress</span>
+                <span>12 / 30 pts</span>
+            </div>
+            <div class="progress-bar-bg">
+                <div class="progress-bar-fill"></div>
+            </div>
+            <div class="progress-footer">
+                Need <strong>18 more points</strong> to reach <strong>Advanced</strong>
+            </div>
         </div>
     </div>
 
-    <section class="profile-section">
-        <h3>Current Event</h3>
-        <div class="event-card">
-            <div class="event-header">
-                <div class="event-title">
-                    <h4>Budafest Open Swing 2026</h4>
-                    <p>Jan 09-11, 2026 • Budapest, HU</p>
-                </div>
-                <span class="status-pill">Registered</span>
-            </div>
-            <div class="registration-details">
-                <div class="reg-item">
-                    <span>Role</span>
-                    <strong>Follower</strong>
-                </div>
-                <div class="reg-item">
-                    <span>Division</span>
-                    <strong>Intermediate</strong>
-                </div>
-            </div>
+    <h3 class="section-title">WSDC Points Progress</h3>
+    <div class="chart-container">
+        <div class="visual-chart">
+            <div class="bar" style="height: 10%;" data-pts="1"></div>
+            <div class="bar" style="height: 10%;" data-pts="1"></div>
+            <div class="bar" style="height: 30%;" data-pts="3"></div>
+            <div class="bar" style="height: 20%;" data-pts="2"></div>
+            <div class="bar" style="height: 50%;" data-pts="5"></div>
         </div>
-    </section>
-
-    <section class="profile-section">
-        <h3>Recent History</h3>
-        
-        <div class="history-item">
-            <div class="history-info">
-                <strong>Autumn Swing 2025</strong>
-                <p>Nov 14-16, 2025 • Prague</p>
-            </div>
-            <div class="history-result">
-                <span class="place">Finalist (4th)</span>
-                <span class="points">+2 pts</span>
-            </div>
+        <div style="display: flex; justify-content: space-between; margin-top: 10px; font-size: 10px; color: var(--text-secondary);">
+            <span>2022</span><span>2023</span><span>2024</span><span>2025</span><span>2026</span>
         </div>
+    </div>
 
-        <div class="history-item">
-            <div class="history-info">
-                <strong>Swingsation 2025</strong>
-                <p>Aug 22-24, 2025 • Budapest</p>
+    <h3 class="section-title">My Registered Events</h3>
+    <div class="event-list">
+        <div class="event-card current">
+            <div class="event-info">
+                <h4>Budafest Open Swing 2026</h4>
+                <p>Budapest • Jan 09-11</p>
             </div>
-            <div class="history-result">
-                <span class="place">Semi-final</span>
-                <span class="points">0 pts</span>
-            </div>
+            <span class="badge badge-current">CURRENT</span>
         </div>
-    </section>
+        <div class="event-card upcoming">
+            <div class="event-info">
+                <h4>Warsaw Jive 2026</h4>
+                <p>Warsaw • Mar 14-16</p>
+            </div>
+            <span class="badge badge-upcoming">UPCOMING</span>
+        </div>
+    </div>
 
-    <nav class="bottom-nav">
+    <h3 class="section-title">Point History</h3>
+    <div class="history-card">
+        <div class="row header">
+            <span>Event</span>
+            <span>Result</span>
+            <span>Pts</span>
+        </div>
+        <div class="row">
+            <span>Autumn Swing 2025</span>
+            <span>4th / F</span>
+            <span class="pts-win">+2</span>
+        </div>
+        <div class="row">
+            <span>Swingsation 2025</span>
+            <span>1st / INT</span>
+            <span class="pts-win">+3</span>
+        </div>
+        <div class="row">
+            <span>Budafest 2025</span>
+            <span>12th / SF</span>
+            <span>0</span>
+        </div>
+    </div>
+
+    <nav class="nav-bar">
         <a href="#" class="nav-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
-            <small>Home</small>
+            <span class="nav-icon">🏠</span>Home
         </a>
         <a href="#" class="nav-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-            <small>Search</small>
+            <span class="nav-icon">🔍</span>Search
         </a>
-        <div class="scanner-btn">
-            <svg viewBox="0 0 24 24"><path d="M4 8V4h4M16 4h4v4M20 16v4h-4M8 20H4v-4M7 12h10"></path></svg>
+        <div class="scanner-fab">
+            <span style="font-size: 26px;">📷</span>
         </div>
         <a href="#" class="nav-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-            <small>History</small>
+            <span class="nav-icon">🕒</span>Events
         </a>
         <a href="#" class="nav-item active">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-            <small>Profile</small>
+            <span class="nav-icon">👤</span>Profile
         </a>
     </nav>
 </div>
