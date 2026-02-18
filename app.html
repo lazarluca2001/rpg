@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WSDC Profile Mockup</title>
+    <title>Angyal Mercedesz - WSDC Registry Profile</title>
     <style>
         :root {
+            /* Sötét mód paletta a colors.png alapján */
             --bg-color: #0F1115;
             --card-surface: #1C1F26;
             --primary-action: #4A8CFF;
@@ -14,11 +15,16 @@
             --text-secondary: #9CA3AF;
             --border-color: #2D333B;
             --header-bg: #161B22;
-            --chart-line: #CE93D8;
+            --chart-line: #A2DFF7; /* Scoring.dance kék vonal */
+            
+            /* Világos navigációs paletta */
+            --nav-bg: #FFFFFF;
+            --nav-text: #57606A;
+            --nav-active: #1A56B0;
         }
 
         body {
-            background-color: #2c2c2c;
+            background-color: #1a1a1a;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -27,16 +33,16 @@
             font-family: -apple-system, sans-serif;
         }
 
-        /* Telefon Sablon (Mockup) */
+        /* Telefon Mockup Sablon */
         .phone-mockup {
             width: 375px;
             height: 812px;
             background: var(--bg-color);
-            border: 12px solid #1a1a1a;
-            border-radius: 40px;
+            border: 12px solid #000000;
+            border-radius: 50px;
             position: relative;
             overflow: hidden;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.8);
             display: flex;
             flex-direction: column;
         }
@@ -44,105 +50,116 @@
         /* Notch / Status Bar */
         .status-bar {
             height: 44px;
-            padding: 0 30px;
+            padding: 0 32px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 12px;
-            font-weight: bold;
-            color: white;
+            font-size: 13px;
+            font-weight: 600;
+            color: #fff;
             z-index: 10;
         }
 
-        .scroll-content {
+        .scrollable-content {
             flex: 1;
             overflow-y: auto;
             padding-bottom: 90px;
             scrollbar-width: none;
         }
-        .scroll-content::-webkit-scrollbar { display: none; }
+        .scrollable-content::-webkit-scrollbar { display: none; }
 
         /* Profile Header */
         .profile-header {
             background-color: var(--header-bg);
-            padding: 20px;
+            padding: 20px 20px 30px;
             text-align: center;
             border-bottom: 1px solid var(--border-color);
         }
 
         .avatar {
-            width: 80px; height: 80px;
+            width: 90px; height: 90px;
             background: linear-gradient(135deg, var(--primary-action), #8E24AA);
             border-radius: 50%;
-            margin: 0 auto 10px;
+            margin: 0 auto 15px;
             display: flex; align-items: center; justify-content: center;
-            font-size: 28px; font-weight: bold; color: white;
+            font-size: 32px; font-weight: bold; color: white;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
         }
 
-        .profile-name { margin: 10px 0 0; font-size: 20px; color: var(--text-primary); }
-        .wsdc-id { color: var(--text-secondary); font-size: 13px; margin-top: 4px; }
+        .profile-name { margin: 10px 0 0; font-size: 22px; color: var(--text-primary); letter-spacing: -0.5px; }
+        .wsdc-id { color: var(--text-secondary); font-size: 14px; margin-top: 4px; }
 
-        /* Progress Tracker */
-        .progress-section { padding: 15px 20px; }
+        /* Progress Card */
+        .section-padding { padding: 0 20px; }
         .progress-card {
             background: var(--card-surface);
-            padding: 12px;
-            border-radius: 12px;
+            padding: 16px;
+            border-radius: 16px;
             border: 1px solid var(--border-color);
+            margin-top: 20px;
         }
-        .progress-bar-bg { height: 6px; background: #2D333B; border-radius: 3px; margin: 8px 0; overflow: hidden; }
-        .progress-bar-fill { height: 100%; background: var(--success); width: 40%; }
+
+        .progress-bar-bg { height: 8px; background: #2D333B; border-radius: 4px; margin: 12px 0; overflow: hidden; }
+        .progress-bar-fill { height: 100%; background: var(--success); width: 40%; box-shadow: 0 0 12px var(--success); }
 
         /* Scoring.dance Line Chart */
-        .chart-section { padding: 0 20px; }
         .chart-container {
             background: var(--card-surface);
-            border-radius: 12px;
-            padding: 15px;
+            border-radius: 16px;
+            padding: 20px 15px;
             border: 1px solid var(--border-color);
+            margin: 20px 0;
             position: relative;
         }
-        .chart-svg {
-            width: 100%;
-            height: 100px;
-            stroke: var(--chart-line);
-            stroke-width: 2;
-            fill: none;
-        }
-        .chart-point { fill: var(--chart-line); stroke: var(--bg-color); stroke-width: 2; }
-        .chart-labels {
-            display: flex; justify-content: space-between;
-            margin-top: 8px; font-size: 10px; color: var(--text-secondary);
-        }
 
-        /* History Table with Partners */
-        .section-title { padding: 20px 20px 10px; font-size: 14px; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px; }
-        .history-card { margin: 0 20px; background: var(--card-surface); border-radius: 12px; border: 1px solid var(--border-color); overflow: hidden; }
+        .chart-svg { width: 100%; height: 100px; overflow: visible; }
+        .line-path { stroke: var(--chart-line); stroke-width: 3; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+        .data-point { fill: var(--bg-color); stroke: var(--chart-line); stroke-width: 2; }
+        .chart-label { font-size: 10px; fill: var(--text-secondary); }
+
+        /* Point History with Partners */
+        .section-title { font-size: 14px; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px; margin: 25px 0 10px; font-weight: bold; }
         
-        .row {
-            display: grid; grid-template-columns: 1fr 40px;
-            padding: 12px; border-bottom: 1px solid var(--border-color);
+        .history-card {
+            background: var(--card-surface);
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
         }
-        .row.header { background: rgba(255,255,255,0.03); font-size: 11px; color: var(--text-secondary); }
-        .event-main { font-size: 13px; font-weight: 600; margin-bottom: 2px; }
-        .partner-name { font-size: 11px; color: var(--primary-action); }
-        .pts-col { font-weight: bold; color: var(--success); text-align: right; display: flex; align-items: center; justify-content: flex-end; }
 
-        /* Bottom Nav (Light Mode Style) */
+        .history-row {
+            display: grid;
+            grid-template-columns: 1fr 50px;
+            padding: 14px 16px;
+            border-bottom: 1px solid var(--border-color);
+            align-items: center;
+        }
+
+        .history-row:last-child { border-bottom: none; }
+        .history-row.header { background: rgba(255,255,255,0.03); font-size: 11px; font-weight: bold; color: var(--text-secondary); }
+
+        .event-name { font-size: 14px; font-weight: 600; color: var(--text-primary); margin-bottom: 2px; }
+        .partner-info { font-size: 12px; color: var(--primary-action); }
+        .points-earned { font-weight: 800; color: var(--success); text-align: right; font-size: 15px; }
+
+        /* Bottom Nav - Világos stílus */
         .nav-bar {
             position: absolute; bottom: 0; width: 100%;
-            height: 75px; background: #FFFFFF;
+            height: 80px; background: var(--nav-bg);
             display: flex; justify-content: space-around; align-items: center;
-            border-top: 1px solid #DDD; padding-bottom: 10px;
+            border-top: 1px solid #E3E8ED; padding-bottom: 15px;
         }
-        .nav-item { color: #57606A; text-decoration: none; text-align: center; font-size: 10px; font-weight: bold; }
-        .nav-item.active { color: #1A56B0; }
-        .nav-icon { font-size: 20px; display: block; margin-bottom: 2px; }
-        .scanner-btn {
-            width: 50px; height: 50px; background: #1A56B0;
-            border-radius: 25px; margin-top: -40px;
+
+        .nav-item { color: var(--nav-text); text-decoration: none; text-align: center; font-size: 10px; font-weight: 700; }
+        .nav-item.active { color: var(--nav-active); }
+        .nav-icon { font-size: 24px; display: block; margin-bottom: 4px; }
+
+        .scanner-fab {
+            width: 56px; height: 56px; background: var(--nav-active);
+            border-radius: 28px; margin-top: -45px;
             display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3); border: 4px solid var(--bg-color);
+            box-shadow: 0 8px 15px rgba(26, 86, 176, 0.4);
+            border: 5px solid var(--bg-color);
         }
     </style>
 </head>
@@ -154,76 +171,99 @@
         <span>📶 🔋</span>
     </div>
 
-    <div class="scroll-content">
+    <div class="scrollable-content">
         <header class="profile-header">
             <div class="avatar">AM</div>
             <h2 class="profile-name">Angyal Mercedesz</h2>
-            <p class="wsdc-id">WSDC #24645 • Intermediate (F)</p>
+            <p class="wsdc-id">WSDC Registry #24645 • Intermediate (F)</p>
         </header>
 
-        <div class="progress-section">
+        <div class="section-padding">
             <div class="progress-card">
-                <div style="display:flex; justify-content:space-between; font-size:11px; color:var(--text-secondary)">
-                    <span>Intermediate Level Progress</span>
-                    <span>12 / 30 pts</span>
+                <div style="display: flex; justify-content: space-between; font-size: 12px;">
+                    <span style="color: var(--text-secondary);">Intermediate Progress</span>
+                    <span style="color: var(--primary-action); font-weight: bold;">12 / 30 pts</span>
                 </div>
                 <div class="progress-bar-bg"><div class="progress-bar-fill"></div></div>
-                <div style="font-size:10px; text-align:center">18 pts to <strong>Advanced</strong></div>
+                <div style="font-size: 11px; text-align: center; color: var(--text-secondary);">
+                    Szükséges még <strong>18 pont</strong> az <strong>Advanced</strong> szinthez.
+                </div>
             </div>
-        </div>
 
-        <h3 class="section-title">Point Progress</h3>
-        <div class="chart-section">
+            <h3 class="section-title">WSDC Points History</h3>
             <div class="chart-container">
                 <svg class="chart-svg" viewBox="0 0 300 100">
-                    <polyline points="0,70 100,70 180,40 240,25 300,5" fill="none" />
-                    <circle class="chart-point" cx="10" cy="70" r="4" />
-                    <circle class="chart-point" cx="180" cy="40" r="4" />
-                    <circle class="chart-point" cx="240" cy="25" r="4" />
-                    <circle class="chart-point" cx="295" cy="5" r="4" />
+                    <polyline class="line-path" points="10,80 80,80 150,40 220,20 290,10" />
+                    <circle class="data-point" cx="10" cy="80" r="4" />
+                    <circle class="data-point" cx="80" cy="80" r="4" />
+                    <circle class="data-point" cx="150" cy="40" r="4" />
+                    <circle class="data-point" cx="220" cy="20" r="4" />
+                    <circle class="data-point" cx="290" cy="10" r="4" />
+                    
+                    <text x="5" y="98" class="chart-label">2023</text>
+                    <text x="140" y="98" class="chart-label">2024</text>
+                    <text x="275" y="98" class="chart-label">2025</text>
                 </svg>
-                <div class="chart-labels">
-                    <span>2024</span><span>2025</span><span>2026</span>
-                </div>
             </div>
-        </div>
 
-        <h3 class="section-title">History & Partners</h3>
-        <div class="history-card">
-            <div class="row header">
-                <span>Event / Partner</span>
-                <span style="text-align:right">Pts</span>
-            </div>
-            <div class="row">
-                <div>
-                    <div class="event-main">Budafest Open Swing 2026</div>
-                    <div class="partner-name">with Kovács Balázs</div>
+            <h3 class="section-title">Result History</h3>
+            <div class="history-card">
+                <div class="history-row header">
+                    <span>EVENT / PARTNER</span>
+                    <span style="text-align: right;">PTS</span>
                 </div>
-                <div class="pts-col">+2</div>
-            </div>
-            <div class="row">
-                <div>
-                    <div class="event-main">Autumn Swing 2025</div>
-                    <div class="partner-name">with Gábor Galgóczy</div>
+                
+                <div class="history-row">
+                    <div>
+                        <div class="event-name">Budafest Open Swing 2026</div>
+                        <div class="partner-info">with Kovács Balázs</div>
+                    </div>
+                    <div class="points-earned">+2</div>
                 </div>
-                <div class="pts-col">+4</div>
-            </div>
-            <div class="row">
-                <div>
-                    <div class="event-main">Warsaw Jive 2025</div>
-                    <div class="partner-name">with Adam Nowak</div>
+
+                <div class="history-row">
+                    <div>
+                        <div class="event-name">Autumn Swing 2025</div>
+                        <div class="partner-info">with Gábor Galgóczy</div>
+                    </div>
+                    <div class="points-earned">+4</div>
                 </div>
-                <div class="pts-col">+2</div>
+
+                <div class="history-row">
+                    <div>
+                        <div class="event-name">Swingsation 2025</div>
+                        <div class="partner-info">with Pálmai Kristóf</div>
+                    </div>
+                    <div class="points-earned">+3</div>
+                </div>
+
+                <div class="history-row">
+                    <div>
+                        <div class="event-name">Warsaw Jive 2024</div>
+                        <div class="partner-info">with Adam Nowak</div>
+                    </div>
+                    <div class="points-earned">+3</div>
+                </div>
             </div>
         </div>
     </div>
 
     <nav class="nav-bar">
-        <a href="#" class="nav-item"><span class="nav-icon">🏠</span>Home</a>
-        <a href="#" class="nav-item"><span class="nav-icon">🔍</span>Search</a>
-        <div class="scanner-btn"><span style="color:white; font-size:20px">📷</span></div>
-        <a href="#" class="nav-item"><span class="nav-icon">🕒</span>History</a>
-        <a href="#" class="nav-item active"><span class="nav-icon">👤</span>Profile</a>
+        <a href="#" class="nav-item">
+            <span class="nav-icon">🏠</span>Home
+        </a>
+        <a href="#" class="nav-item">
+            <span class="nav-icon">🔍</span>Search
+        </a>
+        <div class="scanner-fab">
+            <span style="font-size: 24px;">📷</span>
+        </div>
+        <a href="#" class="nav-item">
+            <span class="nav-icon">🕒</span>History
+        </a>
+        <a href="#" class="nav-item active">
+            <span class="nav-icon">👤</span>Profile
+        </a>
     </nav>
 </div>
 
