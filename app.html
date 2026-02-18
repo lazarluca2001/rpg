@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Budafest 2026 - Profil</title>
+    <style>
+        /* Design Tokenek a colors.png sötét módja alapján */
+        :root {
+            --bg-color: #0F1115;
+            --card-surface: #1C1F26;
+            --primary-action: #4A8CFF;
+            --success: #48B16E;
+            --text-primary: #E9ECEF;
+            --text-secondary: #9CA3AF;
+            --border-color: #2D333B;
+            --header-bg: #161B22;
+            --nav-bg: #ffffff;
+            --nav-text: #1C2126;
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.5;
+        }
+
+        /* App Container */
+        .app-container {
+            max-width: 480px;
+            margin: 0 auto;
+            min-height: 100vh;
+            padding-bottom: 90px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        /* Profile Header */
+        .profile-header {
+            background-color: var(--header-bg);
+            padding: 50px 20px 30px;
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .avatar-container {
+            position: relative;
+            width: 100px;
+            margin: 0 auto 15px;
+        }
+
+        .avatar {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, var(--primary-action), #60a5fa);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            font-weight: 800;
+            color: #000;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+
+        .level-badge {
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--success);
+            color: #fff;
+            font-size: 11px;
+            font-weight: bold;
+            padding: 4px 12px;
+            border-radius: 20px;
+            white-space: nowrap;
+            border: 2px solid var(--header-bg);
+        }
+
+        .profile-name { margin: 15px 0 5px; font-size: 24px; letter-spacing: -0.5px; }
+        .wsdc-id { color: var(--text-secondary); font-size: 14px; margin: 0; }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            padding: 20px;
+        }
+
+        .stat-card {
+            background: var(--card-surface);
+            padding: 15px;
+            border-radius: 16px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+            transition: transform 0.2s;
+        }
+
+        .stat-card:active { transform: scale(0.98); }
+
+        .stat-label { display: block; color: var(--text-secondary); font-size: 12px; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 1px; }
+        .stat-value { font-size: 22px; font-weight: 800; color: var(--primary-action); }
+
+        /* Profile Sections */
+        .profile-section { padding: 0 20px 20px; }
+        .profile-section h3 { font-size: 16px; margin-bottom: 12px; color: var(--text-secondary); font-weight: 600; }
+
+        /* Active Event Card */
+        .event-card {
+            background: var(--card-surface);
+            border-radius: 20px;
+            padding: 18px;
+            border: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .event-card::before {
+            content: "";
+            position: absolute;
+            left: 0; top: 0; bottom: 0;
+            width: 5px;
+            background: var(--primary-action);
+        }
+
+        .event-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .event-title h4 { margin: 0; font-size: 18px; }
+        .event-title p { margin: 4px 0 0; font-size: 13px; color: var(--text-secondary); }
+
+        .status-pill {
+            background: rgba(74, 140, 255, 0.15);
+            color: var(--primary-action);
+            padding: 5px 12px;
+            border-radius: 10px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .registration-details {
+            display: flex;
+            gap: 25px;
+            border-top: 1px solid var(--border-color);
+            padding-top: 15px;
+        }
+
+        .reg-item span { display: block; font-size: 11px; color: var(--text-secondary); margin-bottom: 2px; }
+        .reg-item strong { font-size: 15px; color: var(--text-primary); }
+
+        /* History Items */
+        .history-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--card-surface);
+            padding: 14px 18px;
+            border-radius: 14px;
+            margin-bottom: 10px;
+            border: 1px solid var(--border-color);
+        }
+
+        .history-info strong { font-size: 15px; display: block; }
+        .history-info p { margin: 2px 0 0; font-size: 12px; color: var(--text-secondary); }
+        
+        .history-result { text-align: right; }
+        .place { display: block; font-size: 14px; font-weight: 700; color: var(--text-primary); }
+        .points { font-size: 12px; color: var(--success); font-weight: 600; }
+
+        /* Bottom Nav - Világos stílus a terv szerint */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 480px;
+            height: 75px;
+            background: var(--nav-bg);
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            border-top: 1px solid #ddd;
+            padding: 0 10px;
+            z-index: 100;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #57606A;
+            text-decoration: none;
+            flex: 1;
+        }
+
+        .nav-item.active { color: #1A56B0; }
+        .nav-item svg { width: 24px; height: 24px; margin-bottom: 4px; }
+        .nav-item small { font-size: 10px; font-weight: 600; }
+
+        .scanner-btn {
+            width: 54px;
+            height: 54px;
+            background: #1A56B0;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: -40px;
+            border: 5px solid var(--bg-color);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+        }
+
+        .scanner-btn svg { width: 28px; height: 28px; fill: white; }
+
+    </style>
+</head>
+<body>
+
+<div class="app-container">
+    <header class="profile-header">
+        <div class="avatar-container">
+            <div class="avatar">LL</div>
+            <div class="level-badge">Intermediate</div>
+        </div>
+        <h2 class="profile-name">Lázár Luca</h2>
+        <p class="wsdc-id">WSDC ID: 24645</p>
+    </header>
+
+    <div class="stats-grid">
+        <div class="stat-card">
+            <span class="stat-label">WSDC Points</span>
+            <span class="stat-value">12</span>
+        </div>
+        <div class="stat-card">
+            <span class="stat-label">Global Rank</span>
+            <span class="stat-value">#142</span>
+        </div>
+    </div>
+
+    <section class="profile-section">
+        <h3>Current Event</h3>
+        <div class="event-card">
+            <div class="event-header">
+                <div class="event-title">
+                    <h4>Budafest Open Swing 2026</h4>
+                    <p>Jan 09-11, 2026 • Budapest, HU</p>
+                </div>
+                <span class="status-pill">Registered</span>
+            </div>
+            <div class="registration-details">
+                <div class="reg-item">
+                    <span>Role</span>
+                    <strong>Follower</strong>
+                </div>
+                <div class="reg-item">
+                    <span>Division</span>
+                    <strong>Intermediate</strong>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="profile-section">
+        <h3>Recent History</h3>
+        
+        <div class="history-item">
+            <div class="history-info">
+                <strong>Autumn Swing 2025</strong>
+                <p>Nov 14-16, 2025 • Prague</p>
+            </div>
+            <div class="history-result">
+                <span class="place">Finalist (4th)</span>
+                <span class="points">+2 pts</span>
+            </div>
+        </div>
+
+        <div class="history-item">
+            <div class="history-info">
+                <strong>Swingsation 2025</strong>
+                <p>Aug 22-24, 2025 • Budapest</p>
+            </div>
+            <div class="history-result">
+                <span class="place">Semi-final</span>
+                <span class="points">0 pts</span>
+            </div>
+        </div>
+    </section>
+
+    <nav class="bottom-nav">
+        <a href="#" class="nav-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
+            <small>Home</small>
+        </a>
+        <a href="#" class="nav-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <small>Search</small>
+        </a>
+        <div class="scanner-btn">
+            <svg viewBox="0 0 24 24"><path d="M4 8V4h4M16 4h4v4M20 16v4h-4M8 20H4v-4M7 12h10"></path></svg>
+        </div>
+        <a href="#" class="nav-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            <small>History</small>
+        </a>
+        <a href="#" class="nav-item active">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+            <small>Profile</small>
+        </a>
+    </nav>
+</div>
+
+</body>
+</html>
