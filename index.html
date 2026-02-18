@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Angyal Mercedesz - Advanced Stats</title>
+    <title>Angyal Mercedesz - Ultimate Pro Profile</title>
     <style>
         :root {
             --bg-color: #0F1115;
@@ -29,6 +29,7 @@
             font-family: -apple-system, sans-serif;
         }
 
+        /* Telefon Mockup */
         .phone-mockup {
             width: 375px;
             height: 812px;
@@ -60,30 +61,39 @@
         }
         .scrollable-content::-webkit-scrollbar { display: none; }
 
+        /* Profile Header */
         .profile-header {
             background-color: var(--header-bg);
-            padding: 20px 20px 30px;
+            padding: 20px 20px 25px;
             text-align: center;
             border-bottom: 1px solid var(--border-color);
         }
 
         .avatar {
-            width: 80px; height: 80px;
+            width: 85px; height: 85px;
             background: linear-gradient(135deg, var(--primary-action), #8E24AA);
             border-radius: 50%;
-            margin: 0 auto 10px;
+            margin: 0 auto 12px;
             display: flex; align-items: center; justify-content: center;
-            font-size: 28px; font-weight: bold; color: white;
+            font-size: 30px; font-weight: bold; color: white;
+            box-shadow: 0 8px 15px rgba(0,0,0,0.3);
         }
 
-        /* Performance Grid Section */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            padding: 20px;
+        /* Progress Section */
+        .progress-section { padding: 20px 20px 10px; }
+        .progress-card {
+            background: var(--card-surface);
+            padding: 16px;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
         }
+        .progress-header { display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 10px; }
+        .progress-bar-bg { height: 10px; background: #2D333B; border-radius: 5px; overflow: hidden; margin-bottom: 10px; }
+        .progress-bar-fill { height: 100%; background: var(--success); width: 40%; box-shadow: 0 0 10px var(--success); }
+        .progress-footer { font-size: 11px; color: var(--text-secondary); text-align: center; }
 
+        /* Stats Grid */
+        .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 10px 20px; }
         .stat-card {
             background: var(--card-surface);
             padding: 15px;
@@ -91,14 +101,18 @@
             border: 1px solid var(--border-color);
             text-align: center;
         }
-
-        .stat-card .label { font-size: 10px; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px; }
-        .stat-card .value { font-size: 22px; font-weight: 800; color: var(--primary-action); display: block; margin: 5px 0; }
+        .stat-card .label { font-size: 10px; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px; }
+        .stat-card .value { font-size: 22px; font-weight: 800; color: var(--primary-action); margin: 4px 0; display: block; }
         .stat-card .sub { font-size: 10px; color: var(--success); }
 
-        /* Partner Stats Section */
-        .section-title { font-size: 13px; color: var(--text-secondary); text-transform: uppercase; padding: 10px 20px; font-weight: 700; }
-        
+        /* Chart */
+        .section-title { font-size: 13px; color: var(--text-secondary); text-transform: uppercase; padding: 15px 20px 8px; font-weight: 700; }
+        .chart-box { margin: 0 20px; background: var(--card-surface); border-radius: 16px; padding: 18px; border: 1px solid var(--border-color); }
+        .chart-svg { width: 100%; height: 85px; overflow: visible; }
+        .line { stroke: var(--chart-line); stroke-width: 3; fill: none; stroke-linecap: round; }
+        .dot { fill: var(--bg-color); stroke: var(--chart-line); stroke-width: 2; }
+
+        /* Partner Stats */
         .partner-list { padding: 0 20px; }
         .partner-row {
             background: var(--card-surface);
@@ -110,23 +124,9 @@
             align-items: center;
             border: 1px solid var(--border-color);
         }
-
-        .partner-name { font-size: 14px; font-weight: 600; }
+        .partner-name { font-size: 14px; font-weight: 600; color: var(--text-primary); }
         .partner-meta { font-size: 11px; color: var(--text-secondary); }
-        .points-pill {
-            background: rgba(74, 140, 255, 0.1);
-            color: var(--primary-action);
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-weight: bold;
-            font-size: 12px;
-        }
-
-        /* Chart */
-        .chart-box { margin: 0 20px; background: var(--card-surface); border-radius: 16px; padding: 15px; border: 1px solid var(--border-color); }
-        .chart-svg { width: 100%; height: 80px; overflow: visible; }
-        .line { stroke: var(--chart-line); stroke-width: 3; fill: none; }
-        .dot { fill: var(--bg-color); stroke: var(--chart-line); stroke-width: 2; }
+        .points-pill { background: rgba(74, 140, 255, 0.15); color: var(--primary-action); padding: 4px 10px; border-radius: 12px; font-weight: bold; font-size: 12px; }
 
         /* Nav */
         .nav-bar {
@@ -140,20 +140,34 @@
             width: 54px; height: 54px; background: var(--nav-active);
             border-radius: 27px; margin-top: -45px; display: flex;
             align-items: center; justify-content: center; border: 5px solid var(--bg-color);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
     </style>
 </head>
 <body>
 
 <div class="phone-mockup">
-    <div class="status-bar"><span>19:24</span><span>📶 🔋</span></div>
+    <div class="status-bar"><span>19:42</span><span>📶 🔋</span></div>
 
     <div class="scrollable-content">
         <header class="profile-header">
             <div class="avatar">AM</div>
-            <h2 style="margin: 10px 0 0; color: #fff;">Angyal Mercedesz</h2>
+            <h2 style="margin: 0; color: #fff; font-size: 22px;">Angyal Mercedesz</h2>
             <p class="wsdc-id">WSDC #24645 • Intermediate (F)</p>
         </header>
+
+        <div class="progress-section">
+            <div class="progress-card">
+                <div class="progress-header">
+                    <span style="color: var(--text-secondary);">Level Progress</span>
+                    <span style="color: var(--primary-action); font-weight: bold;">12 / 30 PTS</span>
+                </div>
+                <div class="progress-bar-bg"><div class="progress-bar-fill"></div></div>
+                <div class="progress-footer">
+                    Még <strong>18 pont</strong> szükséges az <strong>Advanced</strong> szinthez.
+                </div>
+            </div>
+        </div>
 
         <div class="stats-grid">
             <div class="stat-card">
@@ -164,19 +178,22 @@
             <div class="stat-card">
                 <span class="label">Avg. Placing</span>
                 <span class="value">#3.2</span>
-                <span class="sub">In Finals</span>
+                <span class="sub">Top 5 average</span>
             </div>
         </div>
 
-        <h3 class="section-title">Point Progress</h3>
+        <h3 class="section-title">WSDC Points History</h3>
         <div class="chart-box">
             <svg class="chart-svg" viewBox="0 0 300 80">
-                <polyline class="line" points="0,70 75,70 150,40 225,25 300,5" />
-                <circle class="dot" cx="75" cy="70" r="4" />
-                <circle class="dot" cx="150" cy="40" r="4" />
-                <circle class="dot" cx="225" cy="25" r="4" />
-                <circle class="dot" cx="295" cy="5" r="4" />
+                <polyline class="line" points="10,75 80,75 150,45 220,30 290,10" />
+                <circle class="dot" cx="80" cy="75" r="4" />
+                <circle class="dot" cx="150" cy="45" r="4" />
+                <circle class="dot" cx="220" cy="30" r="4" />
+                <circle class="dot" cx="290" cy="10" r="4" />
             </svg>
+            <div style="display: flex; justify-content: space-between; margin-top: 10px; font-size: 10px; color: var(--text-secondary);">
+                <span>2023</span><span>2024</span><span>2025</span>
+            </div>
         </div>
 
         <h3 class="section-title">Top Partner Synergies</h3>
@@ -184,28 +201,21 @@
             <div class="partner-row">
                 <div>
                     <div class="partner-name">Kovács Balázs</div>
-                    <div class="partner-meta">2 Events • 100% Finals</div>
+                    <div class="partner-meta">2 Közös döntő • +5 pts</div>
                 </div>
-                <div class="points-pill">+5 pts</div>
+                <div class="points-pill">🔥 100%</div>
             </div>
             <div class="partner-row">
                 <div>
                     <div class="partner-name">Gábor Galgóczy</div>
-                    <div class="partner-meta">1 Event • 1st Place</div>
+                    <div class="partner-meta">Budafest 2025 • 1. hely</div>
                 </div>
                 <div class="points-pill">+4 pts</div>
             </div>
-            <div class="partner-row">
-                <div>
-                    <div class="partner-name">Pálmai Kristóf</div>
-                    <div class="partner-meta">1 Event • 4th Place</div>
-                </div>
-                <div class="points-pill">+2 pts</div>
-            </div>
         </div>
-        
-        <p style="text-align: center; font-size: 11px; color: var(--text-secondary); padding: 20px;">
-            Based on scoring.dance registry data.
+
+        <p style="text-align: center; font-size: 10px; color: var(--text-secondary); padding: 25px;">
+            Data synced with scoring.dance registry
         </p>
     </div>
 
