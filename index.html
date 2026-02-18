@@ -3,280 +3,220 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tommy Reese | Kalandkövető</title>
-    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <title>Angyal Mercedesz - Advanced Stats</title>
     <style>
-        /* --- Tommy Reese Modern RPG Stílus --- */
         :root {
-            --primary-color: #7c9f4a;      /* Tommy beszédszíne */
-            --primary-hover: #8db356;      /* Világosabb zöld interakcióhoz */
-            --primary-light: #a4c675;      /* Szöveg kiemeléshez */
-            --dark-bg: #121212;            /* Mélysötét háttér */
-            --card-bg: #1c1c1c;            /* Kártya háttér */
-            --text-main: #d1d1d1;          /* Általános szövegszín */
-            --border-color: #2a2a2a;       /* Keret színe */
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
+            --bg-color: #0F1115;
+            --card-surface: #1C1F26;
+            --primary-action: #4A8CFF;
+            --success: #48B16E;
+            --text-primary: #E9ECEF;
+            --text-secondary: #9CA3AF;
+            --border-color: #2D333B;
+            --header-bg: #161B22;
+            --chart-line: #A2DFF7;
+            --nav-bg: #FFFFFF;
+            --nav-active: #1A56B0;
         }
 
         body {
-            background-color: var(--dark-bg);
-            color: var(--text-main);
-            font-family: 'Crimson Text', serif;
-            line-height: 1.6;
-            padding: 40px 20px;
+            background-color: #1a1a1a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            font-family: -apple-system, sans-serif;
         }
 
-        .container {
-            max-width: 900px;
-            margin: auto;
-        }
-
-        header {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-
-        header h1 {
-            font-weight: 600;
-            color: var(--primary-color);
-            font-size: 2.5rem;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        /* --- Szűrő Gombok --- */
-        .filter-buttons {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .btn-filter {
-            background: transparent;
-            border: 1px solid var(--border-color);
-            color: #888;
-            padding: 8px 20px;
-            cursor: pointer;
-            font-family: inherit;
-            font-size: 1rem;
-            margin: 5px;
-            border-radius: 4px;
-            transition: all 0.3s ease;
-        }
-
-        .btn-filter:hover {
-            border-color: var(--primary-color);
-            color: var(--primary-light);
-        }
-
-        .btn-filter.active {
-            background: var(--primary-color);
-            color: #fff;
-            border-color: var(--primary-color);
-        }
-
-        /* --- Kétoszlopos Rács --- */
-        .card-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 25px;
-        }
-
-        /* --- Kártya Stílus --- */
-        .card {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
+        .phone-mockup {
+            width: 375px;
+            height: 812px;
+            background: var(--bg-color);
+            border: 12px solid #000;
+            border-radius: 50px;
+            position: relative;
             overflow: hidden;
             display: flex;
             flex-direction: column;
-            transition: transform 0.3s ease, border-color 0.3s ease;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.8);
         }
 
-        .card:hover {
-            border-color: var(--primary-color);
-            transform: translateY(-4px);
+        .status-bar {
+            height: 44px;
+            padding: 0 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            color: #fff;
         }
 
-        .image-container {
-            position: relative;
-            height: 190px;
+        .scrollable-content {
+            flex: 1;
+            overflow-y: auto;
+            padding-bottom: 100px;
+            scrollbar-width: none;
+        }
+        .scrollable-content::-webkit-scrollbar { display: none; }
+
+        .profile-header {
+            background-color: var(--header-bg);
+            padding: 20px 20px 30px;
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
         }
 
-        .image-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.8;
-            transition: 0.3s;
+        .avatar {
+            width: 80px; height: 80px;
+            background: linear-gradient(135deg, var(--primary-action), #8E24AA);
+            border-radius: 50%;
+            margin: 0 auto 10px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 28px; font-weight: bold; color: white;
         }
 
-        .card:hover .image-container img {
-            opacity: 1;
+        /* Performance Grid Section */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            padding: 20px;
         }
 
-        .badge {
-            position: absolute;
-            top: 12px;
-            right: 12px;
-            padding: 4px 10px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            border-radius: 3px;
-            letter-spacing: 1px;
-            background: rgba(0, 0, 0, 0.7);
+        .stat-card {
+            background: var(--card-surface);
+            padding: 15px;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            text-align: center;
+        }
+
+        .stat-card .label { font-size: 10px; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px; }
+        .stat-card .value { font-size: 22px; font-weight: 800; color: var(--primary-action); display: block; margin: 5px 0; }
+        .stat-card .sub { font-size: 10px; color: var(--success); }
+
+        /* Partner Stats Section */
+        .section-title { font-size: 13px; color: var(--text-secondary); text-transform: uppercase; padding: 10px 20px; font-weight: 700; }
+        
+        .partner-list { padding: 0 20px; }
+        .partner-row {
+            background: var(--card-surface);
+            padding: 12px 16px;
+            border-radius: 14px;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             border: 1px solid var(--border-color);
         }
 
-        .badge.active { color: var(--primary-light); border-color: var(--primary-color); }
-        .badge.completed { color: #888; }
-
-        .card-content {
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
+        .partner-name { font-size: 14px; font-weight: 600; }
+        .partner-meta { font-size: 11px; color: var(--text-secondary); }
+        .points-pill {
+            background: rgba(74, 140, 255, 0.1);
+            color: var(--primary-action);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 12px;
         }
 
-        .card-content h3 {
-            color: #fff;
-            margin: 0 0 15px 0;
-            font-size: 1.6rem;
-            font-weight: 600;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 5px;
-        }
+        /* Chart */
+        .chart-box { margin: 0 20px; background: var(--card-surface); border-radius: 16px; padding: 15px; border: 1px solid var(--border-color); }
+        .chart-svg { width: 100%; height: 80px; overflow: visible; }
+        .line { stroke: var(--chart-line); stroke-width: 3; fill: none; }
+        .dot { fill: var(--bg-color); stroke: var(--chart-line); stroke-width: 2; }
 
-        .card-content p {
-            margin: 6px 0;
-            font-size: 1.05rem;
-            color: #bbb;
+        /* Nav */
+        .nav-bar {
+            position: absolute; bottom: 0; width: 100%; height: 80px;
+            background: var(--nav-bg); display: flex; justify-content: space-around;
+            align-items: center; border-top: 1px solid #ddd; padding-bottom: 15px;
         }
-
-        .card-content strong {
-            color: var(--primary-light);
-            font-weight: 600;
-        }
-
-        /* --- Gomb stílusú Játék Link --- */
-        .game-btn {
-            display: block;
-            margin-top: auto;
-            background: var(--primary-color);
-            color: #fff;
-            text-align: center;
-            text-decoration: none;
-            padding: 10px;
-            border-radius: 4px;
-            font-weight: 600;
-            margin-top: 20px;
-            transition: background 0.3s ease;
-        }
-
-        .game-btn:hover {
-            background: var(--primary-hover);
-        }
-
-        /* --- Mobilos nézet --- */
-        @media (max-width: 650px) {
-            .card-grid {
-                grid-template-columns: 1fr;
-            }
+        .nav-item { text-align: center; color: #57606A; font-size: 10px; text-decoration: none; font-weight: 700; }
+        .nav-item.active { color: var(--nav-active); }
+        .scanner-btn {
+            width: 54px; height: 54px; background: var(--nav-active);
+            border-radius: 27px; margin-top: -45px; display: flex;
+            align-items: center; justify-content: center; border: 5px solid var(--bg-color);
         }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <header>
-        <h1>🌿 Tommy Reese Krónikái</h1>
-    </header>
+<div class="phone-mockup">
+    <div class="status-bar"><span>19:24</span><span>📶 🔋</span></div>
 
-    <div class="filter-buttons">
-        <button class="btn-filter active" onclick="filterSelection('all')">Összes történet</button>
-        <button class="btn-filter" onclick="filterSelection('active')">Aktív</button>
-        <button class="btn-filter" onclick="filterSelection('completed')">Befejezett</button>
-    </div>
+    <div class="scrollable-content">
+        <header class="profile-header">
+            <div class="avatar">AM</div>
+            <h2 style="margin: 10px 0 0; color: #fff;">Angyal Mercedesz</h2>
+            <p class="wsdc-id">WSDC #24645 • Intermediate (F)</p>
+        </header>
 
-    <div class="card-grid">
+        <div class="stats-grid">
+            <div class="stat-card">
+                <span class="label">Finalist Rate</span>
+                <span class="value">64%</span>
+                <span class="sub">9 / 14 events</span>
+            </div>
+            <div class="stat-card">
+                <span class="label">Avg. Placing</span>
+                <span class="value">#3.2</span>
+                <span class="sub">In Finals</span>
+            </div>
+        </div>
+
+        <h3 class="section-title">Point Progress</h3>
+        <div class="chart-box">
+            <svg class="chart-svg" viewBox="0 0 300 80">
+                <polyline class="line" points="0,70 75,70 150,40 225,25 300,5" />
+                <circle class="dot" cx="75" cy="70" r="4" />
+                <circle class="dot" cx="150" cy="40" r="4" />
+                <circle class="dot" cx="225" cy="25" r="4" />
+                <circle class="dot" cx="295" cy="5" r="4" />
+            </svg>
+        </div>
+
+        <h3 class="section-title">Top Partner Synergies</h3>
+        <div class="partner-list">
+            <div class="partner-row">
+                <div>
+                    <div class="partner-name">Kovács Balázs</div>
+                    <div class="partner-meta">2 Events • 100% Finals</div>
+                </div>
+                <div class="points-pill">+5 pts</div>
+            </div>
+            <div class="partner-row">
+                <div>
+                    <div class="partner-name">Gábor Galgóczy</div>
+                    <div class="partner-meta">1 Event • 1st Place</div>
+                </div>
+                <div class="points-pill">+4 pts</div>
+            </div>
+            <div class="partner-row">
+                <div>
+                    <div class="partner-name">Pálmai Kristóf</div>
+                    <div class="partner-meta">1 Event • 4th Place</div>
+                </div>
+                <div class="points-pill">+2 pts</div>
+            </div>
+        </div>
         
-        <div class="card active">
-            <div class="image-container">
-                <img src="https://picsum.photos/500/300?grayscale&random=1" alt="Téma kép">
-                <span class="badge active">Aktív</span>
-            </div>
-            <div class="card-content">
-                <h3>Vér és Moha</h3>
-                <p><strong>Játékostárs:</strong> Ismeretlen vándor</p>
-                <p><strong>Időpont:</strong> 2024.03.18. 20:00</p>
-                <p><strong>Helyszín:</strong> Suttogó fenyves</p>
-                <a href="#" class="game-btn">Olvasás →</a>
-            </div>
-        </div>
-
-        <div class="card active">
-            <div class="image-container">
-                <img src="https://picsum.photos/500/300?grayscale&random=2" alt="Téma kép">
-                <span class="badge active">Aktív</span>
-            </div>
-            <div class="card-content">
-                <h3>A lápvidék titka</h3>
-                <p><strong>Játékostárs:</strong> Morgiana</p>
-                <p><strong>Időpont:</strong> 2024.03.10. 15:45</p>
-                <p><strong>Helyszín:</strong> Ködös mocsár</p>
-                <a href="#" class="game-btn">Olvasás →</a>
-            </div>
-        </div>
-
-        <div class="card completed">
-            <div class="image-container">
-                <img src="https://picsum.photos/500/300?grayscale&random=3" alt="Téma kép">
-                <span class="badge completed">Befejezett</span>
-            </div>
-            <div class="card-content">
-                <h3>Útszéli pihenő</h3>
-                <p><strong>Játékostárs:</strong> Fogadós</p>
-                <p><strong>Időpont:</strong> 2023.12.20.</p>
-                <p><strong>Helyszín:</strong> Két Holló Fogadó</p>
-                <a href="#" class="game-btn">Olvasás →</a>
-            </div>
-        </div>
-
+        <p style="text-align: center; font-size: 11px; color: var(--text-secondary); padding: 20px;">
+            Based on scoring.dance registry data.
+        </p>
     </div>
+
+    <nav class="nav-bar">
+        <div class="nav-item">🏠<br>Home</div>
+        <div class="nav-item">🔍<br>Search</div>
+        <div class="scanner-btn"><span style="color:white; font-size:22px;">📷</span></div>
+        <div class="nav-item">🕒<br>History</div>
+        <div class="nav-item active">👤<br>Profile</div>
+    </nav>
 </div>
-
-<script>
-    function filterSelection(status) {
-        const cards = document.getElementsByClassName("card");
-        const buttons = document.getElementsByClassName("btn-filter");
-
-        // Gombok stílusa
-        for (let btn of buttons) {
-            btn.classList.remove("active");
-            if (
-                (status === 'all' && btn.innerText.includes('Összes')) ||
-                (status === 'active' && btn.innerText.includes('Aktív')) ||
-                (status === 'completed' && btn.innerText.includes('Befejezett'))
-            ) {
-                btn.classList.add("active");
-            }
-        }
-
-        // Kártyák szűrése
-        for (let card of cards) {
-            if (status === "all") {
-                card.style.display = "flex";
-            } else {
-                card.style.display = card.classList.contains(status) ? "flex" : "none";
-            }
-        }
-    }
-</script>
 
 </body>
 </html>
