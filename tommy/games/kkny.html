@@ -1,101 +1,136 @@
+```html
 <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&display=swap" rel="stylesheet">
 
-<div class="tommy-relations">
+<div class="memory-journal">
 
-<input type="radio" name="journal-tab" id="tab-family" checked>
-<input type="radio" name="journal-tab" id="tab-trust">
-<input type="radio" name="journal-tab" id="tab-love">
-<input type="radio" name="journal-tab" id="tab-scars">
+<input type="radio" name="memory-tab" id="memory-family" checked>
+<input type="radio" name="memory-tab" id="memory-trust">
+<input type="radio" name="memory-tab" id="memory-love">
+<input type="radio" name="memory-tab" id="memory-scars">
 
-<div class="journal-wrapper">
+<div class="memory-tabs">
 
-<div class="journal-tabs">
-<label for="tab-family">Család</label>
-<label for="tab-trust">Akikben bízom</label>
-<label for="tab-love">Kimondatlan érzések</label>
-<label for="tab-scars">Sebhelyek</label>
+<label for="memory-family">Család</label>
+
+<label for="memory-trust">Akikben bízom</label>
+
+<label for="memory-love">Kimondatlan érzések</label>
+
+<label for="memory-scars">Sebhelyek</label>
+
 </div>
 
-<div class="journal-page">
+<div class="memory-content">
 
-<div class="page family">
+<div class="memory-page family">
+
+<div class="memory-polaroid">
+
+<div class="memory-photo">
+<img src="https://i.pinimg.com/736x/34/91/53/349153f42e7dca5eb7d1e7bfb00eec7d.jpg">
+</div>
+
+<div class="memory-text">
 
 <h2>Család</h2>
 
-<blockquote>
-„A hiány néha hangosabb, mint bármelyik jelenlét.”
-</blockquote>
-
 <p>
-A család számomra egyszerre jelent menedéket és fájdalmat.
-Vannak emlékek, amelyeket minden nap magammal hordozok,
-és vannak emberek, akiket akkor sem tudnék elengedni,
-ha akarnám.
+Vannak emberek, akik akkor is velünk maradnak, amikor már csak az emlékeik léteznek.
+A család számomra nem pusztán kötelék, hanem minden történet kezdete.
 </p>
 
-<ul>
-<li>Thomas Reese Sr.</li>
-<li>Édesanyám</li>
-</ul>
+<div class="memory-names">
+<span>— Thomas Reese Sr.</span>
+<span>— Édesanyám</span>
+</div>
 
 </div>
 
-<div class="page trust">
+</div>
+
+</div>
+
+<div class="memory-page trust">
+
+<div class="memory-polaroid">
+
+<div class="memory-photo">
+<img src="https://i.pinimg.com/736x/5f/55/c0/5f55c06db4b53d61cc6f8d11ec7392f5.jpg">
+</div>
+
+<div class="memory-text">
 
 <h2>Akikben bízom</h2>
 
-<blockquote>
-„Nem azok maradnak velünk, akik megígérik. Hanem akik tényleg maradnak.”
-</blockquote>
-
 <p>
-Kevés embert engedek közel magamhoz.
-A bizalmam lassan épül fel, de ha valaki egyszer kiérdemli,
-akkor mellette maradok.
+A bizalom lassan épül fel bennem.
+Nem azért, mert nem akarok közel kerülni másokhoz,
+hanem mert túl jól ismerem a veszteség súlyát.
 </p>
 
-<ul>
-<li>Aubrey Chaisty</li>
-<li>...</li>
-</ul>
+<div class="memory-names">
+<span>— Aubrey Chaisty</span>
+<span>— ...</span>
+</div>
 
 </div>
 
-<div class="page love">
+</div>
+
+</div>
+
+<div class="memory-page love">
+
+<div class="memory-polaroid">
+
+<div class="memory-photo">
+<img src="https://i.pinimg.com/736x/3d/36/7c/3d367c13fd3535c51f3d1d4d61d4ff70.jpg">
+</div>
+
+<div class="memory-text">
 
 <h2>Kimondatlan érzések</h2>
 
-<blockquote>
-„A legegyszerűbb mondatok kimondása néha a legnehezebb.”
-</blockquote>
-
 <p>
-Mindig könnyebb volt dalszövegek mögé rejteni az érzéseimet,
-mint valóban beszélni róluk.
+Vannak dolgok, amelyeket könnyebb leírni egy dalszövegben,
+mint valakinek a szemébe nézve kimondani.
 </p>
 
-<ul>
-<li>...</li>
-</ul>
+<div class="memory-names">
+<span>— ...</span>
+</div>
 
 </div>
 
-<div class="page scars">
+</div>
+
+</div>
+
+<div class="memory-page scars">
+
+<div class="memory-polaroid">
+
+<div class="memory-photo">
+<img src="https://i.pinimg.com/736x/e0/44/8e/e0448e530b4f57e624eaabcf6dcbcb47.jpg">
+</div>
+
+<div class="memory-text">
 
 <h2>Sebhelyek</h2>
 
-<blockquote>
-„Vannak emberek, akik akkor is velünk maradnak, amikor már nincsenek jelen.”
-</blockquote>
-
 <p>
-Nem minden kapcsolat végződik haraggal.
-Néhány egyszerűen nyomot hagy maga után.
+Nem minden kapcsolat ér véget haraggal.
+Néhány egyszerűen nyomot hagy maga után,
+és örökre velünk marad.
 </p>
 
-<ul>
-<li>...</li>
-</ul>
+<div class="memory-names">
+<span>— ...</span>
+</div>
+
+</div>
+
+</div>
 
 </div>
 
@@ -103,58 +138,352 @@ Néhány egyszerűen nyomot hagy maga után.
 
 </div>
 
-<div class="photo-wall-title">
-Kapcsolatok
-</div>
+<style>
 
-<div class="polaroid-board">
+.memory-journal{
+max-width:900px;
+margin:auto;
+font-family:'Crimson Text',serif;
+padding:15px;
+}
 
-<div class="polaroid-template">
+/* rádiók */
 
-<div class="polaroid-photo">
-<img src="https://i.pinimg.com/736x/66/e0/0e/66e00e4c5b2ff7788dc6c7c3dfed4f8e.jpg">
-</div>
+.memory-journal input{
+display:none;
+}
 
-<div class="polaroid-content">
+/* ragasztószalag könyvjelzők */
 
-<h3>Karakter neve</h3>
+.memory-tabs{
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+gap:18px;
+margin-bottom:30px;
+}
 
-<div class="relation-strength">
-★★★★★
-</div>
+.memory-tabs label{
 
-<div class="relation-label">
-Hazatalálás
-</div>
+background:rgba(230,220,190,.85);
 
-<div class="relation-quote">
-„Ide kerülhet egy rövid idézet vagy benyomás Tommyról.”
-</div>
+padding:10px 28px;
 
-<hr>
+cursor:pointer;
 
-<strong>Kapcsolat Tommyval</strong>
+color:#4a4033;
 
-<p>
-Ide írhatod le a kapcsolat részleteit.
-Mióta ismerik egymást?
-Mit gondol róla?
-Mennyire bízik benne?
-Mi köti hozzá?
-</p>
+font-size:15px;
 
-</div>
+font-weight:bold;
 
-</div>
+box-shadow:
+0 3px 8px rgba(0,0,0,.18);
 
-</div>
+transition:.3s;
 
+position:relative;
+
+}
+
+.memory-tabs label:before{
+
+content:"";
+
+position:absolute;
+
+inset:0;
+
+background:
+linear-gradient(
+45deg,
+rgba(255,255,255,.15),
+rgba(255,255,255,0)
+);
+
+pointer-events:none;
+
+}
+
+.memory-tabs label:nth-child(1){
+transform:rotate(-3deg);
+}
+
+.memory-tabs label:nth-child(2){
+transform:rotate(2deg);
+}
+
+.memory-tabs label:nth-child(3){
+transform:rotate(-2deg);
+}
+
+.memory-tabs label:nth-child(4){
+transform:rotate(3deg);
+}
+
+.memory-tabs label:hover{
+transform:scale(1.05);
+}
+
+#memory-family:checked ~ .memory-tabs label[for="memory-family"],
+#memory-trust:checked ~ .memory-tabs label[for="memory-trust"],
+#memory-love:checked ~ .memory-tabs label[for="memory-love"],
+#memory-scars:checked ~ .memory-tabs label[for="memory-scars"]{
+
+background:#d8c8a2;
+
+box-shadow:
+0 5px 15px rgba(0,0,0,.25);
+
+}
+
+/* tartalom */
+
+.memory-content{
+padding:10px 0;
+}
+
+/* oldalak */
+
+.memory-page{
+display:none;
+}
+
+/* polaroid */
+
+.memory-polaroid{
+
+width:620px;
+max-width:100%;
+
+background:white;
+
+padding:18px;
+
+margin:auto;
+
+box-shadow:
+0 10px 35px rgba(0,0,0,.25);
+
+transition:.4s;
+
+}
+
+.family .memory-polaroid{
+transform:rotate(-2deg);
+}
+
+.trust .memory-polaroid{
+transform:rotate(1.5deg);
+}
+
+.love .memory-polaroid{
+transform:rotate(-3deg);
+}
+
+.scars .memory-polaroid{
+transform:rotate(2deg);
+}
+
+.memory-polaroid:hover{
+transform:rotate(0deg) scale(1.02);
+}
+
+/* fotó */
+
+.memory-photo{
+
+height:320px;
+
+overflow:hidden;
+
+position:relative;
+
+background:#eee;
+
+}
+
+.memory-photo:before{
+
+content:"";
+
+position:absolute;
+
+top:-12px;
+
+left:50%;
+
+width:90px;
+
+height:26px;
+
+background:
+rgba(230,220,190,.9);
+
+transform:
+translateX(-50%)
+rotate(-4deg);
+
+box-shadow:
+0 2px 6px rgba(0,0,0,.15);
+
+z-index:5;
+
+}
+
+.memory-photo img{
+
+width:100%;
+
+height:100%;
+
+object-fit:cover;
+
+display:block;
+
+}
+
+/* szöveg */
+
+.memory-text{
+
+padding-top:18px;
+
+color:#333;
+
+}
+
+.memory-text h2{
+
+margin:0 0 15px;
+
+text-align:center;
+
+font-size:30px;
+
+letter-spacing:1px;
+
+}
+
+.memory-text p{
+
+line-height:1.9;
+
+font-size:17px;
+
+text-align:justify;
+
+}
+
+/* nevek */
+
+.memory-names{
+
+margin-top:20px;
+
+padding-top:15px;
+
+border-top:1px solid #ddd;
+
+}
+
+.memory-names span{
+
+display:block;
+
+padding:4px 0;
+
+font-style:italic;
+
+font-size:16px;
+
+color:#666;
+
+}
+
+/* lapváltás */
+
+#memory-family:checked ~ .memory-content .family{
+display:block;
+}
+
+#memory-trust:checked ~ .memory-content .trust{
+display:block;
+}
+
+#memory-love:checked ~ .memory-content .love{
+display:block;
+}
+
+#memory-scars:checked ~ .memory-content .scars{
+display:block;
+}
+
+/* mobil */
+
+@media(max-width:700px){
+
+.memory-tabs{
+gap:10px;
+}
+
+.memory-tabs label{
+font-size:13px;
+padding:8px 16px;
+}
+
+.memory-photo{
+height:220px;
+}
+
+.memory-text h2{
+font-size:24px;
+}
+
+.memory-text p{
+font-size:15px;
+}
+
+}
+
+</style>
+
+
+/* GENERÁTOR */
+
+
+
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+body{background:#1b1b1b;color:#d5d5d5;font-family:'Crimson Text',serif;margin:0;padding:30px}
+.container{max-width:1100px;margin:auto}
+.generator{background:#222;padding:20px;border-radius:10px;margin-top:30px}
+label{display:block;margin-top:12px}
+input,textarea,select{width:100%;padding:10px;box-sizing:border-box;margin-top:4px}
+textarea{min-height:120px}
+button{margin-top:12px;padding:12px 16px;border:none;background:#7c9f4a;color:white;cursor:pointer;border-radius:6px}
+button:hover{opacity:.9}
+.journal-page{background:#d8c8a2;color:#2c2417;padding:30px;border-radius:10px}
+#preview{margin-top:25px;display:flex;justify-content:center}
+.polaroid-template{background:white;width:320px;padding:15px;box-shadow:0 6px 20px rgba(0,0,0,.4);transform:rotate(-2deg)}
+.polaroid-photo{height:300px;overflow:hidden;background:#eee}
+.polaroid-photo img{width:100%;height:100%;object-fit:cover}
+.polaroid-content{color:#333;padding-top:15px}
+.polaroid-content h3{text-align:center;margin:0}
+.relation-strength{text-align:center;font-size:22px;color:#b48a2c}
+.relation-label{text-align:center;font-style:italic}
+#output{width:100%;height:220px;margin-top:20px}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="journal-page">
+<h2>Tommy Reese – Kapcsolati rendszer</h2>
+<p>Töltsd ki az adatokat, majd kattints a Generálás gombra. A kész polaroid előnézetben megjelenik, a HTML pedig kimásolható.</p>
 </div>
 
 <div class="generator">
-
-<h2>Tommy Reese kapcsolat generátor</h2>
-
 <label>Név</label>
 <input type="text" id="name">
 
@@ -171,235 +500,61 @@ Mi köti hozzá?
 </select>
 
 <label>Kapcsolat megnevezése</label>
-<input type="text" id="label">
+<input type="text" id="relation">
 
 <label>Kapcsolat Tommyval</label>
 <textarea id="description"></textarea>
 
-<button onclick="generatePolaroid()">
-Generálás
-</button>
-
-<button onclick="copyCode()">
-HTML másolása
-</button>
-
-</div>
+<button onclick="generatePolaroid()">Generálás</button>
+<button onclick="copyCode()">HTML másolása</button>
 
 <div id="preview"></div>
 
-<h3>Generált kód</h3>
+<textarea id="output" readonly></textarea>
+</div>
 
-<textarea id="output"></textarea>
+</div>
 
-<style>
+<script>
+function generatePolaroid(){
+const name=document.getElementById('name').value;
+const image=document.getElementById('image').value;
+const strength=document.getElementById('strength').value;
+const relation=document.getElementById('relation').value;
+const description=document.getElementById('description').value;
 
-.tommy-relations{
-max-width:900px;
-margin:auto;
-font-family:'Crimson Text',serif;
-color:#d5d5d5;
+const html=`<div class="polaroid-template">
+<div class="polaroid-photo">
+<img src="${image}" alt="${name}">
+</div>
+<div class="polaroid-content">
+<h3>${name}</h3>
+<div class="relation-strength">${strength}</div>
+<div class="relation-label">${relation}</div>
+<hr>
+<strong>Kapcsolat Tommyval</strong>
+<p>${description}</p>
+</div>
+</div>`;
+
+document.getElementById('preview').innerHTML=html;
+document.getElementById('output').value=html;
 }
 
-/* NAPLÓ */
+async function copyCode(){
+const output=document.getElementById('output').value;
+if(!output){ alert('Először generálj egy polaroidot!'); return; }
 
-.journal-wrapper{
-position:relative;
-margin-bottom:50px;
+try{
+ await navigator.clipboard.writeText(output);
+ alert('A HTML kód kimásolva.');
+}catch(e){
+ const area=document.getElementById('output');
+ area.select();
+ document.execCommand('copy');
+ alert('A HTML kód kimásolva.');
 }
-
-.tommy-relations input{
-display:none;
 }
-
-.journal-tabs{
-display:flex;
-gap:6px;
-flex-wrap:wrap;
-margin-left:10px;
-}
-
-.journal-tabs label{
-background:#29251f;
-padding:12px 20px;
-cursor:pointer;
-border-radius:8px 8px 0 0;
-border:1px solid #3b352c;
-border-bottom:none;
-color:#8f8f8f;
-font-size:15px;
-transition:.3s;
-}
-
-.journal-tabs label:hover{
-color:white;
-}
-
-#tab-family:checked ~ .journal-wrapper .journal-tabs label[for="tab-family"],
-#tab-trust:checked ~ .journal-wrapper .journal-tabs label[for="tab-trust"],
-#tab-love:checked ~ .journal-wrapper .journal-tabs label[for="tab-love"],
-#tab-scars:checked ~ .journal-wrapper .journal-tabs label[for="tab-scars"]{
-background:#d8c8a2;
-color:#2c2417;
-font-weight:bold;
-}
-
-.journal-page{
-background:#d8c8a2;
-padding:35px;
-border-radius:0 10px 10px 10px;
-color:#2c2417;
-border:1px solid #a39067;
-box-shadow:
-0 0 25px rgba(0,0,0,.35),
-inset 0 0 30px rgba(255,255,255,.12);
-min-height:260px;
-}
-
-.page{
-display:none;
-}
-
-.page h2{
-margin-top:0;
-letter-spacing:2px;
-text-transform:uppercase;
-border-bottom:1px solid rgba(0,0,0,.15);
-padding-bottom:10px;
-}
-
-.page blockquote{
-font-style:italic;
-opacity:.75;
-margin:15px 0 25px;
-padding-left:15px;
-border-left:3px solid #8c7351;
-}
-
-.page p{
-line-height:1.8;
-}
-
-.page ul{
-margin-top:20px;
-padding-left:20px;
-}
-
-.page li{
-margin-bottom:8px;
-}
-
-#tab-family:checked ~ .journal-wrapper .family,
-#tab-trust:checked ~ .journal-wrapper .trust,
-#tab-love:checked ~ .journal-wrapper .love,
-#tab-scars:checked ~ .journal-wrapper .scars{
-display:block;
-}
-
-/* POLAROID FAL */
-
-.photo-wall-title{
-text-align:center;
-font-size:28px;
-letter-spacing:3px;
-text-transform:uppercase;
-color:#7c9f4a;
-margin-bottom:25px;
-font-weight:bold;
-}
-
-.polaroid-board{
-display:flex;
-justify-content:center;
-flex-wrap:wrap;
-gap:35px;
-}
-
-.polaroid-template{
-background:white;
-width:320px;
-padding:15px;
-box-shadow:
-0 6px 20px rgba(0,0,0,.4);
-transform:rotate(-2deg);
-transition:.3s;
-}
-
-.polaroid-template:hover{
-transform:rotate(0deg) scale(1.02);
-}
-
-.polaroid-photo{
-height:300px;
-overflow:hidden;
-background:#eee;
-}
-
-.polaroid-photo img{
-width:100%;
-height:100%;
-object-fit:cover;
-}
-
-.polaroid-content{
-color:#333;
-padding-top:15px;
-}
-
-.polaroid-content h3{
-margin:0;
-font-size:26px;
-text-align:center;
-}
-
-.relation-strength{
-text-align:center;
-font-size:22px;
-margin-top:10px;
-letter-spacing:2px;
-color:#b48a2c;
-}
-
-.relation-label{
-text-align:center;
-font-style:italic;
-margin-bottom:15px;
-color:#666;
-}
-
-.relation-quote{
-font-style:italic;
-padding:10px;
-border-left:3px solid #ccc;
-margin-bottom:15px;
-color:#555;
-}
-
-.polaroid-content hr{
-border:none;
-border-top:1px solid #ddd;
-margin:15px 0;
-}
-
-.polaroid-content p{
-line-height:1.7;
-}
-
-@media(max-width:700px){
-
-.journal-tabs{
-justify-content:center;
-}
-
-.journal-page{
-padding:25px;
-}
-
-.polaroid-template{
-width:100%;
-max-width:340px;
-}
-
-}
-
-</style>
+</script>
+</body>
+</html>
