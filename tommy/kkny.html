@@ -151,71 +151,71 @@
         #memory-love:checked ~ .memory-content .love { display: block !important; }
         #memory-scars:checked ~ .memory-content .scars { display: block !important; }
         
-        /* --- KOMPAKT GENERÁTOR STÍLUSOK --- */
+        /* --- SZUPERKOMPAKT GENERÁTOR STÍLUSOK --- */
         .container {
             max-width: 540px;
             margin: auto;
-            margin-top: 30px;
-            border-top: 1px dashed #786e5b;
-            padding-top: 20px;
+            margin-top: 25px;
+            border-top: 2px dashed #786e5b;
+            padding-top: 15px;
         }
         
         .generator {
-            padding: 5px;
+            padding: 0px 5px !important;
             background: transparent !important;
             box-shadow: none !important;
         }
         
         .generator label {
             display: block !important;
-            margin-top: 8px !important; /* Kisebb felső margó */
+            margin-top: 6px !important; /* Minimális felső hézag */
             font-weight: bold !important;
-            font-size: 13px !important; /* Kicsit kisebb feliratok */
+            font-size: 13px !important;
             color: #d8c8a2 !important;
         }
         
         .gen-input {
             width: 100% !important;
             box-sizing: border-box !important;
-            padding: 6px 10px !important; /* Karcsúbb mezők (kompaktabb) */
-            margin-top: 3px !important;
+            padding: 5px 8px !important; /* Szuper karcsú mezők */
+            margin-top: 2px !important;
             border: 1px solid #d8c8a2 !important;
             background: rgba(0, 0, 0, 0.4) !important;
             color: #f5f3ef !important;
             font-family: 'Crimson Text', serif !important;
-            font-size: 14px !important;
+            font-size: 13px !important;
             border-radius: 4px;
         }
         
         .gen-input::placeholder {
-            color: rgba(216, 200, 162, 0.5) !important;
+            color: rgba(216, 200, 162, 0.4) !important;
         }
         
         textarea.gen-input {
-            min-height: 80px !important; /* Alacsonyabb alapértelmezett magasság */
+            min-height: 65px !important; /* Összenyomott szövegdoboz */
             resize: vertical !important;
         }
         
         #output.gen-input {
             font-family: monospace !important;
-            font-size: 12px !important;
-            height: 90px !important; /* Alacsonyabb kódbox */
+            font-size: 11px !important;
+            height: 75px !important; /* Összenyomott kódbox */
             background: rgba(0, 0, 0, 0.6) !important;
             color: #a7e22e !important;
             border: 1px solid #786e5b !important;
         }
         
         .generator button {
-            margin-top: 12px;
-            padding: 8px 14px; /* Kisebb gombok */
+            margin-top: 10px;
+            padding: 6px 12px; /* Kisebb gombok */
             border: none;
-            border-radius: 5px;
+            border-radius: 4px;
             cursor: pointer;
             background: #7c9f4a;
             color: white;
-            margin-right: 8px;
+            margin-right: 6px;
             font-weight: bold;
-            font-size: 13px;
+            font-size: 12px;
             transition: 0.2s;
         }
         
@@ -312,6 +312,7 @@
 
     <div class="container">
         <div class="generator">
+            <!-- JAVÍTVA: A nagy cím teljesen törölve lett innen -->
             <label for="relationType">Kapcsolat típusa</label>
             <input type="text" id="relationType" class="gen-input" placeholder="pl. legjobb barát">
 
