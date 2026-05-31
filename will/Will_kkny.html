@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>William Ashford Csillagvizsgálói Jegyzőkönyv</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- ALAPSTÍLUSOK (A teszteléshez) --- */
+        body {
+            background-color: #030914;
+            padding: 50px 0;
+            margin: 0;
+        }
+
+        /* --- ASHFORD JOURNAL ALAPOK --- */
+        .ashford-journal {
+            width: 620px;
+            margin: auto;
+            position: relative;
+            font-family: 'Cormorant Garamond', serif;
+            background: radial-gradient(
+                circle at top,
+                #081932 0%,
+                #050d1d 50%,
+                #020611 100%
+            );
+            padding: 20px;
+            box-sizing: border-box;
+            overflow: hidden; /* Hogy a kilógó nagy asztrolábium ne nyújtsa meg az oldalt */
+        }
+
+        /* --- DEKORÁCIÓS ELEMEK (Asztrolábium & Csillagok) --- */
+        .astrolabe {
+            position: absolute;
+            right: -120px;
+            top: -60px;
+            width: 300px;
+            height: 300px;
+            opacity: .06; /* Finom, sötét üveghatású beolvadás */
+            pointer-events: none;
+            transform: rotate(15deg);
+        }
+
+        /* Csillagos háttér réteg */
+        .starfield {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        /* --- ANIMÁCIÓK --- */
+        @keyframes twinkle {
+            0%, 100% { opacity: .15; }
+            50% { opacity: .8; }
+        }
+
+        .star {
+            fill: #ffffff;
+        }
+        
+        /* Különböző ütemű pislákolás a természetes hatásért */
+        .star-t1 { animation: twinkle 3s infinite ease-in-out; }
+        .star-t2 { animation: twinkle 4s infinite ease-in-out; animation-delay: 1s; }
+        .star-t3 { animation: twinkle 5s infinite ease-in-out; animation-delay: 2.5s; }
+
+        .constellation-line {
+            stroke: rgba(191, 162, 119, 0.12);
+            stroke-width: 0.8;
+            stroke-dasharray: 2;
+        }
+
+        /* --- FÜLEK (Rádiógombos logika a működéshez) --- */
+        .ashford-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Elrejtjük a natív rádiógombokat */
+        .ashford-journal input[type="radio"] {
+            display: none;
+        }
+
+        .ashford-tabs label {
+            padding: 8px 18px;
+            font-size: 12px;
+            letter-spacing: 2px;
+            color: #bfa277;
+            border: 1px solid rgba(191, 162, 119, .25);
+            background: rgba(0, 0, 0, .18);
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: all 0.4s ease;
+        }
+
+        .ashford-tabs label:hover {
+            background: rgba(191, 162, 119, .08);
+            border-color: rgba(191, 162, 119, .5);
+        }
+
+        /* --- LÁTÓ-RAGYOGÁS AKTIVÁCIÓ --- */
+        #tab-1:checked ~ .ashford-tabs label[for="tab-1"],
+        #tab-2:checked ~ .ashford-tabs label[for="tab-2"],
+        #tab-3:checked ~ .ashford-tabs label[for="tab-3"] {
+            color: #fff4d4;
+            border-color: rgba(255, 215, 150, .45);
+            background: rgba(8, 19, 40, .6);
+            box-shadow: 0 0 12px rgba(255, 215, 150, .25); /* Jóslat aktiválódás effekt */
+        }
+
+        /* --- KERET ÉS PANEL SZERKEZET --- */
+        .ashford-frame {
+            padding: 28px;
+            border: 1px solid rgba(180, 145, 90, .25);
+            background: linear-gradient(
+                180deg,
+                rgba(4, 12, 26, .82),
+                rgba(2, 8, 18, .92)
+            );
+            box-shadow: 0 0 40px rgba(0, 0, 0, .5);
+            position: relative;
+            z-index: 5;
+            backdrop-filter: blur(4px); /* Sötét üvegpanel hatás fokozása */
+        }
+
+        .ashford-page {
+            padding: 45px;
+            border: 1px solid rgba(180, 145, 90, .18);
+            background: linear-gradient(
+                180deg,
+                rgba(8, 19, 40, .82),
+                rgba(5, 12, 26, .92)
+            );
+            position: relative;
+        }
+
+        /* --- SZÖVEGES ELEMEK --- */
+        .ashford-motto {
+            font-size: 13px;
+            font-style: italic;
+            text-align: center;
+            color: rgba(199, 174, 132, 0.5);
+            letter-spacing: 1px;
+            margin-bottom: 25px;
+            line-height: 1.4;
+        }
+
+        .ashford-title {
+            font-size: 34px;
+            font-style: italic;
+            font-weight: 400;
+            text-align: center;
+            color: #c7ae84;
+            margin-bottom: 35px;
+            text-shadow: 0 0 10px rgba(199, 174, 132, 0.2);
+        }
+
+        .ashford-text {
+            font-size: 19px;
+            line-height: 2;
+            color: #c3b8a7;
+            max-width: 460px;
+            margin: auto;
+            text-align: justify;
+        }
+
+        /* --- LAPOZÁS LOGIKA (CSS tab-váltó) --- */
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.6s ease;
+        }
+
+        #tab-1:checked ~ .ashford-frame .content-1,
+        #tab-2:checked ~ .ashford-frame .content-2,
+        #tab-3:checked ~ .ashford-frame .content-3 {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(3px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+<div class="ashford-journal">
+
+    <input type="radio" name="ashford-pages" id="tab-1" checked>
+    <input type="radio" name="ashford-pages" id="tab-2">
+    <input type="radio" name="ashford-pages" id="tab-3">
+
+    <svg class="starfield" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 800">
+        <circle cx="70" cy="120" r="1.2" class="star star-t1" />
+        <circle cx="540" cy="180" r="1" class="star star-t3" />
+        <circle cx="90" cy="550" r="1.5" class="star star-t2" />
+        <circle cx="520" cy="620" r="1.2" class="star star-t1" />
+        <circle cx="310" cy="750" r="1" class="star star-t2" />
+
+        <g class="constellation">
+            <polyline points="40,80 55,65 70,75 85,55 100,70" class="constellation-line" />
+            <circle cx="40" cy="80" r="2" fill="#c7ae84" class="star-t1" />
+            <circle cx="55" cy="65" r="2" fill="#c7ae84" class="star-t2" />
+            <circle cx="70" cy="75" r="2.5" fill="#fff" class="star-t3" />
+            <circle cx="85" cy="55" r="2" fill="#c7ae84" class="star-t1" />
+            <circle cx="100" cy="70" r="1.8" fill="#c7ae84" class="star-t2" />
+        </g>
+
+        <g class="constellation">
+            <line x1="480" y1="680" x2="520" y2="690" class="constellation-line" />
+            <line x1="520" y1="690" x2="510" y2="740" class="constellation-line" />
+            <line x1="510" y1="740" x2="470" y2="730" class="constellation-line" />
+            <line x1="470" y1="730" x2="480" y2="680" class="constellation-line" />
+            <line x1="485" y1="710" x2="505" y2="715" class="constellation-line" />
+            <circle cx="480" cy="680" r="2.5" fill="#ffb0b0" class="star-t2" /> <circle cx="520" cy="690" r="1.8" fill="#c7ae84" />
+            <circle cx="485" cy="710" r="1.5" fill="#fff" class="star-t1" /> <circle cx="495" cy="712" r="1.5" fill="#fff" class="star-t2" /> <circle cx="505" cy="715" r="1.5" fill="#fff" class="star-t3" /> <circle cx="470" cy="730" r="1.8" fill="#c7ae84" />
+            <circle cx="510" cy="740" r="3" fill="#b0e0ff" class="star-t3" /> </g>
+    </svg>
+
+    <svg class="astrolabe" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="50" cy="50" r="48" fill="none" stroke="#bfa277" stroke-width="0.5"/>
+        <circle cx="50" cy="50" r="40" fill="none" stroke="#bfa277" stroke-width="0.3" stroke-dasharray="1,1"/>
+        <circle cx="50" cy="50" r="30" fill="none" stroke="#bfa277" stroke-width="0.4"/>
+        <circle cx="50" cy="50" r="15" fill="none" stroke="#bfa277" stroke-width="0.5"/>
+        <line x1="50" y1="2" x2="50" y2="98" stroke="#bfa277" stroke-width="0.4"/>
+        <line x1="2" y1="50" x2="98" y2="50" stroke="#bfa277" stroke-width="0.4"/>
+        <path d="M 15 25 Q 50 50 85 75" fill="none" stroke="#bfa277" stroke-width="0.8"/>
+        <path d="M 25 75 Q 50 50 75 25" fill="none" stroke="#bfa277" stroke-width="0.4"/>
+    </svg>
+
+    <div class="ashford-tabs">
+        <label for="tab-1">I. Bejegyzés</label>
+        <label for="tab-2">II. Képlet</label>
+        <label for="tab-3">III. Tranzit</label>
+    </div>
+
+    <div class="ashford-frame">
+        <div class="ashford-page">
+
+            <div class="ashford-motto">
+                „A csillagok nem a jövőt mutatják.<br>Csak azt, amitől félünk.”
+            </div>
+
+            <div class="tab-content content-1">
+                <div class="ashford-title">Sötétedő Égbolt</div>
+                <div class="ashford-text">
+                    Az ikrek hava különös feszültséget hozott az obszervatórium falai közé. A Mars retrográd mozgása rányomja bélyegét a látomásokra; a lángok már nem tiszta képeket, csak vészjósló árnyakat vetítenek a jövő parazsára. A csillagok állása makacsul ugyanazt az elkerülhetetlen feszültséget jósolja, amiről oly régóta hallgatni kényszerülök.
+                </div>
+            </div>
+
+            <div class="tab-content content-2">
+                <div class="ashford-title">Képlet & Számítások</div>
+                <div class="ashford-text">
+                    A Cassiopeia legfényesebb pontja és az Orion öve közötti szögtávolság ma éjjel három ívperccel elmozdult. Ez nem asztronómiai hiba. Valami torzítja a fenti szférák tiszta fényét. Az asztrolábium gyűrűi nehezen forognak, mintha magát az időt és a sorsot kellene puszta kézzel, fémbe kényszerítve átforgatni.
+                </div>
+            </div>
+
+            <div class="tab-content content-3">
+                <div class="ashford-title">A Szaturnusz Tranzitja</div>
+                <div class="ashford-text">
+                    A harmadik ház küszöbén átlépő bolygó hideg, kérlelhetetlen igazságokat hoz. Nem maradt több hely a kétségeknek. Aki a csillagokból olvas, annak el kell fogadnia, hogy a fény csak a sötétség kontrasztjában létezik. A ma éjszakai jegyzőkönyvet lezárom; a sors fonalai kibomlottak, a döntés már nem a látnok kezében van.
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
