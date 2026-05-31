@@ -1,6 +1,38 @@
-```html
-<link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&display=swap" rel="stylesheet">
-
+[html]<link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+.memory-journal{font-family:'Crimson Text',serif; max-width:540px; margin:auto;}
+.memory-journal input{display:none;}
+.memory-tabs{display:flex; justify-content:center; flex-wrap:wrap; gap:10px; margin-bottom:20px;}
+.memory-tabs label{background:rgba(230,220,190,.85); padding:8px 18px; cursor:pointer; color:#4a4033; font-size:12px; font-weight:bold; box-shadow:0 2px 5px rgba(0,0,0,.12); transition:.3s; position:relative;}
+.memory-tabs label:nth-child(1){transform:rotate(-3deg);}
+.memory-tabs label:nth-child(2){transform:rotate(2deg);}
+.memory-tabs label:nth-child(3){transform:rotate(-2deg);}
+.memory-tabs label:nth-child(4){transform:rotate(3deg);}
+#memory-family:checked ~ .memory-tabs label[for="memory-family"],
+#memory-trust:checked ~ .memory-tabs label[for="memory-trust"],
+#memory-love:checked ~ .memory-tabs label[for="memory-love"],
+#memory-scars:checked ~ .memory-tabs label[for="memory-scars"]{background:#d8c8a2;}
+.memory-page{display:none;}
+.memory-polaroid{width:520px; max-width:100%; background:linear-gradient(180deg,#fcfaf4 0%,#f3eedf 100%); padding:15px; margin:auto; box-shadow:0 6px 18px rgba(0,0,0,.18); transition:.4s; box-sizing:border-box;}
+.family .memory-polaroid{transform:rotate(-1.5deg);}
+.trust .memory-polaroid{transform:rotate(1deg);}
+.love .memory-polaroid{transform:rotate(-2.5deg);}
+.scars .memory-polaroid{transform:rotate(2deg);}
+.memory-polaroid:hover{transform:rotate(0deg) scale(1.01);}
+.memory-photo{height:250px; overflow:hidden; position:relative; background:#ddd;}
+.memory-photo:before{content:""; position:absolute; top:-10px; left:62%; width:75px; height:20px; background:rgba(230,220,190,.85); transform:translateX(-50%) rotate(7deg); box-shadow:0 2px 4px rgba(0,0,0,.12); z-index:5;}
+.memory-photo img{width:100%; height:100%; object-fit:cover; display:block;}
+.memory-text{padding-top:18px; color:#333;}
+.memory-text h2{margin:0 0 12px; text-align:center; font-size:24px; color:#33291d;}
+.memory-text p{line-height:1.8; font-size:15px; text-align:justify;}
+.memory-names{margin-top:15px; padding-top:12px; border-top:1px solid #ddd; font-size:14px; color:#786e5b;}
+.memory-names span{display:block; padding:3px 0; font-style:italic;}
+#memory-family:checked ~ .memory-content .family{display:block;}
+#memory-trust:checked ~ .memory-content .trust{display:block;}
+#memory-love:checked ~ .memory-content .love{display:block;}
+#memory-scars:checked ~ .memory-content .scars{display:block;}
+</style>
+<body>
 <div class="memory-journal">
 
 <input type="radio" name="memory-tab" id="memory-family" checked>
@@ -9,486 +41,111 @@
 <input type="radio" name="memory-tab" id="memory-scars">
 
 <div class="memory-tabs">
-
-<label for="memory-family">Család</label>
-
-<label for="memory-trust">Akikben bízom</label>
-
-<label for="memory-love">Kimondatlan érzések</label>
-
-<label for="memory-scars">Sebhelyek</label>
-
+<label for="memory-family">#család</label>
+<label for="memory-trust">#barátok</label>
+<label for="memory-love">#szerelmek</label>
+<label for="memory-scars">#ellenségek</label>
 </div>
 
 <div class="memory-content">
 
 <div class="memory-page family">
-
 <div class="memory-polaroid">
-
 <div class="memory-photo">
-<img src="https://i.pinimg.com/736x/34/91/53/349153f42e7dca5eb7d1e7bfb00eec7d.jpg">
+<img src="https://picsum.photos/800/500?1">
 </div>
-
 <div class="memory-text">
-
 <h2>Család</h2>
-
-<p>
-Vannak emberek, akik akkor is velünk maradnak, amikor már csak az emlékeik léteznek.
-A család számomra nem pusztán kötelék, hanem minden történet kezdete.
-</p>
-
+<p>Vannak emberek, akik akkor is velünk maradnak, amikor már csak az emlékeik léteznek. A család számomra nem pusztán kötelék, hanem minden történet kezdete.</p>
 <div class="memory-names">
 <span>— Thomas Reese Sr.</span>
 <span>— Édesanyám</span>
 </div>
-
 </div>
-
 </div>
-
 </div>
 
 <div class="memory-page trust">
-
 <div class="memory-polaroid">
-
 <div class="memory-photo">
-<img src="https://i.pinimg.com/736x/5f/55/c0/5f55c06db4b53d61cc6f8d11ec7392f5.jpg">
+<img src="https://picsum.photos/800/500?2">
 </div>
-
 <div class="memory-text">
-
 <h2>Akikben bízom</h2>
-
-<p>
-A bizalom lassan épül fel bennem.
-Nem azért, mert nem akarok közel kerülni másokhoz,
-hanem mert túl jól ismerem a veszteség súlyát.
-</p>
-
+<p>A bizalom lassan épül fel bennem. Nem azért, mert nem akarok közel kerülni másokhoz, hanem mert túl jól ismerem a veszteség súlyát.</p>
 <div class="memory-names">
 <span>— Aubrey Chaisty</span>
-<span>— ...</span>
 </div>
-
 </div>
-
 </div>
-
 </div>
 
 <div class="memory-page love">
-
 <div class="memory-polaroid">
-
 <div class="memory-photo">
-<img src="https://i.pinimg.com/736x/3d/36/7c/3d367c13fd3535c51f3d1d4d61d4ff70.jpg">
+<img src="https://picsum.photos/800/500?3">
 </div>
-
 <div class="memory-text">
-
 <h2>Kimondatlan érzések</h2>
-
-<p>
-Vannak dolgok, amelyeket könnyebb leírni egy dalszövegben,
-mint valakinek a szemébe nézve kimondani.
-</p>
-
+<p>Vannak dolgok, amelyeket könnyebb leírni egy dalszövegben, mint valakinek a szemébe nézve kimondani.</p>
 <div class="memory-names">
 <span>— ...</span>
 </div>
-
 </div>
-
 </div>
-
 </div>
 
 <div class="memory-page scars">
-
 <div class="memory-polaroid">
-
 <div class="memory-photo">
-<img src="https://i.pinimg.com/736x/e0/44/8e/e0448e530b4f57e624eaabcf6dcbcb47.jpg">
+<img src="https://picsum.photos/800/500?4">
 </div>
-
 <div class="memory-text">
-
 <h2>Sebhelyek</h2>
-
-<p>
-Nem minden kapcsolat ér véget haraggal.
-Néhány egyszerűen nyomot hagy maga után,
-és örökre velünk marad.
-</p>
-
+<p>Nem minden kapcsolat ér véget haraggal. Néhány egyszerűen nyomot hagy maga után, és örökre velünk marad.</p>
 <div class="memory-names">
 <span>— ...</span>
 </div>
-
+</div>
+</div>
 </div>
 
 </div>
-
 </div>
 
-</div>
+</body>[/html]
 
-</div>
 
+Generáld le a válaszod:
+
+[html]<link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-
-.memory-journal{
-max-width:900px;
-margin:auto;
-font-family:'Crimson Text',serif;
-padding:15px;
-}
-
-/* rádiók */
-
-.memory-journal input{
-display:none;
-}
-
-/* ragasztószalag könyvjelzők */
-
-.memory-tabs{
-display:flex;
-justify-content:center;
-flex-wrap:wrap;
-gap:18px;
-margin-bottom:30px;
-}
-
-.memory-tabs label{
-
-background:rgba(230,220,190,.85);
-
-padding:10px 28px;
-
-cursor:pointer;
-
-color:#4a4033;
-
-font-size:15px;
-
-font-weight:bold;
-
-box-shadow:
-0 3px 8px rgba(0,0,0,.18);
-
-transition:.3s;
-
-position:relative;
-
-}
-
-.memory-tabs label:before{
-
-content:"";
-
-position:absolute;
-
-inset:0;
-
-background:
-linear-gradient(
-45deg,
-rgba(255,255,255,.15),
-rgba(255,255,255,0)
-);
-
-pointer-events:none;
-
-}
-
-.memory-tabs label:nth-child(1){
-transform:rotate(-3deg);
-}
-
-.memory-tabs label:nth-child(2){
-transform:rotate(2deg);
-}
-
-.memory-tabs label:nth-child(3){
-transform:rotate(-2deg);
-}
-
-.memory-tabs label:nth-child(4){
-transform:rotate(3deg);
-}
-
-.memory-tabs label:hover{
-transform:scale(1.05);
-}
-
-#memory-family:checked ~ .memory-tabs label[for="memory-family"],
-#memory-trust:checked ~ .memory-tabs label[for="memory-trust"],
-#memory-love:checked ~ .memory-tabs label[for="memory-love"],
-#memory-scars:checked ~ .memory-tabs label[for="memory-scars"]{
-
-background:#d8c8a2;
-
-box-shadow:
-0 5px 15px rgba(0,0,0,.25);
-
-}
-
-/* tartalom */
-
-.memory-content{
-padding:10px 0;
-}
-
-/* oldalak */
-
-.memory-page{
-display:none;
-}
-
-/* polaroid */
-
-.memory-polaroid{
-
-width:620px;
-max-width:100%;
-
-background:white;
-
-padding:18px;
-
-margin:auto;
-
-box-shadow:
-0 10px 35px rgba(0,0,0,.25);
-
-transition:.4s;
-
-}
-
-.family .memory-polaroid{
-transform:rotate(-2deg);
-}
-
-.trust .memory-polaroid{
-transform:rotate(1.5deg);
-}
-
-.love .memory-polaroid{
-transform:rotate(-3deg);
-}
-
-.scars .memory-polaroid{
-transform:rotate(2deg);
-}
-
-.memory-polaroid:hover{
-transform:rotate(0deg) scale(1.02);
-}
-
-/* fotó */
-
-.memory-photo{
-
-height:320px;
-
-overflow:hidden;
-
-position:relative;
-
-background:#eee;
-
-}
-
-.memory-photo:before{
-
-content:"";
-
-position:absolute;
-
-top:-12px;
-
-left:50%;
-
-width:90px;
-
-height:26px;
-
-background:
-rgba(230,220,190,.9);
-
-transform:
-translateX(-50%)
-rotate(-4deg);
-
-box-shadow:
-0 2px 6px rgba(0,0,0,.15);
-
-z-index:5;
-
-}
-
-.memory-photo img{
-
-width:100%;
-
-height:100%;
-
-object-fit:cover;
-
-display:block;
-
-}
-
-/* szöveg */
-
-.memory-text{
-
-padding-top:18px;
-
-color:#333;
-
-}
-
-.memory-text h2{
-
-margin:0 0 15px;
-
-text-align:center;
-
-font-size:30px;
-
-letter-spacing:1px;
-
-}
-
-.memory-text p{
-
-line-height:1.9;
-
-font-size:17px;
-
-text-align:justify;
-
-}
-
-/* nevek */
-
-.memory-names{
-
-margin-top:20px;
-
-padding-top:15px;
-
-border-top:1px solid #ddd;
-
-}
-
-.memory-names span{
-
-display:block;
-
-padding:4px 0;
-
-font-style:italic;
-
-font-size:16px;
-
-color:#666;
-
-}
-
-/* lapváltás */
-
-#memory-family:checked ~ .memory-content .family{
-display:block;
-}
-
-#memory-trust:checked ~ .memory-content .trust{
-display:block;
-}
-
-#memory-love:checked ~ .memory-content .love{
-display:block;
-}
-
-#memory-scars:checked ~ .memory-content .scars{
-display:block;
-}
-
-/* mobil */
-
-@media(max-width:700px){
-
-.memory-tabs{
-gap:10px;
-}
-
-.memory-tabs label{
-font-size:13px;
-padding:8px 16px;
-}
-
-.memory-photo{
-height:220px;
-}
-
-.memory-text h2{
-font-size:24px;
-}
-
-.memory-text p{
-font-size:15px;
-}
-
-}
-
+.container{max-width:540px ;margin:auto;}
+.generator{padding:15px; border: 1px solid #7c9f4a;}
+label{display:block; margin-top:12px; font-weight:bold;}
+input,textarea,select{width:100%; box-sizing:border-box; padding:10px; margin-top:4px;}
+textarea{min-height:140px;}
+button{margin-top:15px; padding:12px 18px; border:none; border-radius:6px; cursor:pointer; background:#7c9f4a; color: white; margin-right:10px;}
+#preview{margin-top:30px; display:flex; justify-content:center;}
+.memory-polaroid{width:520px; max-width:100%; background:linear-gradient(180deg,#fcfaf4 0%,#f3eedf 100%); padding:15px; box-sizing:border-box; box-shadow:0 6px 18px rgba(0,0,0,.18); transform:rotate(-2deg);}
+.memory-photo{height:250px; overflow:hidden; position:relative; background:#ddd;}
+.memory-photo:before{content:""; position:absolute; top:-10px; left:62%; width:75px; height:20px; background:rgba(230,220,190,.85); transform:translateX(-50%) rotate(7deg); box-shadow:0 2px 4px rgba(0,0,0,.12); z-index:5;}
+.memory-photo img{width:100%; height:100%; object-fit:cover; display:block;}
+.memory-text{padding-top:18px; color:#333;}
+.memory-text h2{margin:0 0 12px; text-align:center; font-size:24px; color:#33291d;}
+.relation-strength{text-align:center; font-size:22px; color:#9a7b3e; margin-bottom:15px;}
+.memory-text p{line-height:1.8; font-size:15px; text-align:justify;}
+#output{width:100%; height:250px; margin-top:20px;}
 </style>
 
-
-/* GENERÁTOR */
-
-
-
-<link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&display=swap" rel="stylesheet">
-<style>
-body{background:#1b1b1b;color:#d5d5d5;font-family:'Crimson Text',serif;margin:0;padding:30px}
-.container{max-width:1100px;margin:auto}
-.generator{background:#222;padding:20px;border-radius:10px;margin-top:30px}
-label{display:block;margin-top:12px}
-input,textarea,select{width:100%;padding:10px;box-sizing:border-box;margin-top:4px}
-textarea{min-height:120px}
-button{margin-top:12px;padding:12px 16px;border:none;background:#7c9f4a;color:white;cursor:pointer;border-radius:6px}
-button:hover{opacity:.9}
-.journal-page{background:#d8c8a2;color:#2c2417;padding:30px;border-radius:10px}
-#preview{margin-top:25px;display:flex;justify-content:center}
-.polaroid-template{background:white;width:320px;padding:15px;box-shadow:0 6px 20px rgba(0,0,0,.4);transform:rotate(-2deg)}
-.polaroid-photo{height:300px;overflow:hidden;background:#eee}
-.polaroid-photo img{width:100%;height:100%;object-fit:cover}
-.polaroid-content{color:#333;padding-top:15px}
-.polaroid-content h3{text-align:center;margin:0}
-.relation-strength{text-align:center;font-size:22px;color:#b48a2c}
-.relation-label{text-align:center;font-style:italic}
-#output{width:100%;height:220px;margin-top:20px}
-</style>
-</head>
-<body>
 <div class="container">
-
-<div class="journal-page">
-<h2>Tommy Reese – Kapcsolati rendszer</h2>
-<p>Töltsd ki az adatokat, majd kattints a Generálás gombra. A kész polaroid előnézetben megjelenik, a HTML pedig kimásolható.</p>
-</div>
-
 <div class="generator">
-<label>Név</label>
-<input type="text" id="name">
 
-<label>Avatar URL</label>
-<input type="text" id="image">
+<label>Kapcsolat típusa</label>
+<input type="text" id="relationType" placeholder="pl. legjobb barát">
+
+<label>Kép URL</label>
+<input type="text" id="image" placeholder="https://...">
 
 <label>Kapcsolat erőssége</label>
 <select id="strength">
@@ -499,10 +156,7 @@ button:hover{opacity:.9}
 <option>★☆☆☆☆</option>
 </select>
 
-<label>Kapcsolat megnevezése</label>
-<input type="text" id="relation">
-
-<label>Kapcsolat Tommyval</label>
+<label>Kapcsolat leírása</label>
 <textarea id="description"></textarea>
 
 <button onclick="generatePolaroid()">Generálás</button>
@@ -511,28 +165,26 @@ button:hover{opacity:.9}
 <div id="preview"></div>
 
 <textarea id="output" readonly></textarea>
+
 </div>
 
 </div>
 
 <script>
 function generatePolaroid(){
-const name=document.getElementById('name').value;
+
+const relationType=document.getElementById('relationType').value;
 const image=document.getElementById('image').value;
 const strength=document.getElementById('strength').value;
-const relation=document.getElementById('relation').value;
 const description=document.getElementById('description').value;
 
-const html=`<div class="polaroid-template">
-<div class="polaroid-photo">
-<img src="${image}" alt="${name}">
+const html=`<div class="memory-polaroid">
+<div class="memory-photo">
+<img src="${image}" alt="">
 </div>
-<div class="polaroid-content">
-<h3>${name}</h3>
+<div class="memory-text">
+<h2>${relationType}</h2>
 <div class="relation-strength">${strength}</div>
-<div class="relation-label">${relation}</div>
-<hr>
-<strong>Kapcsolat Tommyval</strong>
 <p>${description}</p>
 </div>
 </div>`;
@@ -542,19 +194,19 @@ document.getElementById('output').value=html;
 }
 
 async function copyCode(){
-const output=document.getElementById('output').value;
-if(!output){ alert('Először generálj egy polaroidot!'); return; }
-
+const text=document.getElementById('output').value;
+if(!text){
+alert('Először generálj egy polaroidot!');
+return;
+}
 try{
- await navigator.clipboard.writeText(output);
- alert('A HTML kód kimásolva.');
+await navigator.clipboard.writeText(text);
+alert('HTML kimásolva!');
 }catch(e){
- const area=document.getElementById('output');
- area.select();
- document.execCommand('copy');
- alert('A HTML kód kimásolva.');
+document.getElementById('output').select();
+document.execCommand('copy');
+alert('HTML kimásolva!');
 }
 }
 </script>
-</body>
-</html>
+[/html]
