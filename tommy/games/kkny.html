@@ -1,0 +1,243 @@
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,700&display=swap" rel="stylesheet">
+
+<div class="rel-tracker">
+
+<input type="radio" name="rel-filter" id="rel-all" checked>
+<input type="radio" name="rel-filter" id="rel-friends">
+<input type="radio" name="rel-filter" id="rel-enemies">
+<input type="radio" name="rel-filter" id="rel-family">
+<input type="radio" name="rel-filter" id="rel-other">
+
+<div class="rel-header">kapcsolatok</div>
+
+<div class="rel-filterbar">
+<label for="rel-all">Összes</label>
+<label for="rel-friends">Barátok</label>
+<label for="rel-enemies">Ellenségek</label>
+<label for="rel-family">Család</label>
+<label for="rel-other">Egyéb</label>
+</div>
+
+<div class="rel-grid">
+
+<!-- BARÁT -->
+<div class="rel-card" data-type="friends">
+<div class="rel-img">
+<img src="KÉP_URL">
+</div>
+<div class="rel-content">
+<h3>Aubrey Chaisty</h3>
+<span class="rel-tag friend-tag">BARÁT</span>
+<p>
+Régi bizalmas, akivel William a legnehezebb időszakait is megosztotta.
+</p>
+</div>
+</div>
+
+<!-- ELLENSÉG -->
+<div class="rel-card" data-type="enemies">
+<div class="rel-img">
+<img src="KÉP_URL">
+</div>
+<div class="rel-content">
+<h3>Clive Reagan</h3>
+<span class="rel-tag enemy-tag">ELLENSÉG</span>
+<p>
+Bátyja. A látomások szerint egyszer ő fogja megölni.
+</p>
+</div>
+</div>
+
+<!-- CSALÁD -->
+<div class="rel-card" data-type="family">
+<div class="rel-img">
+<img src="KÉP_URL">
+</div>
+<div class="rel-content">
+<h3>Patti Davis</h3>
+<span class="rel-tag family-tag">CSALÁD</span>
+<p>
+Közeli családtag, akivel a kapcsolat bonyolult, de fontos.
+</p>
+</div>
+</div>
+
+<!-- EGYÉB -->
+<div class="rel-card" data-type="other">
+<div class="rel-img">
+<img src="KÉP_URL">
+</div>
+<div class="rel-content">
+<h3>Elfelda Hall</h3>
+<span class="rel-tag other-tag">EGYÉB</span>
+<p>
+Nehezen meghatározható kapcsolat, amely időről időre új formát ölt.
+</p>
+</div>
+</div>
+
+</div>
+</div>
+
+<style>
+
+.rel-tracker{
+font-family:'Crimson Text',serif!important;
+max-width:900px!important;
+margin:20px auto!important;
+padding:25px!important;
+color:#d1d1d1!important;
+}
+
+.rel-header{
+text-align:center!important;
+font-size:26px!important;
+text-transform:uppercase!important;
+letter-spacing:2px!important;
+font-weight:bold!important;
+color:#7c9f4a!important;
+margin-bottom:25px!important;
+}
+
+.rel-tracker input[type="radio"]{
+position:absolute!important;
+left:-9999px!important;
+}
+
+.rel-filterbar{
+display:flex!important;
+justify-content:center!important;
+gap:10px!important;
+flex-wrap:wrap!important;
+margin-bottom:30px!important;
+}
+
+.rel-filterbar label{
+background:#1c1c1c!important;
+border:1px solid #444!important;
+padding:8px 18px!important;
+cursor:pointer!important;
+color:#888!important;
+text-transform:uppercase!important;
+font-size:13px!important;
+transition:.3s!important;
+border-radius:4px!important;
+}
+
+.rel-filterbar label:hover{
+color:#fff!important;
+border-color:#7c9f4a!important;
+}
+
+#rel-all:checked ~ .rel-filterbar label[for="rel-all"],
+#rel-friends:checked ~ .rel-filterbar label[for="rel-friends"],
+#rel-enemies:checked ~ .rel-filterbar label[for="rel-enemies"],
+#rel-family:checked ~ .rel-filterbar label[for="rel-family"],
+#rel-other:checked ~ .rel-filterbar label[for="rel-other"]{
+background:#7c9f4a!important;
+color:#fff!important;
+border-color:#fff!important;
+font-weight:bold!important;
+}
+
+.rel-grid{
+display:flex!important;
+flex-wrap:wrap!important;
+gap:20px!important;
+justify-content:center!important;
+}
+
+.rel-card{
+width:calc(50% - 10px)!important;
+background:#1a1a1a!important;
+border:1px solid #2a2a2a!important;
+border-radius:8px!important;
+overflow:hidden!important;
+transition:.3s!important;
+}
+
+.rel-card:hover{
+transform:translateY(-3px)!important;
+border-color:#7c9f4a!important;
+}
+
+@media(max-width:700px){
+.rel-card{
+width:100%!important;
+}
+}
+
+.rel-img{
+height:180px!important;
+overflow:hidden!important;
+border-bottom:2px solid #7c9f4a!important;
+}
+
+.rel-img img{
+width:100%!important;
+height:100%!important;
+object-fit:cover!important;
+}
+
+.rel-content{
+padding:18px!important;
+}
+
+.rel-content h3{
+margin:0 0 10px 0!important;
+color:#fff!important;
+font-size:22px!important;
+}
+
+.rel-content p{
+margin-top:12px!important;
+line-height:1.5!important;
+color:#bcbcbc!important;
+}
+
+.rel-tag{
+display:inline-block!important;
+padding:4px 10px!important;
+font-size:11px!important;
+font-weight:bold!important;
+border-radius:3px!important;
+text-transform:uppercase!important;
+}
+
+.friend-tag{
+border:1px solid #7c9f4a!important;
+color:#a7cb73!important;
+}
+
+.enemy-tag{
+border:1px solid #a14d4d!important;
+color:#d97b7b!important;
+}
+
+.family-tag{
+border:1px solid #6d7fb3!important;
+color:#a8b6df!important;
+}
+
+.other-tag{
+border:1px solid #777!important;
+color:#aaa!important;
+}
+
+#rel-friends:checked ~ .rel-grid .rel-card:not([data-type="friends"]){
+display:none!important;
+}
+
+#rel-enemies:checked ~ .rel-grid .rel-card:not([data-type="enemies"]){
+display:none!important;
+}
+
+#rel-family:checked ~ .rel-grid .rel-card:not([data-type="family"]){
+display:none!important;
+}
+
+#rel-other:checked ~ .rel-grid .rel-card:not([data-type="other"]){
+display:none!important;
+}
+
+</style>
