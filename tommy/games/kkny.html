@@ -1,78 +1,86 @@
-<link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;700&display=swap" rel="stylesheet">
 
-<div class="rel-tracker">
+<div class="tp-relations">
 
-<input type="radio" name="rel-filter" id="rel-all" checked>
-<input type="radio" name="rel-filter" id="rel-friends">
-<input type="radio" name="rel-filter" id="rel-enemies">
-<input type="radio" name="rel-filter" id="rel-family">
-<input type="radio" name="rel-filter" id="rel-other">
+<input type="radio" name="tp-tab" id="tp-family" checked>
+<input type="radio" name="tp-tab" id="tp-friends">
+<input type="radio" name="tp-tab" id="tp-romance">
+<input type="radio" name="tp-tab" id="tp-other">
 
-<div class="rel-header">kapcsolatok</div>
+<div class="tp-header">kapcsolati rendszer</div>
 
-<div class="rel-filterbar">
-<label for="rel-all">Összes</label>
-<label for="rel-friends">Barátok</label>
-<label for="rel-enemies">Ellenségek</label>
-<label for="rel-family">Család</label>
-<label for="rel-other">Egyéb</label>
+<div class="tp-tabs">
+<label for="tp-family">Család</label>
+<label for="tp-friends">Barátok</label>
+<label for="tp-romance">Érzelmek</label>
+<label for="tp-other">Egyéb</label>
 </div>
 
-<div class="rel-grid">
+<div class="tp-content">
 
-<!-- BARÁT -->
-<div class="rel-card" data-type="friends">
-<div class="rel-img">
-<img src="KÉP_URL">
-</div>
-<div class="rel-content">
-<h3>Aubrey Chaisty</h3>
-<span class="rel-tag friend-tag">BARÁT</span>
+<div class="tp-panel family">
+<h3>Család</h3>
+
 <p>
-Régi bizalmas, akivel William a legnehezebb időszakait is megosztotta.
+Tommy életének központi eleme a család emléke. Édesapja elvesztése
+mély nyomot hagyott benne, és bár az évek során megtanult együtt élni
+a gyásszal, döntéseinek jelentős részét ma is ez az élmény formálja.
+A családi kötelékeket rendkívül komolyan veszi.
 </p>
+
+<div class="tp-names">
+<span>Thomas Reese Sr.</span>
+<span>Édesanya</span>
+<span>Közeli rokonok</span>
 </div>
 </div>
 
-<!-- ELLENSÉG -->
-<div class="rel-card" data-type="enemies">
-<div class="rel-img">
-<img src="KÉP_URL">
-</div>
-<div class="rel-content">
-<h3>Clive Reagan</h3>
-<span class="rel-tag enemy-tag">ELLENSÉG</span>
+<div class="tp-panel friends">
+<h3>Barátok</h3>
+
 <p>
-Bátyja. A látomások szerint egyszer ő fogja megölni.
+Kevés embert enged közel magához, de akiknek sikerül áttörniük a falait,
+azokhoz rendkívül hűséges. Inkább néhány mély kapcsolata van, mint sok
+felszínes ismeretsége. Hallgatag, de figyelmes barát.
 </p>
+
+<div class="tp-names">
+<span>Név</span>
+<span>Név</span>
+<span>Név</span>
+<span>Név</span>
 </div>
 </div>
 
-<!-- CSALÁD -->
-<div class="rel-card" data-type="family">
-<div class="rel-img">
-<img src="KÉP_URL">
-</div>
-<div class="rel-content">
-<h3>Patti Davis</h3>
-<span class="rel-tag family-tag">CSALÁD</span>
+<div class="tp-panel romance">
+<h3>Érzelmek</h3>
+
 <p>
-Közeli családtag, akivel a kapcsolat bonyolult, de fontos.
+A veszteség és a bizalom kérdése miatt nehezen nyílik meg romantikus
+kapcsolatokban. Erős érzelmeket él meg, de ritkán mutatja ki őket
+közvetlenül. Sokszor a zenén keresztül fejezi ki azt, amit szavakkal
+nem tud.
 </p>
+
+<div class="tp-names">
+<span>Név</span>
+<span>Név</span>
 </div>
 </div>
 
-<!-- EGYÉB -->
-<div class="rel-card" data-type="other">
-<div class="rel-img">
-<img src="KÉP_URL">
-</div>
-<div class="rel-content">
-<h3>Elfelda Hall</h3>
-<span class="rel-tag other-tag">EGYÉB</span>
+<div class="tp-panel other">
+<h3>Egyéb kapcsolatok</h3>
+
 <p>
-Nehezen meghatározható kapcsolat, amely időről időre új formát ölt.
+Ide tartoznak azok az emberek, akik fontos szerepet töltenek be Tommy
+életében, de nem sorolhatók egyetlen kategóriába sem. Mentorok,
+osztálytársak, szakmai kapcsolatok vagy különleges ismeretségek.
 </p>
+
+<div class="tp-names">
+<span>Név</span>
+<span>Név</span>
+<span>Név</span>
 </div>
 </div>
 
@@ -81,38 +89,37 @@ Nehezen meghatározható kapcsolat, amely időről időre új formát ölt.
 
 <style>
 
-.rel-tracker{
-font-family:'Crimson Text',serif!important;
-max-width:900px!important;
+.tp-relations{
+font-family:'Crimson Text', serif!important;
+max-width:850px!important;
 margin:20px auto!important;
 padding:25px!important;
 color:#d1d1d1!important;
 }
 
-.rel-header{
+.tp-header{
 text-align:center!important;
 font-size:26px!important;
+font-weight:bold!important;
 text-transform:uppercase!important;
 letter-spacing:2px!important;
-font-weight:bold!important;
 color:#7c9f4a!important;
 margin-bottom:25px!important;
 }
 
-.rel-tracker input[type="radio"]{
-position:absolute!important;
-left:-9999px!important;
+.tp-relations input{
+display:none!important;
 }
 
-.rel-filterbar{
+.tp-tabs{
 display:flex!important;
 justify-content:center!important;
 gap:10px!important;
 flex-wrap:wrap!important;
-margin-bottom:30px!important;
+margin-bottom:25px!important;
 }
 
-.rel-filterbar label{
+.tp-tabs label{
 background:#1c1c1c!important;
 border:1px solid #444!important;
 padding:8px 18px!important;
@@ -120,124 +127,76 @@ cursor:pointer!important;
 color:#888!important;
 text-transform:uppercase!important;
 font-size:13px!important;
-transition:.3s!important;
 border-radius:4px!important;
+transition:.3s!important;
 }
 
-.rel-filterbar label:hover{
-color:#fff!important;
+.tp-tabs label:hover{
 border-color:#7c9f4a!important;
+color:#fff!important;
 }
 
-#rel-all:checked ~ .rel-filterbar label[for="rel-all"],
-#rel-friends:checked ~ .rel-filterbar label[for="rel-friends"],
-#rel-enemies:checked ~ .rel-filterbar label[for="rel-enemies"],
-#rel-family:checked ~ .rel-filterbar label[for="rel-family"],
-#rel-other:checked ~ .rel-filterbar label[for="rel-other"]{
+#tp-family:checked ~ .tp-tabs label[for="tp-family"],
+#tp-friends:checked ~ .tp-tabs label[for="tp-friends"],
+#tp-romance:checked ~ .tp-tabs label[for="tp-romance"],
+#tp-other:checked ~ .tp-tabs label[for="tp-other"]{
 background:#7c9f4a!important;
-color:#fff!important;
-border-color:#fff!important;
+color:white!important;
 font-weight:bold!important;
 }
 
-.rel-grid{
-display:flex!important;
-flex-wrap:wrap!important;
-gap:20px!important;
-justify-content:center!important;
-}
-
-.rel-card{
-width:calc(50% - 10px)!important;
+.tp-content{
 background:#1a1a1a!important;
 border:1px solid #2a2a2a!important;
 border-radius:8px!important;
-overflow:hidden!important;
-transition:.3s!important;
+padding:25px!important;
+min-height:260px!important;
 }
 
-.rel-card:hover{
-transform:translateY(-3px)!important;
-border-color:#7c9f4a!important;
+.tp-panel{
+display:none!important;
+animation:fade .3s ease;
 }
 
-@media(max-width:700px){
-.rel-card{
-width:100%!important;
-}
-}
-
-.rel-img{
-height:180px!important;
-overflow:hidden!important;
-border-bottom:2px solid #7c9f4a!important;
-}
-
-.rel-img img{
-width:100%!important;
-height:100%!important;
-object-fit:cover!important;
-}
-
-.rel-content{
-padding:18px!important;
-}
-
-.rel-content h3{
-margin:0 0 10px 0!important;
+.tp-panel h3{
+margin:0 0 15px 0!important;
+font-size:24px!important;
 color:#fff!important;
-font-size:22px!important;
+border-bottom:1px solid #333!important;
+padding-bottom:8px!important;
 }
 
-.rel-content p{
-margin-top:12px!important;
-line-height:1.5!important;
-color:#bcbcbc!important;
+.tp-panel p{
+line-height:1.8!important;
+color:#bdbdbd!important;
+margin-bottom:20px!important;
 }
 
-.rel-tag{
-display:inline-block!important;
-padding:4px 10px!important;
-font-size:11px!important;
-font-weight:bold!important;
-border-radius:3px!important;
-text-transform:uppercase!important;
+.tp-names{
+display:flex!important;
+flex-wrap:wrap!important;
+gap:8px!important;
 }
 
-.friend-tag{
-border:1px solid #7c9f4a!important;
-color:#a7cb73!important;
+.tp-names span{
+background:#232323!important;
+border:1px solid #444!important;
+padding:5px 12px!important;
+border-radius:4px!important;
+color:#7c9f4a!important;
+font-size:14px!important;
 }
 
-.enemy-tag{
-border:1px solid #a14d4d!important;
-color:#d97b7b!important;
+#tp-family:checked ~ .tp-content .family,
+#tp-friends:checked ~ .tp-content .friends,
+#tp-romance:checked ~ .tp-content .romance,
+#tp-other:checked ~ .tp-content .other{
+display:block!important;
 }
 
-.family-tag{
-border:1px solid #6d7fb3!important;
-color:#a8b6df!important;
-}
-
-.other-tag{
-border:1px solid #777!important;
-color:#aaa!important;
-}
-
-#rel-friends:checked ~ .rel-grid .rel-card:not([data-type="friends"]){
-display:none!important;
-}
-
-#rel-enemies:checked ~ .rel-grid .rel-card:not([data-type="enemies"]){
-display:none!important;
-}
-
-#rel-family:checked ~ .rel-grid .rel-card:not([data-type="family"]){
-display:none!important;
-}
-
-#rel-other:checked ~ .rel-grid .rel-card:not([data-type="other"]){
-display:none!important;
+@keyframes fade{
+from{opacity:0;}
+to{opacity:1;}
 }
 
 </style>
