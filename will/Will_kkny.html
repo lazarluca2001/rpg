@@ -20,8 +20,9 @@ body {
     color: var(--gold-bright);
     background: transparent; /* Teljesen transzparens külső terület az iframe-hez */
     margin: 0;
-    padding: 0;
-    overflow: hidden; /* Megakadályozza az iframe belső görgetősávjait */
+    padding: 10px 0; /* Minimális felső/alsó légtér a sarokdíszeknek */
+    overflow-y: auto; /* ENGEDÉLYEZI AZ EGÉSZ OLDAL GÖRGETÉSÉT */
+    overflow-x: hidden;
 }
 
 /* --- OPTIMALIZÁLT FŐ KONTÉNER --- */
@@ -37,7 +38,6 @@ body {
     position: relative;
     overflow: hidden;
     padding: 5% 5% 4% 5%;
-    /* Külső árnyék lecserélve belső árnyékra, hogy ne nyújtsa meg az iframe-et */
     box-shadow: inset 0 0 60px rgba(0,0,0,0.9);
 }
 
@@ -183,7 +183,7 @@ body {
     background: rgba(18, 44, 94, 0.25);
 }
 
-/* --- FIX MÉRETŰ TARTALOMDOBOZ --- */
+/* --- RUGALMAS TARTALOMDOBOZ --- */
 .content {
     border: 1px solid rgba(203, 177, 128, 0.15);
     padding: 35px 40px;
@@ -192,8 +192,7 @@ body {
     -webkit-backdrop-filter: blur(4px);
     position: relative;
     z-index: 5;
-    height: 450px; 
-    overflow: hidden;
+    height: 450px;
 }
 .content::before, .content::after {
     content: ''; position: absolute; width: 14px; height: 14px;
@@ -209,11 +208,11 @@ body {
     width: 260px; height: 260px;
     transform: translate(-50%, -50%);
     pointer-events: none;
-    opacity: 0.06;
+    opacity: 0.16;
     z-index: 1;
 }
 
-.panel { display: none; position: relative; z-index: 5; height: 100%; }
+.panel { display: none; position: relative; z-index: 5; height: auto; }
 .panel.active { display: block; }
 
 .panel h2 {
@@ -358,8 +357,8 @@ body {
             <p>Barátok jöttek, ó, könnyű szelek,<br>
 Egy pillanatra vállamra ültek,<br>
 Nevettek, s mint őszi avar a szélben,<br>
-Szó nélkül, halkan messzébe tűntek.<br>
-Így hát várok, hogy újabb szelek jöjjenek,<br>
+Szó nélkül, halkan messzébe tűntekl.<br>
+Íny hát várok, hogy újabb szelek jöjjenek,<br>
 De tudom, hogy csak árnyékot hoznak,<br>
 S én, ki nem tanultam a búcsú szavát,<br>
 Mégis magamba zárom őket, mintha örök volna a hallgatás.</p>
@@ -481,7 +480,7 @@ amit te nappal tagadsz "`,
 
 `" amikor a testvér árnyéka megérkezik,
 a csillagok némák maradnak,
-merk sorsok,
+mert vannak sorsok,
 amelyeket még az ég sem gyászol "`,
 
 `" a látomás ugyanaz marad,
