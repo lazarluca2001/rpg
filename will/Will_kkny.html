@@ -16,7 +16,6 @@
 *{ box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-    background-color: #010205;
     font-family: 'Cormorant Garamond', serif;
     color: var(--gold-bright);
     padding: 20px 0;
@@ -24,6 +23,7 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+    background-color: #010205;
 }
 
 /* --- OPTIMALIZÁLT FŐ KONTÉNER --- */
@@ -78,7 +78,7 @@ body {
     height: 100%;
     border-radius: 50%;
     overflow: hidden;
-    background: url('https://i.pinimg.com/736x/10/0b/10/100b108dfddf3db6e4fd34382a6b6fa2.jpg') center/cover no-repeat;
+    background: url('https://i.pinimg.com/736x/96/56/2b/96562bc24ac245acc51c5df6db861ac9.jpg') center/cover no-repeat;
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
 }
 .portrait-scaler {
@@ -334,9 +334,8 @@ body {
 
         <div class="title">
             <h1>William Ashford</h1>
-            <div class="subtitle">✦ Observatorium Turrem ✦</div>
+            <div class="subtitle">✦ Sub Silentio Stellarum ✦</div>
             <div class="date" id="date"></div>
-            <div class="caption">Apertus est caelum.</div>
         </div>
     </div>
 
@@ -439,10 +438,6 @@ const omens = [
 ];
 
 document.getElementById('omen').textContent = omens[Math.floor(Math.random() * omens.length)];
-
-setInterval(() => {
-    document.getElementById('omen').textContent = omens[Math.floor(Math.random() * omens.length)];
-}, 10000);
 </script>
 </body>
 </html>
