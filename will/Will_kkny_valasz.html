@@ -2,7 +2,7 @@
 <html lang="hu">
 <head>
 <meta charset="UTF-8">
-<title>Csillagösvény válaszgenerátor</title>
+<title>Csillagösvény generátor</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <style>
     :root { --gold-medium: #cbb180; --gold-bright: #ebd2a9; --bg-dark: #030712; }
@@ -18,14 +18,14 @@
 <body>
 
 <div class="gen-panel">
-    <h2>✦ Csillagösvény válaszgenerátor ✦</h2>
+    <h2>✦ Csillagösvény generátor ✦</h2>
     <label>From:</label> <input type="text" id="target" value="William Ashford">
     <label>Cím:</label> <input type="text" id="title" value="Elveszett szálak">
     <label>Szöveg:</label> <textarea id="maintext" style="height: 80px;">Ide írd a válaszod...</textarea>
-    <label>Bal jegyzet:</label> <input type="text" id="noteBL" value="A parázs kihűl">
-    <label>Jobb jegyzet:</label> <input type="text" id="noteTR" value="Mars retrográd.">
-    <label>Alsó jóslat:</label> <input type="text" id="footerOmen" value="a csillagok nem felejtenek">
-    <button onclick="generateFullCode()">Kód Generálása</button>
+    <label>Jegyzet1:</label> <input type="text" id="noteBL" value="A parázs kihűl">
+    <label>Jegyzet2:</label> <input type="text" id="noteTR" value="Mars retrográd.">
+    <label>Rövid jóslat:</label> <input type="text" id="footerOmen" value="a csillagok nem felejtenek">
+    <button onclick="generateFullCode()">Kód generálása</button>
     <textarea id="output" readonly></textarea>
     <button onclick="copyCode()">Kód másolása</button>
 </div>
@@ -40,14 +40,15 @@ function generateFullCode() {
     const fO = document.getElementById('footerOmen').value;
 
     const code = `[html]
-<div style="width:400px; margin:20px auto; background:radial-gradient(circle at 30% 15%, rgba(18, 44, 94, 0.3) 0%, transparent 50%), radial-gradient(circle at 85% 75%, rgba(255, 215, 150, 0.02) 0%, transparent 40%), #030712; border:1px solid rgba(203, 177, 128, 0.25); position:relative; padding:20px; box-sizing:border-box; box-shadow:inset 0 0 40px rgba(0,0,0,0.9); font-family:'Cormorant Garamond', serif; color:#ebd2a9;">
+<div style="width:400px; margin:20px auto; background:radial-gradient(circle at 30% 15%, rgba(18, 44, 94, 0.3) 0%, transparent 50%), radial-gradient(circle at 85% 75%, rgba(255, 215, 150, 0.02) 0%, transparent 40%), #030712; border:1px solid rgba(203, 177, 128, 0.25); position:relative; padding:40px 20px 20px 20px; box-sizing:border-box; box-shadow:inset 0 0 40px rgba(0,0,0,0.9); font-family:'Cormorant Garamond', serif; color:#ebd2a9;">
     
-    <div style="border-bottom:1px solid rgba(203, 177, 128, 0.15); padding-bottom:5px; margin-bottom:15px; font-size:10px; letter-spacing:2px; text-transform:uppercase; color:#cbb180;">✦ From: ${t}</div>
+    <!-- Égetett jegyzetek a konténeren belül, de a görgethető dobozon kívül -->
+    <div style="position:absolute; bottom:15px; left:15px; font-size:9px; font-style:italic; color:rgba(203, 177, 128, 0.3); line-height:1;">${nBL}</div>
+    <div style="position:absolute; top:15px; right:15px; font-size:9px; font-style:italic; color:rgba(203, 177, 128, 0.3); text-align:right;">${nTR}</div>
 
-    <div style="border:1px solid rgba(203, 177, 128, 0.12); padding:15px; background:linear-gradient(180deg, rgba(5, 15, 36, 0.2) 0%, rgba(2, 5, 13, 0.4) 100%); position:relative; overflow-y:auto; height:300px; box-sizing:border-box;">
-        <div style="position:absolute; bottom:8px; left:10px; font-size:9px; font-style:italic; color:rgba(203, 177, 128, 0.3); line-height:1;">${nBL}</div>
-        <div style="position:absolute; top:8px; right:10px; font-size:9px; font-style:italic; color:rgba(203, 177, 128, 0.3); text-align:right;">${nTR}</div>
+    <div style="border-bottom:1px solid rgba(203, 177, 128, 0.15); padding-bottom:5px; margin-bottom:15px; font-size:10px; letter-spacing:2px; text-transform:uppercase; color:#cbb180; text-align:center;">✦ From: ${t}</div>
 
+    <div style="border:1px solid rgba(203, 177, 128, 0.12); padding:15px; background:linear-gradient(180deg, rgba(5, 15, 36, 0.2) 0%, rgba(2, 5, 13, 0.4) 100%); overflow-y:auto; height:300px; box-sizing:border-box;">
         <h2 style="text-align:center; font-size:16px; font-weight:400; letter-spacing:1px; margin-bottom:15px; color:#ebd2a9; text-transform:uppercase;">${ti}</h2>
         <p style="font-size:14px; line-height:1.6; color:rgba(247, 237, 216, 0.95); text-align:justify; margin:0;">
             ${mt.replace(/\n/g, '<br>')}
