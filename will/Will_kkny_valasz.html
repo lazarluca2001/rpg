@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>William Ashford - Válasz Generátor</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+/* --- PRÉMIUM ASZTRÁLIS TÓNUSOK --- */
+:root {
+    --gold-bright: #ebd2a9;  
+    --gold-medium: #cbb180;  
+    --gold-dark: #7a6344;    
+    --bg-dark: #030712;
+}
+
+*{ box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--gold-bright);
+    background: transparent;
+    padding: 10px;
+}
+
+/* --- GENERÁTOR PANEL --- */
+.generator-container {
+    max-width: 720px;
+    margin: 20px auto;
+    background: linear-gradient(180deg, rgba(5, 15, 36, 0.9) 0%, rgba(2, 5, 13, 0.95) 100%);
+    border: 1px dashed var(--gold-medium);
+    padding: 25px 30px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+}
+
+.generator-container h2 {
+    font-size: 22px;
+    font-weight: 400;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold-bright);
+    margin-bottom: 20px;
+    text-align: center;
+    border-bottom: 1px solid rgba(203, 177, 128, 0.2);
+    padding-bottom: 10px;
+}
+
+.gen-group {
+    margin-bottom: 15px;
+}
+
+.generator-container label {
+    display: block;
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--gold-medium);
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+.gen-input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid rgba(203, 177, 128, 0.25);
+    background: rgba(3, 7, 18, 0.7);
+    color: #f7edd8;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+}
+
+.gen-input:focus {
+    outline: none;
+    border-color: var(--gold-bright);
+    background: rgba(18, 44, 94, 0.2);
+}
+
+.gen-input::placeholder {
+    color: rgba(203, 177, 128, 0.3);
+}
+
+textarea.gen-input {
+    min-height: 140px;
+    resize: vertical;
+    line-height: 1.6;
+}
+
+#output-code {
+    font-family: monospace;
+    font-size: 12px;
+    color: #a7e22e;
+    background: #030712;
+    border: 1px solid var(--gold-dark);
+    height: 150px;
+}
+
+.gen-btn-row {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.gen-btn {
+    flex: 1;
+    background: rgba(18, 44, 94, 0.6);
+    border: 1px solid var(--gold-medium);
+    color: var(--gold-bright);
+    padding: 12px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 14px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.gen-btn:hover {
+    background: rgba(203, 177, 128, 0.25);
+    color: #fff;
+    border-color: var(--gold-bright);
+}
+
+.gen-btn.copy {
+    background: rgba(124, 159, 74, 0.3);
+    border-color: #7c9f4a;
+}
+
+.gen-btn.copy:hover {
+    background: rgba(124, 159, 74, 0.5);
+}
+</style>
+</head>
+<body>
+
+    <div class="generator-container">
+        <h2>✦ Asztrális Válasz Generátor ✦</h2>
+        
+        <div class="gen-group">
+            <label for="charName">Karakter neve, akihez a válasz szól</label>
+            <input type="text" id="charName" class="gen-input" placeholder="pl. Tommy Reese">
+        </div>
+
+        <div class="gen-group">
+            <label for="tabTitle">Tranzit / Fejezet címe</label>
+            <input type="text" id="tabTitle" class="gen-input" placeholder="pl. II. Konjunkció vagy Elveszett szálak">
+        </div>
+
+        <div class="gen-group">
+            <label for="marginalia">Egyedi széljegyzet (Bal alsó sarokba)</label>
+            <input type="text" id="marginalia" class="gen-input" placeholder="pl. Alt. 14° 22' vagy A parázs kihűl.">
+        </div>
+
+        <div class="gen-group">
+            <label for="replyText">Válasz / Bejegyzés szövege</label>
+            <textarea id="replyText" class="gen-input" placeholder="Írd ide William gondolatait vagy a fórumpillanatot..."></textarea>
+        </div>
+
+        <div class="gen-btn-row">
+            <button class="gen-btn" onclick="generateReplyCard()">✦ Kártya Generálása</button>
+        </div>
+
+        <div class="gen-group">
+            <label for="output-code">Generált fórumnapló kód</label>
+            <textarea id="output-code" class="gen-input" readonly placeholder="A generált HTML kód itt fog megjelenni..."></textarea>
+        </div>
+
+        <div class="gen-btn-row">
+            <button class="gen-btn copy" onclick="copyReplyCode()">HTML Kód Másolása</button>
+        </div>
+    </div>
+
+    <script>
+    function escapeHtml(value) {
+        return String(value)
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#039;');
+    }
+
+    function generateReplyCard() {
+        const charName = document.getElementById('charName').value || 'Ismeretlen Tranzit';
+        const tabTitle = document.getElementById('tabTitle').value || '✦ Néma Megfigyelés ✦';
+        const marginalia = document.getElementById('marginalia').value || 'A tengely torzul.';
+        const rawText = document.getElementById('replyText').value.trim();
+
+        if(!rawText) {
+            alert('Kérlek, írj be szöveget a válaszhoz!');
+            return;
+        }
+
+        // Első betű leválasztása az iniciáléhoz, a többi marad
+        const firstLetter = escapeHtml(rawText.charAt(0));
+        const remainingText = escapeHtml(rawText.slice(1)).replace(/\r\n|\r|\n/g, '<br>');
+
+        const htmlCode = `[html]
+<div style="max-width:720px; width:100%; margin:20px auto; background:radial-gradient(circle at 30% 15%, rgba(18, 44, 94, 0.3) 0%, transparent 50%), radial-gradient(circle at 85% 75%, rgba(255, 215, 150, 0.02) 0%, transparent 40%), #030712; border:1px solid rgba(203, 177, 128, 0.25); position:relative; padding:40px; box-sizing:border-box; box-shadow:inset 0 0 50px rgba(0,0,0,0.9); font-family:'Cormorant Garamond', serif; color:#ebd2a9;">
+    
+    <div style="position:absolute; top:15px; left:15px; width:20px; height:20px; border-top:1px solid rgba(203, 177, 128, 0.35); border-left:1px solid rgba(203, 177, 128, 0.35);"></div>
+    <div style="position:absolute; bottom:15px; right:15px; width:20px; height:20px; border-bottom:1px solid rgba(203, 177, 128, 0.35); border-right:1px solid rgba(203, 177, 128, 0.35);"></div>
+
+    <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(203, 177, 128, 0.15); padding-bottom:10px; margin-bottom:25px;">
+        <div style="font-size:12px; letter-spacing:3px; text-transform:uppercase; color:#cbb180;">✦ RE: ${escapeHtml(charName)}</div>
+        <div style="font-size:12px; font-style:italic; color:#7a6344;">${new Date().toLocaleDateString('hu-HU', { year: 'numeric', month: 'long', day: 'numeric' })}</div>
+    </div>
+
+    <div style="border:1px solid rgba(203, 177, 128, 0.12); padding:30px; background:linear-gradient(180deg, rgba(5, 15, 36, 0.2) 0%, rgba(2, 5, 13, 0.4) 100%); position:relative; overflow:hidden;">
+        
+        <svg style="position:absolute; top:50%; left:50%; width:240px; height:240px; transform:translate(-50%, -50%); opacity:0.04; pointer-events:none;" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="50" cy="50" r="46" fill="none" stroke="#dfc59f" stroke-width="0.3"/>
+            <circle cx="50" cy="50" r="38" fill="none" stroke="#7a6344" stroke-width="0.2" stroke-dasharray="1, 2"/>
+            <circle cx="50" cy="50" r="22" fill="none" stroke="#dfc59f" stroke-width="0.2"/>
+            <line x1="50" y1="0" x2="50" y2="100" stroke="#7a6344" stroke-width="0.2"/>
+            <line x1="0" y1="50" x2="100" y2="50" stroke="#7a6344" stroke-width="0.2"/>
+        </svg>
+
+        <div style="position:absolute; bottom:12px; left:15px; font-size:11px; font-style:italic; color:rgba(203, 177, 128, 0.25); line-height:1.2;">${escapeHtml(marginalia)}</div>
+        <div style="position:absolute; top:12px; right:15px; font-size:11px; font-style:italic; color:rgba(203, 177, 128, 0.25); text-align:right;">Mars retrográd.</div>
+
+        <h2 style="text-align:center; font-size:18px; font-weight:400; letter-spacing:3px; margin-bottom:20px; color:#ebd2a9; text-transform:uppercase;">${escapeHtml(tabTitle)}</h2>
+        
+        <p style="font-size:15.5px; line-height:2.0; color:rgba(247, 237, 216, 0.95); text-align:justify; letter-spacing:0.5px; margin:0;">
+            <span style="font-size:48px; line-height:38px; padding-top:2px; padding-right:8px; float:left; color:#ebd2a9; font-weight:400;">${firstLetter}</span>${remainingText}
+        </p>
+    </div>
+
+    <div style="margin-top:20px; text-align:center; font-style:italic; color:#cbb180; font-size:14px; letter-spacing:2px;">" a csillagok nem felejtenek "</div>
+</div>
+[/html]`;
+
+        document.getElementById('output-code').value = htmlCode.trim();
+    }
+
+    function copyReplyCode() {
+        const codeBox = document.getElementById('output-code');
+        if(!codeBox.value) {
+            alert('Előbb generálj egy választ a gombbal!');
+            return;
+        }
+        codeBox.select();
+        codeBox.setSelectionRange(0, 99999);
+        navigator.clipboard.writeText(codeBox.value);
+        alert('William asztrális válaszkódja a vágólapra másolva!');
+    }
+    </script>
+</body>
+</html>
