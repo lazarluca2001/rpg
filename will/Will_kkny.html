@@ -18,17 +18,15 @@
 body {
     font-family: 'Cormorant Garamond', serif;
     color: var(--gold-bright);
-    padding: 20px 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
+    background: transparent; /* Teljesen transzparens külső terület az iframe-hez */
+    overflow: hidden; /* Megakadályozza az iframe belső görgetősávjait */
 }
 
 /* --- OPTIMALIZÁLT FŐ KONTÉNER --- */
 .ashford {
     width: 100%;
     max-width: 720px;
+    margin: 0 auto; /* Középre igazítja a modult a fórumposztban */
     background: 
         radial-gradient(circle at 30% 15%, rgba(18, 44, 94, 0.4) 0%, transparent 50%),
         radial-gradient(circle at 85% 75%, rgba(255, 215, 150, 0.02) 0%, transparent 40%),
@@ -56,7 +54,7 @@ body {
     z-index: 1;
 }
 
-/* --- FEJLÉC: HANGSÚLYOS PORTRÉ --- */
+/* --- FEJLÉC --- */
 .header {
     display: grid;
     grid-template-columns: clamp(115px, 22vw, 155px) 1fr;
@@ -112,12 +110,6 @@ body {
     color: var(--gold-medium);
     font-style: italic;
     margin-bottom: 4px;
-}
-.caption {
-    font-size: clamp(9.5px, 2vw, 11.5px);
-    letter-spacing: 2px;
-    color: var(--gold-dark);
-    text-transform: uppercase;
 }
 
 /* --- HORIZONTÁLIS ASZTRÁLIS STÁTUSZSÁV --- */
@@ -214,7 +206,7 @@ body {
     width: 260px; height: 260px;
     transform: translate(-50%, -50%);
     pointer-events: none;
-    opacity: 0.1;
+    opacity: 0.06;
     z-index: 1;
 }
 
@@ -266,7 +258,7 @@ body {
     color: var(--gold-medium);
     font-size: clamp(14.5px, 2.5vw, 17px);
     letter-spacing: 2px;
-    white-space: pre-line; /* Biztosítja a versszerű többsoros törést */
+    white-space: pre-line;
     line-height: 1.5;
 }
 
@@ -525,7 +517,7 @@ mert vannak pillanatok,
 amelyekhez nem kell mennydörgés "`,
 
 `" a csillagok nem felejtenek,
-csak kivárját az időt,
+csak kivárják az időt,
 hogy újra ugyanoda vezessenek,
 ahonnan egyszer menekültél "`,
 
