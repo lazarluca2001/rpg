@@ -5,7 +5,7 @@
 <title>William Ashford - Observatorium Turrem</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <style>
-/* --- PREMIUM SZÍNKÓDOK & VÁLTOZÓK --- */
+/* --- PREMIUM STÍLUSOK & SZÍNEK --- */
 :root {
     --gold-light: #dec79b;
     --gold-medium: #a88d58;
@@ -19,28 +19,28 @@ body {
     background-color: #010205;
     font-family: 'Cormorant Garamond', serif;
     color: var(--gold-light);
-    padding: 60px 0;
+    padding: 40px 0;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
 }
 
-/* --- FŐ KONTÉNER (A KÉP ARÁNYAI ALAPJÁN) --- */
+/* --- FŐ KONTÉNER (PONTOS ARÁNYOK) --- */
 .ashford {
-    width: 860px;
+    width: 820px;
     background: 
-        radial-gradient(circle at 50% 15%, rgba(15, 32, 67, 0.4) 0%, transparent 55%),
+        radial-gradient(circle at 50% 15%, rgba(15, 32, 67, 0.45) 0%, transparent 55%),
         radial-gradient(circle at 85% 25%, rgba(255, 220, 180, 0.02) 0%, transparent 35%),
         var(--bg-dark);
     border: 1px solid rgba(168, 141, 88, 0.15);
     position: relative;
     overflow: hidden;
-    padding: 60px 50px;
+    padding: 60px 45px;
     box-shadow: 0 40px 100px rgba(0,0,0,0.95);
 }
 
-/* --- CSILLAGOK ÉS FINOM HÁTTÉR GEOMETRIA --- */
+/* --- GEOMETRIKUS HÁTTÉRKÉP ELEMEK --- */
 .background-graphics {
     position: absolute;
     inset: 0;
@@ -48,49 +48,45 @@ body {
     z-index: 1;
 }
 
-/* --- FEJLÉC SZERKEZETE --- */
+/* --- FEJLÉC (MÓDOSÍTOTT KÉPEKKEL) --- */
 .header {
     display: grid;
-    grid-template-columns: 120px 1fr 120px;
+    grid-template-columns: 110px 1fr 110px;
     align-items: center;
     margin-bottom: 35px;
     position: relative;
     z-index: 5;
 }
 
+/* Dinamikus, textúrázott monogram kép */
 .monogram {
-    width: 85px;
-    height: 85px;
-    border: 1px solid rgba(168, 141, 88, 0.2);
+    width: 95px;
+    height: 95px;
     border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 32px;
-    font-weight: 300;
-    color: var(--gold-light);
-    letter-spacing: 2px;
+    border: 1px solid rgba(168, 141, 88, 0.25);
+    background: url('https://i.pinimg.com/736x/72/01/3d/72013d9671d281944ea3e5be979d76e5.jpg') center/cover no-repeat;
     position: relative;
+    box-shadow: 0 0 15px rgba(0,0,0,0.4);
 }
 .monogram::after {
-    content: ''; position: absolute; inset: 3px;
-    border: 1px dashed rgba(168, 141, 88, 0.08); border-radius: 50%;
+    content: ''; position: absolute; inset: 4px;
+    border: 1px dashed rgba(168, 141, 88, 0.15); border-radius: 50%;
 }
 
 .title {
     text-align: center;
 }
 .title h1 {
-    font-size: 36px;
+    font-size: 35px;
     font-weight: 400;
     letter-spacing: 5px;
     color: var(--gold-light);
     text-transform: uppercase;
-    margin-bottom: 6px;
+    margin-bottom: 5px;
 }
 .subtitle {
     font-size: 11px;
-    letter-spacing: 6px;
+    letter-spacing: 5px;
     color: var(--gold-medium);
     text-transform: uppercase;
     margin-bottom: 12px;
@@ -103,27 +99,36 @@ body {
     opacity: 0.5;
 }
 
+/* Valódi illusztrált karakterportré */
 .portrait {
-    width: 95px;
-    height: 95px;
+    width: 105px;
+    height: 105px;
     border-radius: 50%;
-    border: 1px solid rgba(168, 141, 88, 0.2);
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: radial-gradient(circle, #061229 0%, #02050d 100%);
+    border: 1px solid rgba(168, 141, 88, 0.3);
+    background: url('https://i.pinimg.com/736x/10/0b/10/100b108dfddf3db6e4fd34382a6b6fa2.jpg') center/cover no-repeat;
+    box-shadow: 0 0 25px rgba(10, 25, 50, 0.3), inset 0 0 15px rgba(0,0,0,0.5);
     justify-self: end;
+    position: relative;
+}
+/* Finom külső koordináta kör a portré körül, mint az első képen */
+.portrait::after {
+    content: '';
+    position: absolute;
+    inset: -6px;
+    border: 1px fill transparent;
+    border: 0.5px stroke rgba(168, 141, 88, 0.15);
+    border-radius: 50%;
+    border-style: dashed;
 }
 
-/* --- STATUSTÁBLA (Vékonyabb, szellősebb) --- */
+/* --- STATUSTÁBLA --- */
 .status {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     border-top: 1px solid rgba(168, 141, 88, 0.08);
     border-bottom: 1px solid rgba(168, 141, 88, 0.08);
-    padding: 16px 0;
-    margin: 30px auto 40px auto;
+    padding: 15px 0;
+    margin: 25px auto 35px auto;
     max-width: 480px;
     position: relative;
     z-index: 5;
@@ -132,7 +137,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 14px;
+    gap: 12px;
     font-size: 11px;
     letter-spacing: 2px;
     text-transform: uppercase;
@@ -148,119 +153,141 @@ body {
 .status-details span:first-child {
     font-size: 9px;
     color: var(--gold-dark);
-    margin-bottom: 3px;
+    margin-bottom: 2px;
 }
 .status-details span:last-child {
     color: var(--gold-light);
 }
 
-/* --- LEVEGŐS, FINOM TABOK --- */
+/* --- ELEGÁNS TÉGLALAP ALAKÚ TABOK --- */
 .tabs {
     display: flex;
     justify-content: center;
-    gap: 12px;
-    margin-bottom: 40px;
+    gap: 10px;
+    margin-bottom: 35px;
     position: relative;
     z-index: 10;
 }
 .tabs button {
-    background: rgba(3, 7, 18, 0.4);
+    background: rgba(3, 7, 18, 0.5);
     border: 1px solid rgba(168, 141, 88, 0.15);
-    padding: 8px 22px;
+    padding: 7px 24px;
     color: var(--gold-medium);
     font-family: 'Cormorant Garamond', serif;
-    font-size: 11px;
+    font-size: 10.5px;
     letter-spacing: 3px;
     text-transform: uppercase;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .tabs button:hover {
     color: var(--gold-light);
     border-color: rgba(168, 141, 88, 0.35);
-    background: rgba(168, 141, 88, 0.03);
+    background: rgba(168, 141, 88, 0.02);
 }
 .tabs button.active {
     color: var(--gold-light);
-    border-color: rgba(222, 199, 155, 0.4);
-    background: rgba(15, 32, 67, 0.25);
-    box-shadow: 0 0 15px rgba(168, 141, 88, 0.1);
+    border-color: rgba(222, 199, 155, 0.45);
+    background: rgba(15, 32, 67, 0.2);
+    box-shadow: 0 0 12px rgba(168, 141, 88, 0.1);
 }
 
-/* --- KÖZPONTI SZÖVEGPANEL (NYÚJTOTTABB, SZELŐSEBB) --- */
+/* --- KÖZPONTI ZÁRT ÜVEGPANEL DOBOZ --- */
 .content {
-    border: 1px solid rgba(168, 141, 88, 0.08);
-    padding: 65px 55px;
-    background: linear-gradient(180deg, rgba(4, 12, 28, 0.3) 0%, rgba(2, 5, 13, 0.5) 100%);
-    backdrop-filter: blur(3px);
-    -webkit-backdrop-filter: blur(3px);
+    border: 1px solid rgba(168, 141, 88, 0.12);
+    padding: 55px 50px;
+    background: linear-gradient(180deg, rgba(4, 12, 28, 0.35) 0%, rgba(2, 5, 13, 0.55) 100%);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
     position: relative;
     z-index: 5;
-    max-width: 580px;
+    max-width: 540px;
     margin: 0 auto;
+    box-shadow: inset 0 0 25px rgba(0,0,0,0.6);
 }
-/* Hajszálvékony nyitott sarokdíszítés */
+/* Finom belső dupla keret törés és sarokdísz az első kép stílusában */
 .content::before, .content::after {
     content: '';
     position: absolute;
-    width: 14px;
-    height: 14px;
+    width: 16px;
+    height: 16px;
     border: 1px solid rgba(168, 141, 88, 0.25);
     pointer-events: none;
 }
-.content::before { top: 10px; left: 10px; border-right: 0; border-bottom: 0; }
-.content::after { bottom: 10px; right: 10px; border-left: 0; border-top: 0; }
+.content::before { top: 12px; left: 12px; border-right: 0; border-bottom: 0; }
+.content::after { bottom: 12px; right: 12px; border-left: 0; border-top: 0; }
+
+/* Belső segédkeret a precíz vonalakért */
+.content-inner-frame {
+    position: absolute;
+    inset: 6px;
+    border: 1px solid rgba(168, 141, 88, 0.05);
+    pointer-events: none;
+}
+
+.panel {
+    display: none;
+    animation: fadeInContent 0.6s ease forwards;
+}
+.panel.active {
+    display: block;
+}
+
+@keyframes fadeInContent {
+    from { opacity: 0; transform: translateY(2px); }
+    to { opacity: 1; transform: translateY(0); }
+}
 
 .panel h2 {
     text-align: center;
-    font-size: 21px;
+    font-size: 20px;
     font-weight: 400;
     letter-spacing: 5px;
-    margin-bottom: 40px;
+    margin-bottom: 35px;
     color: var(--gold-light);
     text-transform: uppercase;
 }
 .panel p {
     font-size: 14.5px;
-    line-height: 2.4; /* Megemelt sormagasság a szellős hatásért */
-    color: rgba(222, 199, 155, 0.8);
+    line-height: 2.3;
+    color: rgba(222, 199, 155, 0.85);
     text-align: justify;
-    letter-spacing: 0.6px;
+    letter-spacing: 0.5px;
 }
 
-/* --- FOOTER ÉS STRUKTURÁLT METADATA --- */
+/* --- FOOTER ÉS STRUKTURÁLT ADATOK --- */
 .meta {
     margin-top: 45px;
     display: grid;
-    grid-template-columns: 1fr 220px;
+    grid-template-columns: 1fr 210px;
     align-items: end;
     position: relative;
     z-index: 5;
-    padding: 0 50px;
+    padding: 0 45px;
 }
 
 #omen {
     font-style: italic;
     color: var(--gold-medium);
-    font-size: 13.5px;
+    font-size: 13px;
     letter-spacing: 2px;
     opacity: 0.55;
     text-align: left;
-    padding-left: 40px;
-    padding-bottom: 5px;
+    padding-left: 35px;
+    padding-bottom: 4px;
 }
 
 .observatory-table {
     display: flex;
     flex-direction: column;
-    gap: 7px;
+    gap: 6px;
     border-left: 1px solid rgba(168, 141, 88, 0.08);
     padding-left: 20px;
 }
 .obs-row {
     display: flex;
     justify-content: space-between;
-    font-size: 10.5px;
+    font-size: 10px;
     letter-spacing: 1.5px;
     text-transform: uppercase;
 }
@@ -271,11 +298,11 @@ body {
     color: var(--gold-medium);
 }
 
-/* --- SZÉLSŐ KÉZÍRÁSOS JEGYZETEK --- */
+/* --- SZÉLSŐ MARGINÁLIS JEGYZETEK --- */
 .hand {
     position: absolute;
-    color: rgba(168, 141, 88, 0.25);
-    font-size: 14px;
+    color: rgba(168, 141, 88, 0.22);
+    font-size: 13.5px;
     line-height: 1.6;
     font-style: italic;
     pointer-events: none;
@@ -283,32 +310,30 @@ body {
 }
 .hand.left {
     left: 45px;
-    top: 320px;
-    transform: rotate(-11deg);
+    top: 340px;
+    transform: rotate(-10deg);
 }
 .hand.right {
-    right: 50px;
-    top: 480px;
-    transform: rotate(7deg);
+    right: 45px;
+    top: 540px;
+    transform: rotate(6deg);
     text-align: right;
 }
 .hand hr {
     border: none;
     height: 1px;
-    background: rgba(168, 141, 88, 0.15);
+    background: rgba(168, 141, 88, 0.12);
     margin-top: 6px;
-    width: 50px;
+    width: 45px;
 }
 .hand.right hr { margin-left: auto; }
 
-/* Pislákolás */
-@keyframes steadyTwinkle {
+/* Finom csillagpulzálás */
+@keyframes pulse {
     0%, 100% { opacity: 0.1; }
-    50% { opacity: 0.6; }
+    50% { opacity: 0.5; }
 }
-.bg-star {
-    animation: steadyTwinkle 5s infinite ease-in-out;
-}
+.bg-star { animation: pulse 4s infinite ease-in-out; }
 .d1 { animation-delay: 1.5s; }
 .d2 { animation-delay: 3s; }
 </style>
@@ -317,27 +342,27 @@ body {
 
 <div class="ashford">
     
-    <svg class="background-graphics" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 1050">
-        <circle cx="80" cy="900" r="220" fill="none" stroke="#54442e" stroke-width="0.4" opacity="0.12"/>
-        <circle cx="80" cy="900" r="180" fill="none" stroke="#a88d58" stroke-width="0.3" stroke-dasharray="1, 4" opacity="0.15"/>
-        <circle cx="80" cy="900" r="110" fill="none" stroke="#54442e" stroke-width="0.4" opacity="0.12"/>
-        <line x1="80" y1="600" x2="80" y2="1050" stroke="#54442e" stroke-width="0.3" opacity="0.08"/>
-        <line x1="0" y1="900" x2="350" y2="900" stroke="#54442e" stroke-width="0.3" opacity="0.08"/>
+    <svg class="background-graphics" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 1050">
+        <circle cx="60" cy="920" r="240" fill="none" stroke="#54442e" stroke-width="0.4" opacity="0.12"/>
+        <circle cx="60" cy="920" r="200" fill="none" stroke="#a88d58" stroke-width="0.3" stroke-dasharray="1, 4" opacity="0.15"/>
+        <circle cx="60" cy="920" r="130" fill="none" stroke="#54442e" stroke-width="0.4" opacity="0.1"/>
+        <line x1="60" y1="600" x2="60" y2="1050" stroke="#54442e" stroke-width="0.3" opacity="0.06"/>
+        <line x1="0" y1="920" x2="350" y2="920" stroke="#54442e" stroke-width="0.3" opacity="0.06"/>
 
-        <polyline points="720,740 745,715 765,730 785,700 810,715" fill="none" stroke="#54442e" stroke-width="0.4" stroke-dasharray="2, 3" opacity="0.2" />
-        <circle cx="720" cy="740" r="1.2" fill="#fff" class="bg-star" />
-        <circle cx="765" cy="730" r="1.5" fill="#fff" class="bg-star d1" />
-        <circle cx="810" cy="715" r="1.2" fill="#fff" class="bg-star d2" />
+        <polyline points="680,760 705,735 725,750 745,720 770,735" fill="none" stroke="#54442e" stroke-width="0.4" stroke-dasharray="2, 3" opacity="0.18" />
+        <circle cx="680" cy="760" r="1.2" fill="#fff" class="bg-star" />
+        <circle cx="725" cy="750" r="1.5" fill="#fff" class="bg-star d1" />
+        <circle cx="770" cy="735" r="1.2" fill="#fff" class="bg-star d2" />
 
-        <polyline points="740,240 765,270 755,310" fill="none" stroke="#54442e" stroke-width="0.4" opacity="0.15"/>
-        <circle cx="740" cy="240" r="1.2" fill="#fff" class="bg-star d1" />
+        <polyline points="710,210 735,240 725,280" fill="none" stroke="#54442e" stroke-width="0.4" opacity="0.12"/>
+        <circle cx="710" cy="210" r="1.2" fill="#fff" class="bg-star d1" />
 
-        <path d="M 430 18 L 430 42 M 418 30 L 442 30" stroke="#a88d58" stroke-width="0.4" opacity="0.3"/>
-        <circle cx="430" cy="30" r="1.5" fill="#fff" opacity="0.7"/>
+        <path d="M 410 18 L 410 42 M 398 30 L 422 30" stroke="#a88d58" stroke-width="0.4" opacity="0.25"/>
+        <circle cx="410" cy="30" r="1.2" fill="#fff" opacity="0.6"/>
     </svg>
 
     <div class="header">
-        <div class="monogram">WA</div>
+        <div class="monogram"></div>
 
         <div class="title">
             <h1>William Ashford</h1>
@@ -345,16 +370,7 @@ body {
             <div class="date" id="date">1907. NOVEMBER 13.</div>
         </div>
 
-        <div class="portrait">
-            <svg viewBox="0 0 200 200" width="85">
-                <circle cx="100" cy="100" r="92" fill="none" stroke="#a88d58" stroke-width="0.4" opacity=".2" stroke-dasharray="3, 3"/>
-                <circle cx="100" cy="100" r="84" fill="none" stroke="#a88d58" stroke-width="0.4" opacity=".15"/>
-                <circle cx="130" cy="60" r="1" fill="#fff" opacity="0.5"/>
-                <circle cx="150" cy="110" r="1" fill="#fff" opacity="0.3"/>
-                <path d="M115 45 C150 58 155 90 140 120 C128 138 122 155 82 165 C100 152 103 140 103 120 C103 100 93 90 80 84 C93 82 101 70 104 58 C106 49 109 44 115 45Z" fill="rgba(222, 199, 155, 0.06)"/>
-                <path d="M115 45 C150 58 155 90 140 120 C128 138 122 155 82 165 C100 152 103 140 103 120 C103 100 93 90 80 84 C93 82 101 70 104 58 C106 49 109 44 115 45Z" fill="none" stroke="#a88d58" stroke-width="0.4" opacity="0.25"/>
-            </svg>
-        </div>
+        <div class="portrait"></div>
     </div>
 
     <div class="status">
@@ -362,7 +378,7 @@ body {
             <div class="icon">☾</div>
             <div class="status-details">
                 <span>Holdfázis</span>
-                <span id="moon">Telihold</span>
+                <span id="moon">Fogyó sarló</span>
             </div>
         </div>
         <div class="status-item">
@@ -389,18 +405,23 @@ body {
     </div>
 
     <div class="content">
+        <div class="content-inner-frame"></div>
+
         <div class="panel active">
             <h2>✦ Sötétedő Égbolt ✦</h2>
             <p>Az ikrek hava különös feszültséget hozott az obszervatórium falai közé. A Mars retrográd mozgása rányomja bélyegét a látomásokra; a lángok már nem tiszta képeket, csak vészjósló árnyakat vetítenek a jövő parazsára. A csillagok állása makacsul ugyanazt az elkerülhetetlen feszültséget jósolja, amiről oly régóta hallgatni kényszerülök.</p>
         </div>
+
         <div class="panel">
-            <h2>☾ Égi Szövetségek ☾</h2>
+            <h2>A Csillagok Társasága</h2>
             <p>Vannak emberek, akiket nem a véletlen, hanem a pályák találkozása sodor egymás mellé. A torony magányát ritkán töri meg olyan jelenlét, amely képes olvasni az éjszakai égbolt néma morajlásából, és nem riad vissza az árnyaktól.</p>
         </div>
+
         <div class="panel">
             <h2>✦ Vonzerők és Tranzitok ✦</h2>
             <p>A Vega fénye ma este különösen tisztán látszik. Vannak érzések, amelyek túlélnek minden számítást és koordinátát. Amikor a szférák zenéje elcsendesedik, csak az a halvány vonzás marad meg, amit semmilyen retrográd mozgás nem képes kitörölni.</p>
         </div>
+
         <div class="panel">
             <h2>✧ Kérlelhetetlen Szaturnusz ✧</h2>
             <p>A sors fonalai olykor szorosabbra húzódnak, mint azt a látnok előre sejtené. A hideg bolygóküszöbök átlépése könyörtelen igazságokat kényszerít ránk: a jövőt nem megváltoztatni kell, hanem elviselni a terhét.</p>
@@ -417,7 +438,7 @@ body {
             </div>
             <div class="obs-row">
                 <span class="obs-label">Holdfázis:</span>
-                <span class="obs-value" id="moon2">Telihold</span>
+                <span class="obs-value" id="moon2">Fogyó sarló</span>
             </div>
             <div class="obs-row">
                 <span class="obs-label">Látási viszonyok:</span>
@@ -450,6 +471,7 @@ const panels = document.querySelectorAll('.panel');
 const buttons = document.querySelectorAll('.tabs button');
 
 function showTab(i){
+    // Tiszta logikai váltás: elrejtünk mindent, csak a kiválasztottat jelenítjük meg
     panels.forEach(p => p.classList.remove('active'));
     buttons.forEach(b => b.classList.remove('active'));
     
@@ -457,7 +479,7 @@ function showTab(i){
     buttons[i].classList.add('active');
 }
 
-// Holdfázis adatok dinamikus kezelése
+// Dinamikus holdfázis adatok az eredeti kalkuláció alapján
 const phases = ["Újhold", "Növekvő sarló", "Első negyed", "Növekvő hold", "Telihold", "Fogyó hold", "Utolsó negyed", "Fogyó sarló"];
 const phase = phases[Math.floor((Date.now()/86400000)%8)];
 document.getElementById('moon').textContent = phase;
