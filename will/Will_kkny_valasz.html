@@ -2,30 +2,33 @@
 <html lang="hu">
 <head>
 <meta charset="UTF-8">
-<title>William Ashford - válaszgenerátor</title>
+<title>William Ashford - Válaszgenerátor</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <style>
-    :root { --gold-medium: #cbb180; --gold-bright: #ebd2a9; }
-    body { font-family: 'Cormorant Garamond', serif; background: #030712; color: #f7edd8; padding: 20px; }
-    .gen-panel { max-width: 600px; margin: auto; border: 1px solid var(--gold-medium); padding: 20px; background: rgba(5, 15, 36, 0.5); }
-    label { display: block; color: var(--gold-medium); margin: 10px 0 5px; text-transform: uppercase; font-size: 12px; }
-    input, textarea { width: 100%; padding: 8px; background: #030712; border: 1px solid var(--gold-medium); color: white; margin-bottom: 10px; }
-    button { width: 100%; padding: 10px; background: var(--gold-medium); border: none; cursor: pointer; font-weight: bold; }
+    :root { --gold-medium: #cbb180; --gold-bright: #ebd2a9; --bg-dark: #030712; }
+    body { font-family: 'Cormorant Garamond', serif; background: var(--bg-dark); color: #f7edd8; padding: 20px; }
+    .gen-panel { max-width: 600px; margin: auto; border: 1px solid var(--gold-medium); padding: 25px; background: rgba(18, 44, 94, 0.15); box-shadow: 0 0 20px rgba(0,0,0,0.5); }
+    h2 { text-align: center; color: var(--gold-bright); margin-bottom: 20px; letter-spacing: 2px; text-transform: uppercase; font-weight: 400; }
+    label { display: block; color: var(--gold-medium); margin: 12px 0 5px; text-transform: uppercase; font-size: 11px; letter-spacing: 1px; }
+    input, textarea { width: 100%; padding: 10px; background: rgba(3, 7, 18, 0.8); border: 1px solid var(--gold-medium); color: white; margin-bottom: 5px; font-family: 'Cormorant Garamond', serif; font-size: 15px; }
+    button { width: 100%; padding: 12px; background: var(--gold-medium); border: none; cursor: pointer; font-weight: bold; margin-top: 10px; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; }
+    button:hover { background: var(--gold-bright); }
+    #output { height: 120px; font-family: monospace; font-size: 10px; background: #000; }
 </style>
 </head>
 <body>
 
 <div class="gen-panel">
-    <h2>✦ Teljes Asztrális Generátor ✦</h2>
+    <h2>✦ Csillagösvény válaszgenerátor ✦</h2>
     
-    <label>From: ...</label>
-    <input type="text" id="target" value="Neved">
+    <label>From (Karaktered neve)</label>
+    <input type="text" id="target" value="William Ashford">
     
     <label>Fejezet címe</label>
     <input type="text" id="title" value="Elveszett szálak">
     
     <label>Főszöveg</label>
-    <textarea id="maintext" style="height: 100px;">aram pam</textarea>
+    <textarea id="maintext" style="height: 100px;">Ide írd a válaszod szövegét...</textarea>
     
     <label>Széljegyzet (bal alsó)</label>
     <input type="text" id="noteBL" value="A parázs kihűl">
@@ -38,8 +41,9 @@
     
     <button onclick="generateFullCode()">Kód Generálása</button>
     
-    <label>Generált Kód</label>
-    <textarea id="output" readonly style="height:100px; font-family:monospace; font-size:10px;"></textarea>
+    <label>Generált kód</label>
+    <textarea id="output" readonly></textarea>
+    <button onclick="copyCode()">Kód másolása</button>
 </div>
 
 <script>
@@ -53,6 +57,7 @@ function generateFullCode() {
 
     const code = `[html]
 <div style="max-width:720px; width:100%; margin:20px auto; background:radial-gradient(circle at 30% 15%, rgba(18, 44, 94, 0.3) 0%, transparent 50%), radial-gradient(circle at 85% 75%, rgba(255, 215, 150, 0.02) 0%, transparent 40%), #030712; border:1px solid rgba(203, 177, 128, 0.25); position:relative; padding:40px; box-sizing:border-box; box-shadow:inset 0 0 50px rgba(0,0,0,0.9); font-family:'Cormorant Garamond', serif; color:#ebd2a9;">
+    
     <div style="position:absolute; top:15px; left:15px; width:20px; height:20px; border-top:1px solid rgba(203, 177, 128, 0.35); border-left:1px solid rgba(203, 177, 128, 0.35);"></div>
     <div style="position:absolute; bottom:15px; right:15px; width:20px; height:20px; border-bottom:1px solid rgba(203, 177, 128, 0.35); border-right:1px solid rgba(203, 177, 128, 0.35);"></div>
 
@@ -61,6 +66,7 @@ function generateFullCode() {
     </div>
 
     <div style="border:1px solid rgba(203, 177, 128, 0.12); padding:20px; background:linear-gradient(180deg, rgba(5, 15, 36, 0.2) 0%, rgba(2, 5, 13, 0.4) 100%); position:relative; overflow-y:auto; height:300px;">
+
         <div style="position:absolute; bottom:12px; left:15px; font-size:11px; font-style:italic; color:rgba(203, 177, 128, 0.25); line-height:1.2;">${noteBL}</div>
         <div style="position:absolute; top:12px; right:15px; font-size:11px; font-style:italic; color:rgba(203, 177, 128, 0.25); text-align:right;">${noteTR}</div>
 
@@ -69,10 +75,18 @@ function generateFullCode() {
             ${maintext.replace(/\n/g, '<br>')}
         </p>
     </div>
+
     <div style="margin-top:20px; text-align:center; font-style:italic; color:#cbb180; font-size:14px; letter-spacing:2px;">"${footerOmen}"</div>
 </div>
 [/html]`;
     document.getElementById('output').value = code;
+}
+
+function copyCode() {
+    const copyText = document.getElementById("output");
+    copyText.select();
+    document.execCommand("copy");
+    alert("Kód másolva a vágólapra!");
 }
 </script>
 </body>
