@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>William Ashford Csillagvizsgálói Jegyzőkönyv</title>
+    <!-- Cormorant Garamond betűtípus beágyazása -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
@@ -30,7 +31,7 @@
             );
             padding: 20px;
             box-sizing: border-box;
-            overflow: hidden; /* Hogy a kilógó nagy asztrolábium ne nyújtsa meg az oldalt */
+            overflow: hidden;
         }
 
         /* --- DEKORÁCIÓS ELEMEK (Asztrolábium & Csillagok) --- */
@@ -40,12 +41,11 @@
             top: -60px;
             width: 300px;
             height: 300px;
-            opacity: .06; /* Finom, sötét üveghatású beolvadás */
+            opacity: .06;
             pointer-events: none;
             transform: rotate(15deg);
         }
 
-        /* Csillagos háttér réteg */
         .starfield {
             position: absolute;
             top: 0;
@@ -65,7 +65,6 @@
             fill: #ffffff;
         }
         
-        /* Különböző ütemű pislákolás a természetes hatásért */
         .star-t1 { animation: twinkle 3s infinite ease-in-out; }
         .star-t2 { animation: twinkle 4s infinite ease-in-out; animation-delay: 1s; }
         .star-t3 { animation: twinkle 5s infinite ease-in-out; animation-delay: 2.5s; }
@@ -76,7 +75,7 @@
             stroke-dasharray: 2;
         }
 
-        /* --- FÜLEK (Rádiógombos logika a működéshez) --- */
+        /* --- FÜLEK --- */
         .ashford-tabs {
             display: flex;
             justify-content: center;
@@ -86,7 +85,6 @@
             z-index: 10;
         }
 
-        /* Elrejtjük a natív rádiógombokat */
         .ashford-journal input[type="radio"] {
             display: none;
         }
@@ -115,7 +113,7 @@
             color: #fff4d4;
             border-color: rgba(255, 215, 150, .45);
             background: rgba(8, 19, 40, .6);
-            box-shadow: 0 0 12px rgba(255, 215, 150, .25); /* Jóslat aktiválódás effekt */
+            box-shadow: 0 0 12px rgba(255, 215, 150, .25);
         }
 
         /* --- KERET ÉS PANEL SZERKEZET --- */
@@ -130,7 +128,7 @@
             box-shadow: 0 0 40px rgba(0, 0, 0, .5);
             position: relative;
             z-index: 5;
-            backdrop-filter: blur(4px); /* Sötét üvegpanel hatás fokozása */
+            backdrop-filter: blur(4px);
         }
 
         .ashford-page {
@@ -166,15 +164,15 @@
         }
 
         .ashford-text {
-            font-size: 19px;
-            line-height: 2;
+            font-size: 13px; /* Kisebb, finomabb jegyzőkönyv méret */
+            line-height: 1.7; /* Kompaktabb sorköz a mérethez igazítva */
             color: #c3b8a7;
             max-width: 460px;
             margin: auto;
             text-align: justify;
         }
 
-        /* --- LAPOZÁS LOGIKA (CSS tab-váltó) --- */
+        /* --- LAPOZÁS LOGIKA --- */
         .tab-content {
             display: none;
             animation: fadeIn 0.6s ease;
@@ -207,6 +205,7 @@
         <circle cx="520" cy="620" r="1.2" class="star star-t1" />
         <circle cx="310" cy="750" r="1" class="star star-t2" />
 
+        <!-- CASSIOPEIA -->
         <g class="constellation">
             <polyline points="40,80 55,65 70,75 85,55 100,70" class="constellation-line" />
             <circle cx="40" cy="80" r="2" fill="#c7ae84" class="star-t1" />
@@ -216,15 +215,21 @@
             <circle cx="100" cy="70" r="1.8" fill="#c7ae84" class="star-t2" />
         </g>
 
+        <!-- ORION -->
         <g class="constellation">
             <line x1="480" y1="680" x2="520" y2="690" class="constellation-line" />
             <line x1="520" y1="690" x2="510" y2="740" class="constellation-line" />
             <line x1="510" y1="740" x2="470" y2="730" class="constellation-line" />
             <line x1="470" y1="730" x2="480" y2="680" class="constellation-line" />
             <line x1="485" y1="710" x2="505" y2="715" class="constellation-line" />
-            <circle cx="480" cy="680" r="2.5" fill="#ffb0b0" class="star-t2" /> <circle cx="520" cy="690" r="1.8" fill="#c7ae84" />
-            <circle cx="485" cy="710" r="1.5" fill="#fff" class="star-t1" /> <circle cx="495" cy="712" r="1.5" fill="#fff" class="star-t2" /> <circle cx="505" cy="715" r="1.5" fill="#fff" class="star-t3" /> <circle cx="470" cy="730" r="1.8" fill="#c7ae84" />
-            <circle cx="510" cy="740" r="3" fill="#b0e0ff" class="star-t3" /> </g>
+            <circle cx="480" cy="680" r="2.5" fill="#ffb0b0" class="star-t2" />
+            <circle cx="520" cy="690" r="1.8" fill="#c7ae84" />
+            <circle cx="485" cy="710" r="1.5" fill="#fff" class="star-t1" />
+            <circle cx="495" cy="712" r="1.5" fill="#fff" class="star-t2" />
+            <circle cx="505" cy="715" r="1.5" fill="#fff" class="star-t3" />
+            <circle cx="470" cy="730" r="1.8" fill="#c7ae84" />
+            <circle cx="510" cy="740" r="3" fill="#b0e0ff" class="star-t3" />
+        </g>
     </svg>
 
     <svg class="astrolabe" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
@@ -251,6 +256,7 @@
                 „A csillagok nem a jövőt mutatják.<br>Csak azt, amitől félünk.”
             </div>
 
+            <!-- 1. OLDAL -->
             <div class="tab-content content-1">
                 <div class="ashford-title">Sötétedő Égbolt</div>
                 <div class="ashford-text">
@@ -258,6 +264,7 @@
                 </div>
             </div>
 
+            <!-- 2. OLDAL -->
             <div class="tab-content content-2">
                 <div class="ashford-title">Képlet & Számítások</div>
                 <div class="ashford-text">
@@ -265,6 +272,7 @@
                 </div>
             </div>
 
+            <!-- 3. OLDAL -->
             <div class="tab-content content-3">
                 <div class="ashford-title">A Szaturnusz Tranzitja</div>
                 <div class="ashford-text">
