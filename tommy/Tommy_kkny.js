@@ -17,6 +17,7 @@ function generatePolaroid(){
     </div>
 </div>`;
 
+    // Csak a kódbox értékét frissítjük, az előnézet hivatkozása törölve
     document.getElementById('output').value = html.trim();
 }
 
@@ -27,7 +28,7 @@ function copyCode() {
         return;
     }
     outputText.select();
-    outputText.setSelectionRange(0, 99999);
+    outputText.setSelectionRange(0, 99999); /* Mobil eszközökhöz */
     navigator.clipboard.writeText(outputText.value);
     alert('A HTML kód a vágólapra másolva!');
 }
