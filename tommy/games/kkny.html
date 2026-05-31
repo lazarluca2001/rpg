@@ -151,6 +151,47 @@ Mi köti hozzá?
 
 </div>
 
+<div class="generator">
+
+<h2>Tommy Reese kapcsolat generátor</h2>
+
+<label>Név</label>
+<input type="text" id="name">
+
+<label>Avatar URL</label>
+<input type="text" id="image">
+
+<label>Kapcsolat erőssége</label>
+<select id="strength">
+<option>★★★★★</option>
+<option>★★★★☆</option>
+<option>★★★☆☆</option>
+<option>★★☆☆☆</option>
+<option>★☆☆☆☆</option>
+</select>
+
+<label>Kapcsolat megnevezése</label>
+<input type="text" id="label">
+
+<label>Kapcsolat Tommyval</label>
+<textarea id="description"></textarea>
+
+<button onclick="generatePolaroid()">
+Generálás
+</button>
+
+<button onclick="copyCode()">
+HTML másolása
+</button>
+
+</div>
+
+<div id="preview"></div>
+
+<h3>Generált kód</h3>
+
+<textarea id="output"></textarea>
+
 <style>
 
 .tommy-relations{
