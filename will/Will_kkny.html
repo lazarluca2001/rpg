@@ -5,11 +5,11 @@
 <title>William Ashford - Observatorium Turrem</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <style>
-/* --- KONTRASZTOS KÓDEX SZÍNEK --- */
+/* --- STÍLUSOK & EMELT KONTRASZT --- */
 :root {
-    --gold-light: #f9f1e3;   
-    --gold-medium: #d9bf96;  
-    --gold-dark: #8c714d;    
+    --gold-light: #fbf5e9;   
+    --gold-medium: #dfc59f;  
+    --gold-dark: #967d59;    
     --bg-dark: #020612;
 }
 
@@ -19,28 +19,29 @@ body {
     background-color: #010204;
     font-family: 'Cormorant Garamond', serif;
     color: var(--gold-light);
-    padding: 50px 0;
+    padding: 30px 0;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
 }
 
-/* --- FIX 500PX SZÉLES VERTIKÁLIS DESIGN --- */
+/* --- SZIGORÚAN MAX 550PX SZÉLES FŐ KONTÉNER --- */
 .ashford {
-    width: 500px;
+    width: 540px;
     background: 
-        radial-gradient(circle at 50% 8%, rgba(18, 48, 105, 0.6) 0%, transparent 55%),
+        radial-gradient(circle at 50% 8%, rgba(18, 44, 98, 0.65) 0%, transparent 55%),
         radial-gradient(circle at 15% 45%, rgba(100, 150, 255, 0.04) 0%, transparent 40%),
         radial-gradient(circle at 85% 85%, rgba(255, 215, 150, 0.03) 0%, transparent 35%),
         var(--bg-dark);
-    border: 1px solid rgba(217, 191, 150, 0.25);
+    border: 1px solid rgba(223, 197, 159, 0.25);
     position: relative;
     overflow: hidden;
-    padding: 60px 25px;
+    padding: 50px 30px;
     box-shadow: 0 40px 120px rgba(0,0,0,0.95);
 }
 
+/* --- HÁTTÉR GRAFIKÁK --- */
 .background-graphics {
     position: absolute;
     inset: 0;
@@ -48,16 +49,20 @@ body {
     z-index: 1;
 }
 
-/* --- ÚJ FEJLÉC: PORTRE ÉS CÍM EGYMÁS MELLETT --- */
-.header {
-    display: grid;
-    grid-template-columns: 110px 1fr;
-    align-items: center;
-    gap: 20px;
-    margin-bottom: 40px;
+/* --- KÖZÉPRE IGAZÍTOTT STRUKTÚRA --- */
+.header, .status, .tabs, .content, .omen-wrap, .footer-container {
     position: relative;
     z-index: 5;
-    padding: 0 10px;
+    width: 100%;
+}
+
+/* --- FEJLÉC (PORTRE ÉS CÍM EGYMÁS MELLETT) --- */
+.header {
+    display: grid;
+    grid-template-columns: 105px 1fr;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 35px;
 }
 
 .portrait-container {
@@ -69,27 +74,18 @@ body {
     width: 105px;
     height: 105px;
     border-radius: 50%;
-    border: none; /* Nincs szegély */
+    border: none;
     overflow: hidden;
     background: url('https://i.pinimg.com/736x/10/0b/10/100b108dfddf3db6e4fd34382a6b6fa2.jpg') center/cover no-repeat;
-    box-shadow: 0 0 25px rgba(0, 0, 0, 0.7);
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.8);
 }
 .portrait-scaler {
     position: absolute;
     inset: -6px;
-    border: 0.8px dashed rgba(217, 191, 150, 0.25);
-    border-radius: 50%;
-}
-.portrait-scaler-2 {
-    position: absolute;
-    inset: -11px;
-    border: 0.5px solid rgba(217, 191, 150, 0.12);
+    border: 0.8px dashed rgba(223, 197, 159, 0.25);
     border-radius: 50%;
 }
 
-.title {
-    text-align: left;
-}
 .title h1 {
     font-size: 26px;
     font-weight: 400;
@@ -97,7 +93,7 @@ body {
     color: var(--gold-light);
     text-transform: uppercase;
     margin-bottom: 4px;
-    text-shadow: 0 0 15px rgba(249, 241, 227, 0.15);
+    text-shadow: 0 0 15px rgba(251, 245, 233, 0.15);
 }
 .subtitle {
     font-size: 10px;
@@ -110,7 +106,7 @@ body {
     font-size: 12px;
     letter-spacing: 2px;
     color: var(--gold-medium);
-    opacity: 0.75;
+    opacity: 0.85;
 }
 
 /* --- STATUSTÁBLA --- */
@@ -118,20 +114,16 @@ body {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    border-top: 1px solid rgba(217, 191, 150, 0.15);
-    border-bottom: 1px solid rgba(217, 191, 150, 0.15);
-    padding: 14px 15px;
-    margin: 25px auto 35px auto;
-    width: 100%;
-    max-width: 410px;
-    position: relative;
-    z-index: 5;
+    border-top: 1px solid rgba(223, 197, 159, 0.18);
+    border-bottom: 1px solid rgba(223, 197, 159, 0.18);
+    padding: 14px 10px;
+    margin-bottom: 30px;
 }
 .status-item {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    font-size: 10.5px;
+    font-size: 11px;
     letter-spacing: 1.5px;
     text-transform: uppercase;
 }
@@ -151,15 +143,11 @@ body {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 8px;
-    width: 100%;
-    max-width: 410px;
-    margin: 0 auto 35px auto;
-    position: relative;
-    z-index: 10;
+    margin-bottom: 30px;
 }
 .tabs button {
-    background: rgba(3, 7, 18, 0.6);
-    border: 1px solid rgba(217, 191, 150, 0.2);
+    background: rgba(3, 7, 18, 0.65);
+    border: 1px solid rgba(223, 197, 159, 0.22);
     padding: 8px 10px;
     color: var(--gold-medium);
     font-family: 'Cormorant Garamond', serif;
@@ -171,39 +159,34 @@ body {
 }
 .tabs button:hover {
     color: var(--gold-light);
-    border-color: rgba(217, 191, 150, 0.4);
+    border-color: rgba(223, 197, 159, 0.45);
 }
 .tabs button.active {
     color: var(--gold-light);
-    border-color: rgba(249, 241, 227, 0.45);
-    background: rgba(18, 44, 94, 0.3);
-    box-shadow: 0 0 10px rgba(217, 191, 150, 0.12);
+    border-color: rgba(251, 245, 233, 0.5);
+    background: rgba(18, 44, 94, 0.35);
+    box-shadow: 0 0 12px rgba(223, 197, 159, 0.15);
 }
 
-/* --- MAGASÍTOTT KÖZPONTI DOBOZ --- */
+/* --- OPTIMALIZÁLT BELSŐ TARTALOM (BEÉPÍTETT JEGYZETEKKEL) --- */
 .content {
-    border: 1px solid rgba(217, 191, 150, 0.15);
-    padding: 50px 30px;
-    background: linear-gradient(180deg, rgba(5, 15, 36, 0.45) 0%, rgba(2, 5, 13, 0.65) 100%);
+    border: 1px solid rgba(223, 197, 159, 0.16);
+    padding: 45px 25px;
+    background: linear-gradient(180deg, rgba(5, 15, 36, 0.5) 0%, rgba(2, 5, 13, 0.7) 100%);
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
-    position: relative;
-    z-index: 5;
-    width: 100%;
-    max-width: 410px;
-    margin: 0 auto;
-    min-height: 520px;
+    min-height: 480px;
     box-shadow: inset 0 0 25px rgba(0,0,0,0.7);
 }
 .content::before, .content::after {
     content: ''; position: absolute; width: 14px; height: 14px;
-    border: 1px solid rgba(217, 191, 150, 0.35); pointer-events: none;
+    border: 1px solid rgba(223, 197, 159, 0.35); pointer-events: none;
 }
 .content::before { top: 12px; left: 12px; border-right: 0; border-bottom: 0; }
 .content::after { bottom: 12px; right: 12px; border-left: 0; border-top: 0; }
 
 .content-inner-frame {
-    position: absolute; inset: 6px; border: 1px solid rgba(217, 191, 150, 0.06); pointer-events: none;
+    position: absolute; inset: 6px; border: 1px solid rgba(223, 197, 159, 0.08); pointer-events: none;
 }
 
 .panel { display: none; animation: fadeInContent 0.5s ease forwards; }
@@ -216,55 +199,48 @@ body {
 
 .panel h2 {
     text-align: center;
-    font-size: 19px;
+    font-size: 18px;
     font-weight: 400;
     letter-spacing: 4px;
-    margin-bottom: 35px;
+    margin-bottom: 30px;
     color: var(--gold-light);
     text-transform: uppercase;
 }
 .panel p {
-    font-size: 13px; /* Kisebb, sűrűbb jegyzőkönyv betűméret */
+    font-size: 13px; /* Sűrűbb, kódex hatású méret */
     line-height: 2.3;
-    color: #faf6ee;
+    color: #fffaf0;
     text-align: justify;
-    letter-spacing: 0.4px;
+    letter-spacing: 0.5px;
 }
 
 /* --- KÖZÉPSŐ JÓSLATBLOKK --- */
 .omen-wrap {
-    margin: 35px auto 20px auto;
-    position: relative;
-    z-index: 5;
+    margin: 30px auto 15px auto;
     text-align: center;
 }
 #omen {
     font-style: italic;
     color: var(--gold-medium);
-    font-size: 13px;
+    font-size: 13.5px;
     letter-spacing: 2px;
-    opacity: 0.7;
 }
 
-/* --- ÚJ TÜKRÖZÖTT LÁBLÉC: MONOGRAM JOBB OLDALON, SZÖVEGEK BALRA --- */
+/* --- LÁBLÉC ELRENDEZÉS --- */
 .footer-container {
     display: grid;
     grid-template-columns: 1fr 90px;
     align-items: center;
     gap: 15px;
-    width: 100%;
-    max-width: 410px;
-    margin: 20px auto 0 auto;
-    border-top: 1px solid rgba(217, 191, 150, 0.15);
-    padding-top: 25px;
-    position: relative;
-    z-index: 5;
+    border-top: 1px solid rgba(223, 197, 159, 0.18);
+    padding-top: 20px;
+    margin-top: 20px;
 }
 
 .observatory-table {
     display: flex;
     flex-direction: column;
-    gap: 7px;
+    gap: 6px;
     width: 100%;
 }
 .obs-row {
@@ -277,54 +253,55 @@ body {
 .obs-label { color: var(--gold-dark); }
 .obs-value { color: var(--gold-light); font-weight: 500; }
 
-.footer-sign {
-    justify-self: end;
+.mini-omen-row {
+    margin-top: 6px;
+    border-top: 1px dashed rgba(223, 197, 159, 0.1);
+    padding-top: 6px;
+    font-size: 9.5px;
+    letter-spacing: 1px;
+    font-style: italic;
+    color: var(--gold-medium);
 }
+
+.footer-sign { justify-self: end; }
 .monogram {
     width: 75px;
     height: 75px;
     border-radius: 50%;
-    border: 1px solid rgba(217, 191, 150, 0.25);
+    border: 1px solid rgba(223, 197, 159, 0.3);
     background: url('https://i.pinimg.com/736x/72/01/3d/72013d9671d281944ea3e5be979d76e5.jpg') center/cover no-repeat;
     position: relative;
     box-shadow: 0 5px 15px rgba(0,0,0,0.5);
 }
 .monogram::after {
     content: ''; position: absolute; inset: 3px;
-    border: 1px dashed rgba(217, 191, 150, 0.15); border-radius: 50%;
+    border: 1px dashed rgba(223, 197, 159, 0.18); border-radius: 50%;
 }
 
-/* --- EXTRA DÚS SZÉLJYJEGYZETEK (2X ENNYI - 10 DARAB) --- */
+/* --- INTEGRÁLT, FINOMABB SZÉLJYJEGYZETEK (A DOBOZON KÍVÜL, DE SZEGÉLYEN BELÜL) --- */
 .hand {
     position: absolute;
-    color: rgba(217, 191, 150, 0.32);
-    font-size: 12.5px;
-    line-height: 1.5;
+    color: rgba(223, 197, 159, 0.28); /* 28% opacity, hogy ne zavarja a főszöveget, de olvasható legyen */
+    font-size: 12px;
+    line-height: 1.4;
     font-style: italic;
     pointer-events: none;
-    z-index: 4;
+    z-index: 2;
 }
-/* Bal oldali oszlop */
-.hand.n1 { left: 12px; top: 190px; transform: rotate(-7deg); }
-.hand.n2 { left: 10px; top: 380px; transform: rotate(-11deg); }
-.hand.n3 { left: 14px; top: 540px; transform: rotate(-5deg); }
-.hand.n4 { left: 12px; top: 710px; transform: rotate(-8deg); }
-.hand.n5 { left: 15px; top: 890px; transform: rotate(-6deg); }
+.hand.n1 { left: 15px; top: 165px; transform: rotate(-5deg); }
+.hand.n2 { left: 15px; top: 410px; transform: rotate(-8deg); }
+.hand.n3 { left: 20px; top: 680px; transform: rotate(-4deg); }
+.hand.n4 { left: 15px; top: 880px; transform: rotate(-6deg); }
 
-/* Jobb oldali oszlop */
-.hand.n6 { right: 12px; top: 260px; transform: rotate(6deg); text-align: right; }
-.hand.n7 { right: 15px; top: 460px; transform: rotate(9deg); text-align: right; }
-.hand.n8 { right: 10px; top: 630px; transform: rotate(5deg); text-align: right; }
-.hand.n9 { right: 14px; top: 800px; transform: rotate(8deg); text-align: right; }
-.hand.n10 { right: 12px; top: 960px; transform: rotate(4deg); text-align: right; }
+.hand.n5 { right: 15px; top: 210px; transform: rotate(5deg); text-align: right; }
+.hand.n6 { right: 15px; top: 480px; transform: rotate(7deg); text-align: right; }
+.hand.n7 { right: 20px; top: 740px; transform: rotate(4deg); text-align: right; }
+.hand.n8 { right: 15px; top: 930px; transform: rotate(5deg); text-align: right; }
 
-.hand hr {
-    border: none; height: 1px; background: rgba(217, 191, 150, 0.12); margin-top: 5px; width: 45px;
-}
-.hand.n6 hr, .hand.n7 hr, .hand.n8 hr, .hand.n9 hr, .hand.n10 hr { margin-left: auto; }
+.hand hr { border: none; height: 1px; background: rgba(223, 197, 159, 0.12); margin-top: 4px; width: 35px; }
+.hand.n5 hr, .hand.n6 hr, .hand.n7 hr, .hand.n8 hr { margin-left: auto; }
 
-/* Csillagok */
-@keyframes pulse { 0%, 100% { opacity: 0.1; } 50% { opacity: 0.5; } }
+@keyframes pulse { 0%, 100% { opacity: 0.1; } 50% { opacity: 0.4; } }
 .bg-star { animation: pulse 4s infinite ease-in-out; }
 </style>
 </head>
@@ -332,22 +309,20 @@ body {
 
 <div class="ashford">
     
-    <!-- GRAPHICS LAYER -->
-    <svg class="background-graphics" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 1250">
-        <circle cx="250" cy="680" r="230" fill="none" stroke="#8c714d" stroke-width="0.35" opacity="0.12"/>
-        <circle cx="250" cy="680" r="190" fill="none" stroke="#d9bf96" stroke-width="0.25" stroke-dasharray="2, 4" opacity="0.15"/>
-        <line x1="250" y1="250" x2="250" y2="1100" stroke="#8c714d" stroke-width="0.3" opacity="0.06"/>
-        <circle cx="410" cy="310" r="1.2" fill="#fff" class="bg-star" />
-        <circle cx="80" cy="490" r="1.5" fill="#fff" class="bg-star" style="animation-delay: 1.5s;"/>
-        <circle cx="420" cy="790" r="1.2" fill="#fff" class="bg-star" style="animation-delay: 3s;"/>
+    <svg class="background-graphics" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 1250">
+        <circle cx="270" cy="650" r="210" fill="none" stroke="#967d59" stroke-width="0.3" opacity="0.12"/>
+        <circle cx="270" cy="650" r="170" fill="none" stroke="#dfc59f" stroke-width="0.2" stroke-dasharray="2, 4" opacity="0.15"/>
+        <line x1="270" y1="200" x2="270" y2="1100" stroke="#967d59" stroke-width="0.25" opacity="0.06"/>
+        
+        <circle cx="440" cy="250" r="1.2" fill="#fff" class="bg-star" />
+        <circle cx="90" cy="480" r="1.5" fill="#fff" class="bg-star" style="animation-delay: 1.5s;"/>
+        <circle cx="460" cy="780" r="1.2" fill="#fff" class="bg-star" style="animation-delay: 3s;"/>
     </svg>
 
-    <!-- FEJLÉC: PORTRE ÉS CÍM EGYMÁS MELLETT -->
     <div class="header">
         <div class="portrait-container">
             <div class="portrait-scaler"></div>
-            <div class="portrait-scaler-2"></div>
-            <div class="portrait"></div>
+            <div class="portrait animate-stars"></div>
         </div>
 
         <div class="title">
@@ -357,7 +332,6 @@ body {
         </div>
     </div>
 
-    <!-- STATUSTÁBLA -->
     <div class="status">
         <div class="status-item">
             <div class="status-left"><span>☾</span> Holdfázis</div>
@@ -373,7 +347,6 @@ body {
         </div>
     </div>
 
-    <!-- NAVIGÁCIÓ -->
     <div class="tabs" id="tabContainer">
         <button class="active" onclick="showTab(0)">✦ Látomások</button>
         <button onclick="showTab(1)">☾ Társak</button>
@@ -381,7 +354,6 @@ body {
         <button onclick="showTab(3)">✧ Ellenségek</button>
     </div>
 
-    <!-- KÖZPONTI TARTALOM -->
     <div class="content">
         <div class="content-inner-frame"></div>
 
@@ -406,12 +378,10 @@ body {
         </div>
     </div>
 
-    <!-- JÓSLAT -->
     <div class="omen-wrap">
         <div id="omen">" a holló háromszor kiált "</div>
     </div>
 
-    <!-- ÚJ LAZALÁBLÉC: TEXTÚRÁZOTT PECSÉT JOBBRA, TÁBLÁZAT BALRA -->
     <div class="footer-container">
         <div class="observatory-table">
             <div class="obs-row">
@@ -430,6 +400,9 @@ body {
                 <span class="obs-label">Előérzet:</span>
                 <span class="obs-value">Nyugtalan</span>
             </div>
+            <div class="mini-omen-row" id="miniOmen">
+                Konjunkció: Az árnyék növekszik.
+            </div>
         </div>
         
         <div class="footer-sign">
@@ -437,18 +410,15 @@ body {
         </div>
     </div>
 
-    <!-- 2X ENNYI SZÉLJYJEGYZET (10 DARAB) -->
     <div class="hand n1">XI. 13.<br>Mars retrográd.</div>
     <div class="hand n2">Ne bizz az álomban.</div>
-    <div class="hand n3">Alt. 42° 11'<br>A tengely torzul.</div>
+    <div class="hand n3">Alt. 42° 11'</div>
     <div class="hand n4">„A sötétség nem üres.”<hr></div>
-    <div class="hand n5">Az óra körbejár.</div>
     
-    <div class="hand n6">Cassiopeia<br>04:17 ✦<hr></div>
-    <div class="hand n7">Az üstökös visszatér.<br>H. 21.</div>
-    <div class="hand n8">Kérlelhetetlen<br>Szaturnusz.</div>
-    <div class="hand n9">Nincs visszaút.<br>05:12</div>
-    <div class="hand n10">A torony ma hallgat.</div>
+    <div class="hand n5">Cassiopeia<br>04:17 ✦<hr></div>
+    <div class="hand n6">Az üstökös visszatér.</div>
+    <div class="hand n7">Kérlelhetetlen.</div>
+    <div class="hand n8">A torony néma.</div>
 
 </div>
 
@@ -464,13 +434,12 @@ function showTab(i){
     buttons[i].classList.add('active');
 }
 
-// AUTOMATIKUS DÁTUM ÉS HOLDFÁZIS ÉRZÉKELÉS
+// AUTOMATIKUS DÁTUM ÉS HOLD
 const phases = ["Újhold", "Növekvő sarló", "Első negyed", "Növekvő hold", "Telihold", "Fogyó hold", "Utolsó negyed", "Fogyó sarló"];
 const phase = phases[Math.floor((Date.now()/86400000)%8)];
 document.getElementById('moon').textContent = phase;
 document.getElementById('moon2').textContent = phase;
 
-// Automatikus aktuális magyar dátum beillesztése
 document.getElementById('date').textContent = new Date().toLocaleDateString('hu-HU', { year: 'numeric', month: 'long', day: 'numeric' }).toUpperCase();
 
 const omens = [
@@ -479,6 +448,18 @@ const omens = [
     "\" nem minden jövő elkerülhetetlen \"",
     "\" a torony ma hallgat \""
 ];
+
+const miniOmens = [
+    "Konjunkció: Az árnyék növekszik.",
+    "Tranzit: Az Uránusz feszültséget hoz.",
+    "Okultáció: Elveszett fények az északi égen.",
+    "Deklináció: -14° 22' eltolódás.",
+    "Kvadratúra: A döntés ideje közeleg.",
+    "Aspektus: Egy régi eskü felelevenedik."
+];
+
+document.getElementById('miniOmen').textContent = miniOmens[Math.floor(Math.random() * miniOmens.length)];
+
 setInterval(() => {
     document.getElementById('omen').textContent = omens[Math.floor(Math.random()*omens.length)];
 }, 10000);
