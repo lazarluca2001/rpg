@@ -3,59 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>William Ashford Csillagvizsgálói Jegyzőkönyv - Premium</title>
+    <title>William Ashford Csillagvizsgálói Jegyzőkönyv - Ultimate</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 
     <style>
+        /* --- ALAPOK --- */
         body {
-            background-color: #030914;
+            background-color: #020611;
             padding: 50px 0;
             margin: 0;
         }
 
         .ashford-journal {
-            width: 620px;
+            width: 630px;
             margin: auto;
             position: relative;
             font-family: 'Cormorant Garamond', serif;
-            background: radial-gradient(
-                circle at top,
-                #0a1d3a 0%,
-                #050d1d 60%,
-                #020611 100%
-            );
+            background: #020611;
             padding: 25px;
             box-sizing: border-box;
             overflow: hidden;
-            border: 1px solid rgba(191, 162, 119, 0.05);
+            border: 1px solid rgba(191, 162, 119, 0.1);
+            box-shadow: 0 25px 70px rgba(0,0,0,0.8);
+        }
+
+        /* --- DINAMIKUS CSILLAGKÖD HÁTTÉR --- */
+        .nebula-bg {
+            position: absolute;
+            top: -50%; left: -50%; width: 200%; height: 200%;
+            background: 
+                radial-gradient(circle at 40% 30%, rgba(13, 39, 81, 0.6) 0%, transparent 40%),
+                radial-gradient(circle at 70% 60%, rgba(26, 17, 56, 0.5) 0%, transparent 45%),
+                radial-gradient(circle at 50% 50%, #040d1a 0%, #01040a 100%);
+            z-index: 1;
+            transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+            pointer-events: none;
         }
 
         /* --- ASZTROLÁBIUM & EXTRA CSILLAGKÉPEK --- */
         .astrolabe {
             position: absolute;
-            right: -100px;
-            top: -50px;
-            width: 280px;
-            height: 280px;
-            opacity: .07;
+            right: -80px;
+            top: -40px;
+            width: 260px;
+            height: 260px;
+            opacity: .09;
             pointer-events: none;
             transform: rotate(25deg);
+            z-index: 2;
+            filter: drop-shadow(0 0 8px #bfa277);
         }
 
         .starfield {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0; width: 100%; height: 100%;
             pointer-events: none;
+            z-index: 2;
         }
 
         @keyframes twinkle {
-            0%, 100% { opacity: .2; }
-            50% { opacity: .9; }
+            0%, 100% { opacity: .2; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+        @keyframes pulseGlow {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.8; }
         }
 
         .star { fill: #ffffff; }
@@ -64,157 +78,182 @@
         .star-t3 { animation: twinkle 5s infinite ease-in-out; animation-delay: 3s; }
 
         .constellation-line {
-            stroke: rgba(191, 162, 119, 0.15);
+            stroke: rgba(191, 162, 119, 0.18);
             stroke-width: 0.7;
             stroke-dasharray: 2, 3;
         }
 
-        /* --- FÜLEK --- */
+        /* --- FÜLEK / MEGSZÉLLESÍTETT EXTRA DESIGN --- */
         .ashford-tabs {
             display: flex;
             justify-content: center;
-            gap: 12px;
-            margin-bottom: 20px;
+            gap: 15px;
+            margin-bottom: 25px;
             position: relative;
             z-index: 10;
         }
 
-        .ashford-journal input[type="radio"] {
-            display: none;
-        }
+        .ashford-journal input[type="radio"] { display: none; }
 
         .ashford-tabs label {
-            padding: 6px 16px;
+            padding: 8px 20px;
             font-size: 11px;
             letter-spacing: 3px;
-            color: #bfa277;
-            border: 1px solid rgba(191, 162, 119, .2);
-            background: rgba(4, 12, 26, .4);
+            color: rgba(191, 162, 119, 0.7);
+            border: 1px solid rgba(191, 162, 119, .15);
+            background: rgba(2, 6, 17, 0.7);
             cursor: pointer;
             text-transform: uppercase;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Aláhúzó mágikus fénycsík */
+        .ashford-tabs label::after {
+            content: '';
+            position: absolute;
+            bottom: -1px; left: 50%; width: 0; height: 1px;
+            background: linear-gradient(90deg, transparent, #bfa277, transparent);
+            transition: all 0.4s ease;
+        }
+
+        .ashford-tabs label:hover::after {
+            left: 0; width: 100%;
         }
 
         .ashford-tabs label:hover {
-            background: rgba(191, 162, 119, .1);
-            border-color: rgba(191, 162, 119, .4);
             color: #fff4d4;
+            background: rgba(191, 162, 119, .08);
+            border-color: rgba(191, 162, 119, 0.3);
         }
 
+        /* --- AKTÍV FÜL TURBÓ EFFEKT --- */
         #tab-1:checked ~ .ashford-tabs label[for="tab-1"],
         #tab-2:checked ~ .ashford-tabs label[for="tab-2"],
         #tab-3:checked ~ .ashford-tabs label[for="tab-3"] {
             color: #fff4d4;
             border-color: rgba(255, 215, 150, .4);
-            background: rgba(8, 25, 50, .5);
-            box-shadow: 0 0 15px rgba(255, 215, 150, .2);
-            letter-spacing: 3.5px; /* Minimális tágulás az aktiválásnál */
+            background: rgba(10, 30, 60, .6);
+            box-shadow: 0 0 20px rgba(255, 215, 150, .15);
+            letter-spacing: 3.5px;
+        }
+        #tab-1:checked ~ .ashford-tabs label[for="tab-1"]::after,
+        #tab-2:checked ~ .ashford-tabs label[for="tab-2"]::after,
+        #tab-3:checked ~ .ashford-tabs label[for="tab-3"]::after {
+            left: 0; width: 100%; height: 2px; background: linear-gradient(90deg, transparent, #fff4d4, transparent);
         }
 
-        /* --- EMELT SZINTŰ KERETSZERKEZET --- */
+        /* --- HÁTTÉRMOZGÁS REAKCIÓK --- */
+        #tab-2:checked ~ .nebula-bg { transform: scale(1.05) translate(-2%, -2%); }
+        #tab-3:checked ~ .nebula-bg { transform: scale(1.1) translate(2%, -1%); }
+
+        /* --- PRÉMIUM KERETSZERKEZET --- */
         .ashford-frame {
             padding: 24px;
-            border: 1px solid rgba(180, 145, 90, .22);
+            border: 1px solid rgba(180, 145, 90, .25);
+            outline: 1px solid rgba(180, 145, 90, 0.1);
+            outline-offset: -5px;
             background: linear-gradient(
                 135deg,
-                rgba(5, 16, 35, .85) 0%,
-                rgba(2, 8, 18, .95) 100%
+                rgba(4, 14, 30, 0.88) 0%,
+                rgba(1, 5, 13, 0.96) 100%
             );
             box-shadow: 
-                0 0 50px rgba(0, 0, 0, .6),
-                inset 0 0 20px rgba(180, 145, 90, 0.05); /* Belső finom arany derengés */
+                0 20px 50px rgba(0, 0, 0, .7),
+                inset 0 0 30px rgba(180, 145, 90, 0.08);
             position: relative;
             z-index: 5;
-            backdrop-filter: blur(6px);
+            backdrop-filter: blur(8px);
         }
 
         .ashford-page {
             padding: 50px;
             border: 1px solid rgba(180, 145, 90, .15);
-            background: linear-gradient(
-                180deg,
-                rgba(8, 22, 48, .6) 0%,
-                rgba(4, 11, 26, .8) 100%
+            background: radial-gradient(
+                circle at 50% 0%,
+                rgba(14, 38, 77, 0.4) 0%,
+                rgba(3, 10, 24, 0.6) 100%
             );
             position: relative;
         }
 
-        /* --- SZESTÁNS / SAROKDÍSZEK ELEMEI --- */
-        .ashford-page::before, .ashford-page::after {
-            content: '';
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            pointer-events: none;
-        }
-        /* Bal felső / jobb alsó sarokdísz */
-        .ashford-page::before {
-            top: 15px; left: 15px;
-            border-top: 1px solid rgba(191, 162, 119, 0.3);
-            border-left: 1px solid rgba(191, 162, 119, 0.3);
-        }
-        /* Jobb felső / bal alsó kiegészítők (trükkös dupla pozicionálás helyett tiszta box-shadow-val vagy belső elemmel) */
+        /* --- RÚNA- / SAROKDÍSZEK --- */
         .ashford-corners {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
             pointer-events: none;
         }
+        /* Finom arany törések a 4 sarokban */
+        .ashford-corners::before, .ashford-corners::after {
+            content: ''; position: absolute; width: 14px; height: 14px;
+        }
         .ashford-corners::before {
-            content: '';
-            position: absolute;
+            top: 15px; left: 15px;
+            border-top: 1px solid rgba(191, 162, 119, 0.4);
+            border-left: 1px solid rgba(191, 162, 119, 0.4);
+        }
+        .ashford-corners::after {
             bottom: 15px; right: 15px;
-            width: 10px; height: 10px;
-            border-bottom: 1px solid rgba(191, 162, 119, 0.3);
-            border-right: 1px solid rgba(191, 162, 119, 0.3);
+            border-bottom: 1px solid rgba(191, 162, 119, 0.4);
+            border-right: 1px solid rgba(191, 162, 119, 0.4);
         }
 
-        /* --- SZÖVEG & TIPOGRÁFIA --- */
+        /* Pulzáló mágikus magok a sarkokban */
+        .corner-dot {
+            position: absolute; width: 3px; height: 3px; background: #fff4d4;
+            border-radius: 50%; box-shadow: 0 0 8px #bfa277;
+            animation: pulseGlow 2.5s infinite ease-in-out;
+        }
+        .cd-tl { top: 14px; left: 14px; }
+        .cd-br { bottom: 14px; right: 14px; }
+
+        /* --- SZÖVEG DESIGN --- */
         .ashford-motto {
-            font-size: 12px;
+            font-size: 11.5px;
             font-style: italic;
             text-align: center;
-            color: rgba(199, 174, 132, 0.45);
-            letter-spacing: 1.5px;
-            margin-bottom: 30px;
-            line-height: 1.5;
+            color: rgba(199, 174, 132, 0.4);
+            letter-spacing: 1.8px;
+            margin-bottom: 35px;
+            line-height: 1.6;
         }
 
         .ashford-title {
-            font-size: 28px; /* Kicsit visszafogottabb, arányosabb méret */
+            font-size: 26px;
             font-weight: 400;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
             text-align: center;
-            color: #d1ba94;
-            margin-bottom: 30px;
-            text-transform: uppercase; /* Komolyabb, krónika-szerűbb hatás */
+            color: #dec49e;
+            margin-bottom: 35px;
+            text-transform: uppercase;
             font-variant: small-caps;
-            text-shadow: 0 0 15px rgba(199, 174, 132, 0.15);
+            text-shadow: 0 0 20px rgba(199, 174, 132, 0.2);
         }
 
         .ashford-text {
-            font-size: 13px;
-            line-height: 1.8;
-            color: #c9beaf;
+            font-size: 13.5px;
+            line-height: 1.85;
+            color: #e3d9ca; /* Világosabb, kontrasztosabb kódex betűszín */
             max-width: 440px;
             margin: auto;
             text-align: justify;
-            letter-spacing: 0.3px; /* Jobb olvashatóság kis méretnél */
+            letter-spacing: 0.4px;
         }
 
-        /* Első betű kiemelése (Iniciálé hatás, nagyon finoman) */
         .ashford-text::first-letter {
-            font-size: 20px;
+            font-size: 22px;
             font-weight: 600;
-            color: #d1ba94;
+            color: #dec49e;
             float: left;
-            margin-right: 5px;
+            margin-right: 6px;
             line-height: 1;
+            text-shadow: 0 0 8px rgba(222, 196, 158, 0.3);
         }
 
-        /* --- LAPOZÓ REAKCIÓK --- */
+        /* --- ANIMÁLT LAPVÁLTÁS --- */
         .tab-content {
             display: none;
-            animation: fancyFade 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: ultimateFade 0.8s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
         #tab-1:checked ~ .ashford-frame .content-1,
@@ -223,9 +262,9 @@
             display: block;
         }
 
-        @keyframes fancyFade {
-            from { opacity: 0; transform: scale(0.99) translateY(4px); }
-            to { opacity: 1; transform: scale(1) translateY(0); }
+        @keyframes ultimateFade {
+            from { opacity: 0; filter: blur(3px); transform: translateY(6px); }
+            to { opacity: 1; filter: blur(0); transform: translateY(0); }
         }
     </style>
 </head>
@@ -237,16 +276,15 @@
     <input type="radio" name="ashford-pages" id="tab-2">
     <input type="radio" name="ashford-pages" id="tab-3">
 
-    <!-- CSILLAGMEZŐ BŐVÍTETT VALÓDI CSILLAGKÉPEKKEL -->
+    <div class="nebula-bg"></div>
+
     <svg class="starfield" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 800">
-        <!-- Háttér pislákolás -->
         <circle cx="200" cy="80" r="1" class="star star-t1" />
         <circle cx="540" cy="180" r="1.2" class="star star-t3" />
         <circle cx="80" cy="450" r="1" class="star star-t2" />
         <circle cx="560" cy="520" r="1.5" class="star star-t1" />
         <circle cx="140" cy="720" r="1.2" class="star star-t3" />
 
-        <!-- CASSIOPEIA (Bal fent) -->
         <g>
             <polyline points="40,80 55,65 70,75 85,55 100,70" class="constellation-line" />
             <circle cx="40" cy="80" r="1.8" fill="#c7ae84" class="star-t1" />
@@ -256,29 +294,23 @@
             <circle cx="100" cy="70" r="1.5" fill="#c7ae84" class="star-t2" />
         </g>
 
-        <!-- CYGNUS - A Hattyú (Közép tájt balra) -->
         <g>
-            <line x1="60" y1="280" x2="140" y2="240" class="constellation-line" /> <!-- Törzs -->
-            <line x1="90" y1="220" x2="110" y2="300" class="constellation-line" /> <!-- Szárnyak -->
+            <line x1="60" y1="280" x2="140" y2="240" class="constellation-line" />
+            <line x1="90" y1="220" x2="110" y2="300" class="constellation-line" />
             <circle cx="60" cy="280" r="1.5" fill="#c7ae84" class="star-t3" />
-            <circle cx="140" cy="240" r="2.5" fill="#fff" class="star-t1" /> <!-- Deneb -->
+            <circle cx="140" cy="240" r="2.5" fill="#fff" class="star-t1" />
             <circle cx="90" cy="220" r="1.8" fill="#c7ae84" class="star-t2" />
             <circle cx="110" cy="300" r="1.8" fill="#c7ae84" class="star-t1" />
-            <circle cx="100" cy="260" r="1.2" fill="#c7ae84" />
         </g>
 
-        <!-- DRACO - A Sárkány hurok (Jobb oldalt fent) -->
         <g>
             <polyline points="450,60 490,50 520,80 480,110 440,90 410,130" class="constellation-line" />
             <circle cx="450" cy="60" r="2" fill="#fff" class="star-t2" />
             <circle cx="490" cy="50" r="1.5" fill="#c7ae84" class="star-t1" />
             <circle cx="520" cy="80" r="1.8" fill="#c7ae84" class="star-t3" />
-            <circle cx="480" cy="110" r="1.5" fill="#c7ae84" class="star-t1" />
-            <circle cx="440" cy="90" r="1.5" fill="#c7ae84" class="star-t2" />
             <circle cx="410" cy="130" r="2" fill="#c7ae84" class="star-t3" />
         </g>
 
-        <!-- ORION (Jobb lent) -->
         <g>
             <line x1="480" y1="680" x2="520" y2="690" class="constellation-line" />
             <line x1="520" y1="690" x2="510" y2="740" class="constellation-line" />
@@ -286,25 +318,20 @@
             <line x1="470" y1="730" x2="480" y2="680" class="constellation-line" />
             <line x1="485" y1="710" x2="505" y2="715" class="constellation-line" />
             <circle cx="480" cy="680" r="2.5" fill="#ffb0b0" class="star-t2" />
-            <circle cx="520" cy="690" r="1.8" fill="#c7ae84" />
             <circle cx="485" cy="710" r="1.5" fill="#fff" class="star-t1" />
             <circle cx="495" cy="712" r="1.5" fill="#fff" class="star-t2" />
             <circle cx="505" cy="715" r="1.5" fill="#fff" class="star-t3" />
-            <circle cx="470" cy="730" r="1.8" fill="#c7ae84" />
             <circle cx="510" cy="740" r="3" fill="#b0e0ff" class="star-t3" />
         </g>
     </svg>
 
-    <!-- ASZTROLÁBIUM -->
     <svg class="astrolabe" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
         <circle cx="50" cy="50" r="48" fill="none" stroke="#bfa277" stroke-width="0.5"/>
         <circle cx="50" cy="50" r="40" fill="none" stroke="#bfa277" stroke-width="0.3" stroke-dasharray="1,1"/>
         <circle cx="50" cy="50" r="30" fill="none" stroke="#bfa277" stroke-width="0.4"/>
-        <circle cx="50" cy="50" r="15" fill="none" stroke="#bfa277" stroke-width="0.5"/>
         <line x1="50" y1="2" x2="50" y2="98" stroke="#bfa277" stroke-width="0.3"/>
         <line x1="2" y1="50" x2="98" y2="50" stroke="#bfa277" stroke-width="0.3"/>
         <path d="M 15 25 Q 50 50 85 75" fill="none" stroke="#bfa277" stroke-width="0.6"/>
-        <path d="M 25 75 Q 50 50 75 25" fill="none" stroke="#bfa277" stroke-width="0.4"/>
     </svg>
 
     <div class="ashford-tabs">
@@ -315,14 +342,15 @@
 
     <div class="ashford-frame">
         <div class="ashford-page">
-            <!-- Sarokdíszítő réteg -->
-            <div class="ashford-corners"></div>
+            <div class="ashford-corners">
+                <div class="corner-dot cd-tl"></div>
+                <div class="corner-dot cd-br"></div>
+            </div>
 
             <div class="ashford-motto">
                 „A csillagok nem a jövőt mutatják.<br>Csak azt, amitől félünk.”
             </div>
 
-            <!-- 1. OLDAL -->
             <div class="tab-content content-1">
                 <div class="ashford-title">Sötétedő Égbolt</div>
                 <div class="ashford-text">
@@ -330,7 +358,6 @@
                 </div>
             </div>
 
-            <!-- 2. OLDAL -->
             <div class="tab-content content-2">
                 <div class="ashford-title">Képlet & Számítások</div>
                 <div class="ashford-text">
@@ -338,7 +365,6 @@
                 </div>
             </div>
 
-            <!-- 3. OLDAL -->
             <div class="tab-content content-3">
                 <div class="ashford-title">A Szaturnusz Tranzitja</div>
                 <div class="ashford-text">
