@@ -1,0 +1,103 @@
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,700&display=swap" rel="stylesheet">
+<div class="tr-tracker">
+<input type="radio" name="tr-filter" id="tr-all" checked>
+<input type="radio" name="tr-filter" id="tr-active">
+<input type="radio" name="tr-filter" id="tr-completed">
+<div class="tr-header">grandson of a president</div>
+<div class="tr-filterbar">
+<label for="tr-all">Összes történet</label>
+<label for="tr-active">Aktív</label>
+<label for="tr-completed">Befejezett</label>
+</div>
+<div class="tr-grid">
+<div class="tr-card" data-status="completed">
+<div class="tr-img-box">
+<img src="https://i.pinimg.com/736x/f0/4f/16/f04f1662af16d36371af0bbed2fb7992.jpg">
+<span class="tr-badge tr-done-badge">BEFEJEZETT</span>
+</div>
+<div class="tr-content">
+<h3>az egyetlen varázslat</h3>
+<p><strong>Partner:</strong> előtörténet<br>
+<strong>Idő:</strong> 1982. december 5.<br>
+<strong>Helyszín:</strong> Springfield, Illinois</p><br>
+<a href="https://www.roxfort.frpg.hu/index.php/topic,19698.0.html" class="tr-game-btn">Olvasás →</a>
+</div>
+</div>
+<div class="tr-card" data-status="completed">
+<div class="tr-img-box">
+<img src="https://i.pinimg.com/736x/95/11/18/95111872e97e35024aadbac0aedf23c2.jpg">
+<span class="tr-badge tr-done-badge">BEFEJEZETT</span>
+</div>
+<div class="tr-content">
+<h3>the fool</h3>
+<p><strong>Partner:</strong> Aubrey Chaisty<br>
+<strong>Idő:</strong> 2005 május<br>
+<strong>Helyszín:</strong> Párizs, Disneyland</p><br>
+<a href="https://www.roxfort.frpg.hu/index.php/topic,19770.0.html" class="tr-game-btn">Olvasás →</a>
+</div>
+</div>
+<div class="tr-card" data-status="completed">
+<div class="tr-img-box">
+<img src="https://i.pinimg.com/1200x/75/be/8c/75be8c9322e652297ab05a17f3653da9.jpg">
+<span class="tr-badge tr-done-badge">BEFEJEZETT</span>
+</div>
+<div class="tr-content">
+<h3>to be, or not to be...</h3>
+<p><strong>Partner:</strong> Elfelda Hall<br>
+<strong>Idő:</strong> 2005 június<br>
+<strong>Helyszín:</strong> London, Lyceum Theatre</p><br>
+<a href="https://www.roxfort.frpg.hu/index.php/topic,15636.msg125476.html#msg125476" class="tr-game-btn">Olvasás →</a>
+</div>
+</div>
+<div class="tr-card" data-status="completed">
+<div class="tr-img-box">
+<img src="https://i.pinimg.com/736x/0a/0b/2e/0a0b2e0dda18197fed5144edbf95533e.jpg">
+<span class="tr-badge tr-done-badge">BEFEJEZETT</span>
+</div>
+<div class="tr-content">
+<h3>elnöki hagyaték: hallgatás a neved</h3>
+<p><strong>Partner:</strong> Patti Davis<br>
+<strong>Idő:</strong> 2005 július<br>
+<strong>Helyszín:</strong> London, ügyvédi iroda</p><br>
+<a href="https://www.roxfort.frpg.hu/index.php/topic,21188.0.html" class="tr-game-btn">Olvasás →</a>
+</div>
+</div>
+<div class="tr-card" data-status="active">
+<div class="tr-img-box">
+<img src="https://i.pinimg.com/736x/3b/20/da/3b20da865179cfa481de7a67dc42f23e.jpg">
+<span class="tr-badge tr-active-badge">AKTÍV</span>
+</div>
+<div class="tr-content">
+<h3>i am here to stay</h3>
+<p><strong>Partner:</strong> Aubrey Chaisty<br>
+<strong>Idő:</strong> 2006 február<br>
+<strong>Helyszín:</strong> London, Chelsea negyed</p><br>
+<a href="https://www.roxfort.frpg.hu/index.php/topic,19835.msg128818.html#msg128818" class="tr-game-btn">Olvasás →</a>
+</div>
+</div>
+</div> </div> 
+<style>
+.tr-tracker { color: #d1d1d1 !important; font-family: 'Crimson Text', serif !important; padding: 25px !important; max-width: 900px !important; margin: 15px auto !important; display: block !important; }
+.tr-header { color: #7c9f4a !important; text-align: center !important; text-transform: uppercase !important; font-size: 26px !important; margin-bottom: 25px !important; font-weight: bold !important; letter-spacing: 2px !important; }
+.tr-tracker input[type="radio"] { position: absolute !important; left: -9999px !important; opacity: 0 !important; }
+.tr-filterbar { display: flex !important; justify-content: center !important; gap: 10px !important; margin-bottom: 30px !important; flex-wrap: wrap !important; }
+.tr-filterbar label { background: #1c1c1c !important; border: 1px solid #444 !important; color: #888 !important; padding: 8px 18px !important; cursor: pointer !important; border-radius: 4px !important; font-size: 13px !important; text-transform: uppercase !important; transition: 0.3s !important; }
+.tr-filterbar label:hover { border-color: #7c9f4a !important; color: #fff !important; }
+#tr-all:checked ~ .tr-filterbar label[for="tr-all"], #tr-active:checked ~ .tr-filterbar label[for="tr-active"], #tr-completed:checked ~ .tr-filterbar label[for="tr-completed"] { background: #7c9f4a !important; color: #fff !important; border-color: #fff !important; font-weight: bold !important; }
+.tr-grid { display: flex !important; flex-wrap: wrap !important; gap: 20px !important; justify-content: center !important; }
+.tr-card { background: #1a1a1a !important; border: 1px solid #2a2a2a !important; border-radius: 8px !important; width: calc(70% - 10px) !important; display: flex !important; flex-direction: column !important; overflow: hidden !important; transition: 0.3s !important; }
+@media (max-width: 700px) { .tr-card { width: 100% !important; } }
+.tr-img-box { height: 180px !important; position: relative !important; border-bottom: 2px solid #7c9f4a !important; }
+.tr-img-box img { width: 100% !important; height: 100% !important; object-fit: cover !important; display: block !important; }
+.tr-badge { position: absolute !important; top: 10px !important; right: 10px !important; padding: 4px 10px !important; font-size: 10px !important; font-weight: bold !important; border-radius: 3px !important; background: rgba(0,0,0,0.8) !important; }
+.tr-active-badge { color: #a4c675 !important; border: 1px solid #7c9f4a !important; }
+.tr-done-badge { color: #888 !important; border: 1px solid #444 !important; }
+.tr-content { padding: 18px !important; flex-grow: 1 !important; display: flex !important; flex-direction: column !important; }
+.tr-content h3 { color: #fff !important; margin: 0 0 12px 0 !important; font-size: 20px !important; border-bottom: 1px solid #333 !important; padding-bottom: 8px !important; }
+.tr-content p { margin: 6px 0 !important; font-size: 15px !important; color: #bbb !important; }
+.tr-content strong { color: #7c9f4a !important; }
+.tr-game-btn { display: block !important; background: #7c9f4a !important; color: #fff !important; text-align: center !important; text-decoration: none !important; padding: 10px !important; border-radius: 5px !important; margin-top: auto !important; font-weight: bold !important; transition: 0.3s !important; }
+.tr-game-btn:hover { background: #8db356 !important; }
+#tr-active:checked ~ .tr-grid .tr-card[data-status="completed"] { display: none !important; }
+#tr-completed:checked ~ .tr-grid .tr-card[data-status="active"] { display: none !important; }
+</style>
