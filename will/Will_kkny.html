@@ -5,42 +5,43 @@
 <title>William Ashford - Observatorium Turrem</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <style>
-/* --- PREMIUM EMELT KONTRASZTÚ SZÍNEK --- */
+/* --- MAXIMÁLIS KONTRASZTÚ SZÍNKÓDOK --- */
 :root {
-    --gold-light: #f3e5cb;   /* Világosabb, ragyogóbb arany az olvashatóságért */
-    --gold-medium: #cbb180;  /* Határozottabb közép-arany */
-    --gold-dark: #7a6344;    /* Kontrasztosabb sötétarany a címkéknek */
-    --bg-dark: #030712;
+    --gold-light: #f7edd8;   /* Ragyogó, tiszta arany-fehér a főszövegeknek */
+    --gold-medium: #d6bc8f;  /* Határozott kódex-arany a címeknek és gomboknak */
+    --gold-dark: #8c7351;    /* Erősebb sötétarany a széljegyzeteknek és leírásoknak */
+    --bg-dark: #020612;
 }
 
 *{ box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-    background-color: #010205;
+    background-color: #010204;
     font-family: 'Cormorant Garamond', serif;
     color: var(--gold-light);
-    padding: 40px 0;
+    padding: 50px 0;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
 }
 
-/* --- FŐ KONTÉNER --- */
+/* --- KESKENY, NYÚJTOTT VERTIKÁLIS DESIGN (500PX WIDTH) --- */
 .ashford {
-    width: 820px;
+    width: 500px;
     background: 
-        radial-gradient(circle at 50% 15%, rgba(18, 44, 94, 0.5) 0%, transparent 55%),
-        radial-gradient(circle at 85% 25%, rgba(255, 220, 180, 0.03) 0%, transparent 35%),
+        radial-gradient(circle at 50% 10%, rgba(18, 48, 105, 0.55) 0%, transparent 60%),
+        radial-gradient(circle at 10% 50%, rgba(100, 150, 255, 0.04) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(255, 215, 150, 0.03) 0%, transparent 35%),
         var(--bg-dark);
-    border: 1px solid rgba(203, 177, 128, 0.22);
+    border: 1px solid rgba(214, 188, 143, 0.25);
     position: relative;
     overflow: hidden;
-    padding: 60px 45px;
-    box-shadow: 0 40px 100px rgba(0,0,0,0.95);
+    padding: 50px 25px;
+    box-shadow: 0 40px 120px rgba(0,0,0,0.95);
 }
 
-/* --- GEOMETRIKUS HÁTTÉRKÉP ELEMEK --- */
+/* --- HAJSZÁLVÉKONY VEKTORGRAFIKUS HÁTTÉR --- */
 .background-graphics {
     position: absolute;
     inset: 0;
@@ -48,208 +49,165 @@ body {
     z-index: 1;
 }
 
-/* --- FEJLÉC SZERKEZETE --- */
+/* --- REFORMÁLT FEJLÉC (KÖZÉPRE RENDEZETT PORTRE, TISZTA TÉR) --- */
 .header {
-    display: grid;
-    grid-template-columns: 110px 1fr 130px;
+    display: flex;
+    flex-direction: column;
     align-items: center;
+    text-align: center;
     margin-bottom: 35px;
     position: relative;
     z-index: 5;
 }
 
-.monogram {
-    width: 95px;
-    height: 95px;
-    border-radius: 50%;
-    border: 1px solid rgba(203, 177, 128, 0.3);
-    background: url('https://i.pinimg.com/736x/72/01/3d/72013d9671d281944ea3e5be979d76e5.jpg') center/cover no-repeat;
-    position: relative;
-    box-shadow: 0 0 15px rgba(0,0,0,0.4);
-}
-.monogram::after {
-    content: ''; position: absolute; inset: 4px;
-    border: 1px dashed rgba(203, 177, 128, 0.2); border-radius: 50%;
-}
-
-.title {
-    text-align: center;
-}
-.title h1 {
-    font-size: 36px;
-    font-weight: 400;
-    letter-spacing: 5px;
-    color: var(--gold-light);
-    text-transform: uppercase;
-    margin-bottom: 5px;
-    text-shadow: 0 0 15px rgba(243, 229, 203, 0.1);
-}
-.subtitle {
-    font-size: 11.5px;
-    letter-spacing: 5px;
-    color: var(--gold-medium);
-    text-transform: uppercase;
-    margin-bottom: 12px;
-    font-weight: 500;
-}
-.date {
-    font-size: 13.5px;
-    letter-spacing: 4px;
-    color: var(--gold-medium);
-    opacity: 0.75;
-}
-
-/* NAGYOBB PORTRE BORDER NÉLKÜL */
-.portrait {
-    width: 125px;       /* Megnövelt méret a kép arányaihoz */
-    height: 125px;
-    border-radius: 50%;
-    border: none;       /* Teljesen eltávolított border */
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: url('https://i.pinimg.com/736x/10/0b/10/100b108dfddf3db6e4fd34382a6b6fa2.jpg') center/cover no-repeat;
-    box-shadow: 0 0 25px rgba(0, 0, 0, 0.6);
-    justify-self: end;
-    position: relative;
-}
-
-/* Külső koordináta körívek a portré mögött/körül az égi hatásért */
+/* Nagyobb, határozott kontúrú portré border nélkül */
 .portrait-container {
     position: relative;
-    justify-self: end;
     width: 125px;
     height: 125px;
+    margin-bottom: 25px;
 }
+.portrait {
+    width: 125px;
+    height: 125px;
+    border-radius: 50%;
+    border: none;
+    overflow: hidden;
+    background: url('https://i.pinimg.com/736x/10/0b/10/100b108dfddf3db6e4fd34382a6b6fa2.jpg') center/cover no-repeat;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.7);
+}
+/* Finom égi gyűrűk a portré körül */
 .portrait-scaler {
     position: absolute;
     inset: -8px;
-    border: 0.8px dashed rgba(203, 177, 128, 0.25);
+    border: 0.8px dashed rgba(214, 188, 143, 0.3);
     border-radius: 50%;
-    pointer-events: none;
-    z-index: 4;
 }
 .portrait-scaler-2 {
     position: absolute;
     inset: -14px;
-    border: 0.5px solid rgba(203, 177, 128, 0.12);
+    border: 0.5px solid rgba(214, 188, 143, 0.15);
     border-radius: 50%;
-    pointer-events: none;
-    z-index: 4;
 }
 
-/* --- STATUSTÁBLA (EMELT KONTRASZT) --- */
+.title h1 {
+    font-size: 34px;
+    font-weight: 400;
+    letter-spacing: 5px;
+    color: var(--gold-light);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    text-shadow: 0 0 15px rgba(247, 237, 216, 0.15);
+}
+.subtitle {
+    font-size: 11px;
+    letter-spacing: 5px;
+    color: var(--gold-medium);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
+.date {
+    font-size: 13px;
+    letter-spacing: 3px;
+    color: var(--gold-medium);
+    opacity: 0.8;
+}
+
+/* --- KESKENYÍTETT STATUSTÁBLA --- */
 .status {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    border-top: 1px solid rgba(203, 177, 128, 0.15);
-    border-bottom: 1px solid rgba(203, 177, 128, 0.15);
-    padding: 15px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    border-top: 1px solid rgba(214, 188, 143, 0.15);
+    border-bottom: 1px solid rgba(214, 188, 143, 0.15);
+    padding: 16px 20px;
     margin: 25px auto 35px auto;
-    max-width: 480px;
+    width: 100%;
+    max-width: 380px;
     position: relative;
     z-index: 5;
 }
 .status-item {
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 12px;
+    justify-content: space-between;
     font-size: 11px;
     letter-spacing: 2px;
     text-transform: uppercase;
 }
-.status-item .icon {
-    font-size: 14px;
-    color: var(--gold-medium);
-}
-.status-details {
+.status-left {
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    color: var(--gold-dark);
 }
-.status-details span:first-child {
-    font-size: 9.5px;
-    color: var(--gold-medium);
-    opacity: 0.65;
-    margin-bottom: 2px;
-}
-.status-details span:last-child {
+.status-value {
     color: var(--gold-light);
     font-weight: 500;
 }
 
-/* --- TABOK --- */
+/* --- KÉTSOROS, KESKENYÍTETT TABOK --- */
 .tabs {
-    display: flex;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: 10px;
-    margin-bottom: 35px;
+    width: 100%;
+    max-width: 380px;
+    margin: 0 auto 35px auto;
     position: relative;
     z-index: 10;
 }
 .tabs button {
     background: rgba(3, 7, 18, 0.6);
-    border: 1px solid rgba(203, 177, 128, 0.22);
-    padding: 8px 24px;
+    border: 1px solid rgba(214, 188, 143, 0.22);
+    padding: 9px 12px;
     color: var(--gold-medium);
     font-family: 'Cormorant Garamond', serif;
     font-size: 11px;
-    letter-spacing: 3px;
+    letter-spacing: 2px;
     text-transform: uppercase;
     cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.3s ease;
 }
 .tabs button:hover {
     color: var(--gold-light);
-    border-color: rgba(203, 177, 128, 0.45);
-    background: rgba(203, 177, 128, 0.04);
+    border-color: rgba(214, 188, 143, 0.45);
 }
 .tabs button.active {
     color: var(--gold-light);
-    border-color: rgba(243, 229, 203, 0.5);
-    background: rgba(18, 44, 94, 0.3);
-    box-shadow: 0 0 15px rgba(203, 177, 128, 0.15);
+    border-color: rgba(247, 237, 216, 0.5);
+    background: rgba(18, 44, 94, 0.35);
+    box-shadow: 0 0 12px rgba(214, 188, 143, 0.15);
 }
 
-/* --- KÖZPONTI ÜVEGPANEL (ZÁRT, ERŐSEBB BELSŐ FÉNYEK) --- */
+/* --- MAGASÍTOTT, VERTIKÁLIS ÜVEGPANEL --- */
 .content {
-    border: 1px solid rgba(203, 177, 128, 0.18);
-    padding: 55px 50px;
-    background: linear-gradient(180deg, rgba(5, 15, 36, 0.45) 0%, rgba(2, 5, 13, 0.65) 100%);
+    border: 1px solid rgba(214, 188, 143, 0.18);
+    padding: 55px 35px;
+    background: linear-gradient(180deg, rgba(5, 15, 36, 0.5) 0%, rgba(2, 5, 13, 0.7) 100%);
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
     position: relative;
     z-index: 5;
-    max-width: 540px;
+    width: 100%;
+    max-width: 410px;
     margin: 0 auto;
+    min-height: 485px; /* Magasabb tartalomterület */
     box-shadow: inset 0 0 25px rgba(0,0,0,0.7);
 }
 .content::before, .content::after {
-    content: '';
-    position: absolute;
-    width: 16px;
-    height: 16px;
-    border: 1px solid rgba(203, 177, 128, 0.35);
-    pointer-events: none;
+    content: ''; position: absolute; width: 16px; height: 16px;
+    border: 1px solid rgba(214, 188, 143, 0.4); pointer-events: none;
 }
 .content::before { top: 12px; left: 12px; border-right: 0; border-bottom: 0; }
 .content::after { bottom: 12px; right: 12px; border-left: 0; border-top: 0; }
 
 .content-inner-frame {
-    position: absolute;
-    inset: 6px;
-    border: 1px solid rgba(203, 177, 128, 0.08);
-    pointer-events: none;
+    position: absolute; inset: 6px; border: 1px solid rgba(214, 188, 143, 0.08); pointer-events: none;
 }
 
-.panel {
-    display: none;
-    animation: fadeInContent 0.6s ease forwards;
-}
-.panel.active {
-    display: block;
-}
+.panel { display: none; animation: fadeInContent 0.6s ease forwards; }
+.panel.active { display: block; }
 
 @keyframes fadeInContent {
     from { opacity: 0; transform: translateY(2px); }
@@ -258,9 +216,9 @@ body {
 
 .panel h2 {
     text-align: center;
-    font-size: 21px;
+    font-size: 20px;
     font-weight: 400;
-    letter-spacing: 5px;
+    letter-spacing: 4px;
     margin-bottom: 35px;
     color: var(--gold-light);
     text-transform: uppercase;
@@ -268,163 +226,150 @@ body {
 .panel p {
     font-size: 15px;
     line-height: 2.3;
-    color: #f1ebd9; /* Világosabb, tiszta krémfehér a tökéletes olvashatóságért */
+    color: #fcf8f0; /* Maximális kontrasztú szövegszín */
     text-align: justify;
     letter-spacing: 0.5px;
 }
 
-/* --- FOOTER ÉS STRUKTURÁLT ADATOK --- */
+/* --- JÓSLAT ÉS METADATA SÁV --- */
 .meta {
-    margin-top: 45px;
-    display: grid;
-    grid-template-columns: 1fr 210px;
-    align-items: end;
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
     position: relative;
     z-index: 5;
-    padding: 0 45px;
+    width: 100%;
+    max-width: 410px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #omen {
     font-style: italic;
     color: var(--gold-medium);
-    font-size: 13.5px;
+    font-size: 14px;
     letter-spacing: 2px;
-    text-align: left;
-    padding-left: 35px;
-    padding-bottom: 4px;
+    text-align: center;
     font-weight: 400;
 }
 
 .observatory-table {
     display: flex;
     flex-direction: column;
-    gap: 6px;
-    border-left: 1px solid rgba(203, 177, 128, 0.15);
-    padding-left: 20px;
+    gap: 7px;
+    border-top: 1px solid rgba(214, 188, 143, 0.15);
+    padding-top: 20px;
+    width: 100%;
 }
 .obs-row {
     display: flex;
     justify-content: space-between;
-    font-size: 10px;
+    font-size: 10.5px;
     letter-spacing: 1.5px;
     text-transform: uppercase;
 }
-.obs-label {
-    color: var(--gold-medium);
-    opacity: 0.7;
+.obs-label { color: var(--gold-dark); }
+.obs-value { color: var(--gold-light); font-weight: 500; }
+
+/* --- ASZTRÁLIS PECSÉT: ALULRA KERÜLT MONOGRAM --- */
+.footer-sign {
+    display: flex;
+    justify-content: center;
+    margin-top: 45px;
+    position: relative;
+    z-index: 5;
 }
-.obs-value {
-    color: var(--gold-light);
-    font-weight: 500;
+.monogram {
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    border: 1px solid rgba(214, 188, 143, 0.25);
+    background: url('https://i.pinimg.com/736x/72/01/3d/72013d9671d281944ea3e5be979d76e5.jpg') center/cover no-repeat;
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    opacity: 0.85;
+    transition: opacity 0.3s ease;
+}
+.monogram:hover { opacity: 1; }
+.monogram::after {
+    content: ''; position: absolute; inset: 3px;
+    border: 1px dashed rgba(214, 188, 143, 0.2); border-radius: 50%;
 }
 
-/* --- MARGINÁLIS JEGYZETEK --- */
+/* --- GAZDAG, SOKSZOROS SZÉLJYJEGYZETEK (MARGINALIA) --- */
 .hand {
     position: absolute;
-    color: rgba(203, 177, 128, 0.3); /* Megnövelt láthatóság a széleken */
-    font-size: 14px;
-    line-height: 1.6;
+    color: rgba(214, 188, 143, 0.35); /* Határozottabb, de háttérbe simuló */
+    font-size: 13px;
+    line-height: 1.5;
     font-style: italic;
     pointer-events: none;
     z-index: 5;
 }
-.hand.left {
-    left: 45px;
-    top: 340px;
-    transform: rotate(-10deg);
-}
-.hand.right {
-    right: 45px;
-    top: 540px;
-    transform: rotate(6deg);
-    text-align: right;
-}
-.hand hr {
-    border: none;
-    height: 1px;
-    background: rgba(203, 177, 128, 0.18);
-    margin-top: 6px;
-    width: 45px;
-}
-.hand.right hr { margin-left: auto; }
+.hand.note-1 { left: 15px; top: 220px; transform: rotate(-8deg); }
+.hand.note-2 { right: 20px; top: 380px; transform: rotate(6deg); text-align: right; }
+.hand.note-3 { left: 15px; top: 620px; transform: rotate(-5deg); }
+.hand.note-4 { right: 18px; top: 820px; transform: rotate(8deg); text-align: right; }
+.hand.note-5 { left: 22px; bottom: 120px; transform: rotate(-10deg); }
 
-/* Finom csillagpulzálás */
-@keyframes pulse {
-    0%, 100% { opacity: 0.1; }
-    50% { opacity: 0.6; }
+.hand hr {
+    border: none; height: 1px; background: rgba(214, 188, 143, 0.15); margin-top: 5px; width: 45px;
 }
+.hand text-right hr { margin-left: auto; }
+
+/* Pulzálás */
+@keyframes pulse { 0%, 100% { opacity: 0.1; } 50% { opacity: 0.5; } }
 .bg-star { animation: pulse 4s infinite ease-in-out; }
-.d1 { animation-delay: 1.5s; }
-.d2 { animation-delay: 3s; }
 </style>
 </head>
 <body>
 
 <div class="ashford">
     
-    <!-- GRAPHICS LAYER: Finom háttér-vektorok -->
-    <svg class="background-graphics" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 1050">
-        <!-- Bal alsó asztrolábium -->
-        <circle cx="60" cy="920" r="240" fill="none" stroke="#7a6344" stroke-width="0.4" opacity="0.15"/>
-        <circle cx="60" cy="920" r="200" fill="none" stroke="#cbb180" stroke-width="0.3" stroke-dasharray="1, 4" opacity="0.18"/>
-        <line x1="60" y1="600" x2="60" y2="1050" stroke="#7a6344" stroke-width="0.3" opacity="0.08"/>
-        <line x1="0" y1="920" x2="350" y2="920" stroke="#7a6344" stroke-width="0.3" opacity="0.08"/>
+    <svg class="background-graphics" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 1250">
+        <circle cx="250" cy="-50" r="200" fill="none" stroke="#8c7351" stroke-width="0.3" opacity="0.15"/>
+        <circle cx="250" cy="-50" r="195" fill="none" stroke="#d6bc8f" stroke-width="0.2" stroke-dasharray="1, 3" opacity="0.2"/>
 
-        <!-- Halvány csillagképek -->
-        <polyline points="680,760 705,735 725,750 745,720 770,735" fill="none" stroke="#7a6344" stroke-width="0.4" stroke-dasharray="2, 3" opacity="0.22" />
-        <circle cx="680" cy="760" r="1.2" fill="#fff" class="bg-star" />
-        <circle cx="725" cy="750" r="1.5" fill="#fff" class="bg-star d1" />
-        <circle cx="770" cy="735" r="1.2" fill="#fff" class="bg-star d2" />
+        <circle cx="250" cy="650" r="210" fill="none" stroke="#8c7351" stroke-width="0.4" opacity="0.12"/>
+        <circle cx="250" cy="650" r="180" fill="none" stroke="#d6bc8f" stroke-width="0.3" stroke-dasharray="2, 4" opacity="0.15"/>
+        <line x1="250" y1="300" x2="250" y2="1000" stroke="#8c7351" stroke-width="0.3" opacity="0.08"/>
 
-        <!-- Felső északi csillag/iránytű jelzés -->
-        <path d="M 410 18 L 410 42 M 398 30 L 422 30" stroke="#cbb180" stroke-width="0.4" opacity="0.35"/>
-        <circle cx="410" cy="30" r="1.2" fill="#fff" opacity="0.7"/>
+        <circle cx="420" cy="280" r="1.2" fill="#fff" class="bg-star" />
+        <circle cx="70" cy="450" r="1.5" fill="#fff" class="bg-star" style="animation-delay: 1.5s;"/>
+        <circle cx="430" cy="730" r="1.2" fill="#fff" class="bg-star" style="animation-delay: 3s;"/>
+        <circle cx="80" cy="980" r="1.3" fill="#fff" class="bg-star" style="animation-delay: 0.5s;"/>
     </svg>
 
-    <!-- FEJLÉC -->
     <div class="header">
-        <div class="monogram"></div>
+        <div class="portrait-container">
+            <div class="portrait-scaler"></div>
+            <div class="portrait-scaler-2"></div>
+            <div class="portrait"></div>
+        </div>
 
         <div class="title">
             <h1>William Ashford</h1>
             <div class="subtitle">✦ Observatorium Turrem ✦</div>
             <div class="date" id="date">1907. NOVEMBER 13.</div>
         </div>
-
-        <!-- Portré konténer a külső dekoratív gyűrűkkel -->
-        <div class="portrait-container">
-            <div class="portrait-scaler"></div>
-            <div class="portrait-scaler-2"></div>
-            <div class="portrait"></div>
-        </div>
     </div>
 
-    <!-- STATUSTÁBLA -->
     <div class="status">
         <div class="status-item">
-            <div class="icon">☾</div>
-            <div class="status-details">
-                <span>Holdfázis</span>
-                <span id="moon">Fogyó sarló</span>
-            </div>
+            <div class="status-left"><span>☾</span> Holdfázis</div>
+            <div class="status-value" id="moon">Fogyó sarló</div>
         </div>
         <div class="status-item">
-            <div class="icon">✦</div>
-            <div class="status-details">
-                <span>Égbolt</span>
-                <span>Tiszta</span>
-            </div>
+            <div class="status-left"><span>✦</span> Égbolt</div>
+            <div class="status-value">Tiszta</div>
         </div>
         <div class="status-item">
-            <div class="icon">☉</div>
-            <div class="status-details">
-                <span>Előérzet</span>
-                <span>Nyugtalan</span>
-            </div>
+            <div class="status-left"><span>☉</span> Előérzet</div>
+            <div class="status-value">Nyugtalan</div>
         </div>
     </div>
 
-    <!-- TABS / NAVIGÁCIÓ -->
     <div class="tabs" id="tabContainer">
         <button class="active" onclick="showTab(0)">✦ Látomások</button>
         <button onclick="showTab(1)">☾ Társak</button>
@@ -432,36 +377,30 @@ body {
         <button onclick="showTab(3)">✧ Ellenségek</button>
     </div>
 
-    <!-- KÖZPONTI DOBOZ SZERKEZETE -->
     <div class="content">
         <div class="content-inner-frame"></div>
 
-        <!-- I. LÁTOMÁSOK -->
         <div class="panel active">
             <h2>✦ Sötétedő Égbolt ✦</h2>
-            <p>Az ikrek hava különös feszültséget hozott az obszervatórium falai közé. A Mars retrográd mozgása rányomja bélyegét a látomásokra; a lángok már nem tiszta képeket, csak vészjósló árnyakat vetítenek a jövő parazsára. A csillagok állása makacsul ugyanazt az elkerülhetetlen feszültséget jósolja, amiről oly régóta hallgatni kényszerülök.</p>
+            <p>Az ikrek hava különös feszültséget hozott az obszervatórium falai közé. A Mars retrográd mozgása rányomja bélyegét a látomásokra; a lángok már nem tiszta képeket, csak vészjósló árnyakat vetítenek a jövő parazsára. A csillagok állása makacsul ugyanazt az elkerülhetetlen feszültséget jósolja, amiről oly régóta hallgatni kényszerülök. A horizont peremén felizzó vörös fények nem hagynak kétséget afelől, hogy az idő kerekét halandó kéz többé nem forgathatja vissza.</p>
         </div>
 
-        <!-- II. TÁRSAK -->
         <div class="panel">
             <h2>☾ Égi Szövetségek ☾</h2>
-            <p>Vannak emberek, akiket nem a véletlen, hanem a pályák találkozása sodor egymás mellé. A torony magányát ritkán töri meg olyan jelenlét, amely képes olvasni az éjszakai égbolt néma morajlásából, és nem riad vissza az árnyaktól.</p>
+            <p>Vannak emberek, akiket nem a véletlen, hanem a pályák találkozása sodor egymás mellé. A torony magányát ritkán töri meg olyan jelenlét, amely képes olvasni az éjszakai égbolt néma morajlásából, és nem riad vissza az árnyaktól. A közösen megfigyelt tranzitok súlya kötelékké válik, amit az eljövendő viharok sem tudnak majd könnyen szétszakítani.</p>
         </div>
 
-        <!-- III. SZERELEM -->
         <div class="panel">
             <h2>✦ Vonzerők és Tranzitok ✦</h2>
-            <p>A Vega fénye ma este különösen tisztán látszik. Vannak érzések, amelyek túlélnek minden számítást és koordinátát. Amikor a szférák zenéje elcsendesedik, csak az a halvány vonzás marad meg, amit semmilyen retrográd mozgás nem képes kitörölni.</p>
+            <p>A Vega fénye ma este különösen tisztán látszik. Vannak érzések, amelyek túlélnek minden számítást és koordinátát. Amikor a szférák zenéje elcsendesedik, csak az a halvány vonzás marad meg, amit semmilyen retrográd mozgás nem képes kitörölni a csillagvizsgáló hideg kőlapjai közül.</p>
         </div>
 
-        <!-- IV. ELLENSÉGEK -->
         <div class="panel">
             <h2>✧ Kérlelhetetlen Szaturnusz ✧</h2>
-            <p>A sors fonalai olykor szorosabbra húzódnak, mint azt a látnok előre sejtené. A hideg bolygóküszöbök átlépése könyörtelen igazságokat kényszerít ránk: a jövőt nem megváltoztatni kell, hanem elviselni a terhét.</p>
+            <p>A sors fonalai olykor szorosabbra húzódnak, mint azt a látnok előre sejtené. A hideg bolygóküszöbök átlépése könyörtelen igazságokat kényszerít ránk: a jövőt nem megváltoztatni kell, hanem elviselni a terhét. Azok, akik szembehelyezkednek a csillagok írásával, csupán a saját bukásuk idejét siettetik.</p>
         </div>
     </div>
 
-    <!-- METADATA FOOTER -->
     <div class="meta">
         <div id="omen">" a holló háromszor kiált "</div>
         
@@ -485,17 +424,29 @@ body {
         </div>
     </div>
 
-    <!-- SZÉLSŐ JEGYZETEK -->
-    <div class="hand left">
-        XI. 13.<br>
-        Mars retrográd.<br>
-        Ne bizz<br>
-        az álomban.
+    <div class="footer-sign">
+        <div class="monogram"></div>
+    </div>
+
+    <div class="hand note-1">
+        XI. 13.<br>Mars retrográd.<br>Ne bizz az álomban.
     </div>
     
-    <div class="hand right">
-        Cassiopeia<br>
-        04:17 ✦
+    <div class="hand note-2">
+        Cassiopeia<br>04:17 ✦
+        <hr>
+    </div>
+
+    <div class="hand note-3">
+        Alt. 42° 11'<br>A tengely torzul.
+    </div>
+
+    <div class="hand note-4">
+        Az üstökös<br>visszatér.<br>H. 21.
+    </div>
+
+    <div class="hand note-5">
+        „A sötétség<br>nem üres.”
         <hr>
     </div>
 
@@ -513,7 +464,6 @@ function showTab(i){
     buttons[i].classList.add('active');
 }
 
-// Holdfázis adatok dinamikus kezelése
 const phases = ["Újhold", "Növekvő sarló", "Első negyed", "Növekvő hold", "Telihold", "Fogyó hold", "Utolsó negyed", "Fogyó sarló"];
 const phase = phases[Math.floor((Date.now()/86400000)%8)];
 document.getElementById('moon').textContent = phase;
