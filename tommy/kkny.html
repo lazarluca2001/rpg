@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emlékkönyv és Polaroid Generátor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* --- KÖZÖS ÉS ALAP STÍLUSOK --- */
+        body {
+            font-family: 'Crimson Text', serif;
+            background-color: #f5f3ef;
+            margin: 0;
+            padding: 20px;
+        }
+        
+        .memory-journal {
+            max-width: 540px;
+            margin: auto;
+            margin-bottom: 50px;
+        }
+        
+        .memory-journal input {
+            display: none;
+        }
+        
+        /* --- TABS --- */
+        .memory-tabs {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .memory-tabs label {
+            background: rgba(230,220,190,.85);
+            padding: 8px 18px;
+            cursor: pointer;
+            color: #4a4033;
+            font-size: 12px;
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0,0,0,.12);
+            transition: .3s;
+            position: relative;
+        }
+        
+        .memory-tabs label:nth-child(1) { transform: rotate(-3deg); }
+        .memory-tabs label:nth-child(2) { transform: rotate(2deg); }
+        .memory-tabs label:nth-child(3) { transform: rotate(-2deg); }
+        .memory-tabs label:nth-child(4) { transform: rotate(3deg); }
+        
+        #memory-family:checked ~ .memory-tabs label[for="memory-family"],
+        #memory-trust:checked ~ .memory-tabs label[for="memory-trust"],
+        #memory-love:checked ~ .memory-tabs label[for="memory-love"],
+        #memory-scars:checked ~ .memory-tabs label[for="memory-scars"] {
+            background: #d8c8a2;
+        }
+        
+        .memory-page {
+            display: none;
+        }
+        
+        /* --- POLAROID --- */
+        .memory-polaroid {
+            width: 520px;
+            max-width: 100%;
+            background: linear-gradient(180deg,#fcfaf4 0%,#f3eedf 100%);
+            padding: 15px;
+            margin: auto;
+            box-shadow: 0 6px 18px rgba(0,0,0,.18);
+            transition: .4s;
+            box-sizing: border-box;
+        }
+        
+        .family .memory-polaroid { transform: rotate(-1.5deg); }
+        .trust .memory-polaroid { transform: rotate(1deg); }
+        .love .memory-polaroid { transform: rotate(-2.5deg); }
+        .scars .memory-polaroid { transform: rotate(2deg); }
+        
+        .memory-polaroid:hover {
+            transform: rotate(0deg) scale(1.01);
+        }
+        
+        .memory-photo {
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+            background: #ddd;
+        }
+        
+        .memory-photo:before {
+            content: "";
+            position: absolute;
+            top: -10px;
+            left: 62%;
+            width: 75px;
+            height: 20px;
+            background: rgba(230,220,190,.85);
+            transform: translateX(-50%) rotate(7deg);
+            box-shadow: 0 2px 4px rgba(0,0,0,.12);
+            z-index: 5;
+        }
+        
+        .memory-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .memory-text {
+            padding-top: 18px;
+            color: #333;
+        }
+        
+        .memory-text h2 {
+            margin: 0 0 12px;
+            text-align: center;
+            font-size: 24px;
+            color: #33291d;
+        }
+        
+        .memory-text p {
+            line-height: 1.8;
+            font-size: 15px;
+            text-align: justify;
+        }
+        
+        .memory-names {
+            margin-top: 15px;
+            padding-top: 12px;
+            border-top: 1px solid #ddd;
+            font-size: 14px;
+            color: #786e5b;
+        }
+        
+        .memory-names span {
+            display: block;
+            padding: 3px 0;
+            font-style: italic;
+        }
+        
+        /* --- TABS JAVASCRIPT NÉLKÜLI VEZÉRLÉSE --- */
+        #memory-family:checked ~ .memory-content .family { display: block; }
+        #memory-trust:checked ~ .memory-content .trust { display: block; }
+        #memory-love:checked ~ .memory-content .love { display: block; }
+        #memory-scars:checked ~ .memory-content .scars { display: block; }
+        
+        /* --- GENERÁTOR STÍLUSOK --- */
+        .container {
+            max-width: 540px;
+            margin: auto;
+            margin-top: 40px;
+            border-top: 2px dashed #786e5b;
+            padding-top: 40px;
+        }
+        
+        .generator {
+            padding: 20px;
+            border: 1px solid #d8c8a2;
+            background: #fffdf9;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+        
+        .generator h3 {
+            margin-top: 0;
+            text-align: center;
+            color: #33291d;
+            font-size: 22px;
+        }
+        
+        label {
+            display: block;
+            margin-top: 12px;
+            font-weight: bold;
+            color: #4a4033;
+        }
+        
+        input, textarea, select {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 10px;
+            margin-top: 4px;
+            border: 1px solid #d8c8a2;
+            background: #fff;
+            font-family: inherit;
+        }
+        
+        textarea {
+            min-height: 140px;
+            resize: vertical;
+        }
+        
+        button {
+            margin-top: 15px;
+            padding: 12px 18px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            background: #7c9f4a;
+            color: white;
+            margin-right: 10px;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+        
+        button:hover {
+            background: #68853e;
+        }
+        
+        #preview {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+        }
+        
+        .relation-strength {
+            text-align: center;
+            font-size: 22px;
+            color: #9a7b3e;
+            margin-bottom: 15px;
+        }
+        
+        #output {
+            width: 100%;
+            height: 150px;
+            margin-top: 20px;
+            font-family: monospace;
+            font-size: 12px;
+            background: #fdfdfd;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="memory-journal">
+
+        <input type="radio" name="memory-tab" id="memory-family" checked>
+        <input type="radio" name="memory-tab" id="memory-trust">
+        <input type="radio" name="memory-tab" id="memory-love">
+        <input type="radio" name="memory-tab" id="memory-scars">
+
+        <div class="memory-tabs">
+            <label for="memory-family">#család</label>
+            <label for="memory-trust">#barátok</label>
+            <label for="memory-love">#szerelmek</label>
+            <label for="memory-scars">#sebhelyek</label>
+        </div>
+
+        <div class="memory-content">
+
+            <div class="memory-page family">
+                <div class="memory-polaroid">
+                    <div class="memory-photo">
+                        <img src="https://i.pinimg.com/webp/736x/19/3b/06/193b06f299cce61285c2bdc2730ebe1c.webp" alt="Család kép">
+                    </div>
+                    <div class="memory-text">
+                        <h2>Család</h2>
+                        <p>A család számomra sosem jelentett sok embert. Valójában mindig csak egyet. Apám volt az a személy, aki felnevelt, aki mellettem maradt, és aki megtanított arra, hogy az idő többet ér bármilyen ajándéknál. Tőle örököltem a történetek szeretetét, a zenét és azt a makacs hitet, hogy a szavak képesek megváltoztatni az embereket.</p>
+                        <p>A családom ma emlékekből, néhány megőrzött tárgyból és abból az emberből áll, akit elvesztettem. Ha van valami, amit a családról tudok, az az, hogy nem a vér tesz valakit fontossá, hanem az, hogy marad-e, amikor a legnagyobb szükséged van rá.</p>
+                        <div class="memory-names">
+                            <span>— Ephraim Meshach Reese — Patricia Ann Davis/Reagan —</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="memory-page trust">
+                <div class="memory-polaroid">
+                    <div class="memory-photo">
+                        <img src="https://i.pinimg.com/736x/8d/27/e1/8d27e14437b2b158c98fe2e646ba5075.jpg" alt="Barátok kép">
+                    </div>
+                    <div class="memory-text">
+                        <h2>Barátok</h2>
+                        <p>Sokáig azt hittem, a barátság valami hangos dolog. Közös történetek, végtelen beszélgetések. Aztán rájöttem, hogy néha sokkal csendesebb ennél. Néha csak annyit jelent, hogy valaki melletted marad.</p>
+                        <p>A zenekar eleinte csak zene volt. Néhány ember, néhány hangszer és egy közös színpad. Aztán valahogy ennél sokkal több lett. Mindannyian mások vagyunk, más múltat hordozunk magunkkal, de a dalok között valahogy mégis ugyanazt keressük. Talán ezért érzem magam velük először igazán otthon.</p>
+                        <div class="memory-names">
+                            <span>— Aubrey Chaisty — Knox Holland — Lucien Roethlisberger — Simone Leliévre —</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="memory-page love">
+                <div class="memory-polaroid">
+                    <div class="memory-photo">
+                        <img src="https://i.pinimg.com/webp/736x/68/a8/cd/68a8cd9eb6959c7c6e143dee2fa4edf2.webp" alt="Szerelmek kép">
+                    </div>
+                    <div class="memory-text">
+                        <h2>Szerelmek</h2>
+                        <p>Hasonlít egy dallamra, ami észrevétlenül költözik az ember fejébe. Egy idő után már nem emlékszel, mikor hallottad először, csak azt veszed észre, hogy nélküle valami kínzó fájdalommal hiányzik.</p>
+                        <p>Nem hiszek a tökéletességben. Hiszek viszont abban, hogy vannak emberek, akik emlékeztetnek rá, hogy az élet több lehet puszta túlélésnél. És ha valamit megtanultam, akkor az az, hogy néha a legszebb dalok nem a színpadon születnek, hanem két ember között, akik újra és újra egymást választják.</p>
+                        <div class="memory-names">
+                            <span>— Aubrey Chaisty —</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="memory-page scars">
+                <div class="memory-polaroid">
+                    <div class="memory-photo">
+                        <img src="https://i.pinimg.com/736x/6a/e8/1d/6ae81dbc06214bfd88989c8ae908e635.jpg" alt="Sebhelyek kép">
+                    </div>
+                    <div class="memory-text">
+                        <h2>Sebhelyek</h2>
+                        <p>A gyűlölet túl sok energiát követel, és őszintén szólva nincs bennem elég hely ahhoz, hogy valakit ennyire magammal hordozzak. Vannak viszont emberek, akiknek a nevét már nem akarom hallani, történetek, amelyeket nem szeretnék újra megnyitni, és ajtók, amelyeket egyszer bezártam magam mögött.</p>
+                        <p>Vannak kapcsolatok, amelyeket nem harag zár le, hanem a felismerés, hogy semmi jó nem vár a túloldalon. Nem kívánok rosszat ezeknek az embereknek. Egyszerűen csak nem szeretnék többé ugyanabban a történetben szerepelni velük.</p>
+                        <div class="memory-names">
+                            <span>— Patricia Ann Davis/Reagan —</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="generator">
+            <h3>Új Polaroid Kártya Generátor</h3>
+
+            <label for="relationType">Kapcsolat típusa</label>
+            <input type="text" id="relationType" placeholder="pl. legjobb barát">
+
+            <label for="image">Kép URL</label>
+            <input type="text" id="image" placeholder="https://...">
+
+            <label for="strength">Kapcsolat erőssége</label>
+            <select id="strength">
+                <option>★★★★★</option>
+                <option>★★★★☆</option>
+                <option>★★★☆☆</option>
+                <option>★★☆☆☆</option>
+                <option>★☆☆☆☆</option>
+            </select>
+
+            <label for="description">Kapcsolat leírása</label>
+            <textarea id="description" placeholder="Írd ide a történetet..."></textarea>
+
+            <button onclick="generatePolaroid()">Generálás</button>
+
+            <div id="preview"></div>
+
+            <label for="output">Generált HTML kód (beágyazott stílusokkal)</label>
+            <textarea id="output" readonly></textarea>
+
+            <button onclick="copyCode()" style="background: #4a6fa5;">HTML másolása</button>
+        </div>
+    </div>
+
+    <script>
+        function generatePolaroid(){
+            const relationType = document.getElementById('relationType').value || 'Kapcsolat';
+            const image = document.getElementById('image').value || 'https://via.placeholder.com/500x250?text=Nincs+Kep';
+            const strength = document.getElementById('strength').value;
+            const description = document.getElementById('description').value || 'Ide jön a leírás...';
+
+            const html = `
+<div style="width:520px; max-width:100%; background:linear-gradient(180deg,#fcfaf4 0%,#f3eedf 100%); padding:15px; box-sizing:border-box; box-shadow:0 6px 18px rgba(0,0,0,.18); transform:rotate(-2deg); margin:auto; font-family:'Crimson Text',serif;">
+    <div style="height:250px; overflow:hidden; position:relative; background:#ddd;">
+        <div style="position:absolute; top:-10px; left:62%; width:75px; height:20px; background:rgba(230,220,190,.85); transform:translateX(-50%) rotate(7deg); box-shadow:0 2px 4px rgba(0,0,0,.12); z-index:5;"></div>
+        <img src="${image}" style="width:100%; height:100%; object-fit:cover; display:block;">
+    </div>
+    <div style="padding-top:18px; color:#333;">
+        <h2 style="margin:0 0 12px; text-align:center; font-size:24px; color:#33291d;">${relationType}</h2>
+        <div style="text-align:center; font-size:22px; color:#9a7b3e; margin-bottom:15px;">${strength}</div>
+        <p style="line-height:1.8; font-size:15px; text-align:justify; margin:0;">${description}</p>
+    </div>
+</div>`;
+
+            document.getElementById('preview').innerHTML = html;
+            document.getElementById('output').value = html.trim();
+        }
+
+        function copyCode() {
+            const outputText = document.getElementById('output');
+            if(!outputText.value) {
+                alert('Előbb generálj egy kártyát!');
+                return;
+            }
+            outputText.select();
+            outputText.setSelectionRange(0, 99999); /* Mobil eszközökhöz */
+            navigator.clipboard.writeText(outputText.value);
+            alert('A HTML kód a vágólapra másolva!');
+        }
+    </script>
+</body>
+</html>
