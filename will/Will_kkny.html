@@ -5,7 +5,7 @@
 <title>William Ashford - Observatorium Turrem</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <style>
-/* --- STÍLUSOK & EMELT KONTRASZT --- */
+/* --- KONTRASZTOS KÓDEX SZÍNEK --- */
 :root {
     --gold-light: #fbf5e9;   
     --gold-medium: #dfc59f;  
@@ -26,13 +26,13 @@ body {
     min-height: 100vh;
 }
 
-/* --- SZIGORÚAN MAX 550PX SZÉLES FŐ KONTÉNER --- */
+/* --- FIX MAX 540PX SZÉLES FŐ KONTÉNER --- */
 .ashford {
     width: 540px;
     background: 
         radial-gradient(circle at 50% 8%, rgba(18, 44, 98, 0.65) 0%, transparent 55%),
         radial-gradient(circle at 15% 45%, rgba(100, 150, 255, 0.04) 0%, transparent 40%),
-        radial-gradient(circle at 85% 85%, rgba(255, 215, 150, 0.03) 0%, transparent 35%),
+        radial-gradient(circle at 85% 85%, rgba(255, 215, 150, 0.04) 0%, transparent 35%),
         var(--bg-dark);
     border: 1px solid rgba(223, 197, 159, 0.25);
     position: relative;
@@ -41,7 +41,7 @@ body {
     box-shadow: 0 40px 120px rgba(0,0,0,0.95);
 }
 
-/* --- HÁTTÉR GRAFIKÁK --- */
+/* --- HÁTTÉR VEKTOROK --- */
 .background-graphics {
     position: absolute;
     inset: 0;
@@ -49,14 +49,13 @@ body {
     z-index: 1;
 }
 
-/* --- KÖZÉPRE IGAZÍTOTT STRUKTÚRA --- */
 .header, .status, .tabs, .content, .omen-wrap, .footer-container {
     position: relative;
     z-index: 5;
     width: 100%;
 }
 
-/* --- FEJLÉC (PORTRE ÉS CÍM EGYMÁS MELLETT) --- */
+/* --- FEJLÉC --- */
 .header {
     display: grid;
     grid-template-columns: 105px 1fr;
@@ -168,7 +167,7 @@ body {
     box-shadow: 0 0 12px rgba(223, 197, 159, 0.15);
 }
 
-/* --- OPTIMALIZÁLT BELSŐ TARTALOM (BEÉPÍTETT JEGYZETEKKEL) --- */
+/* --- BELSŐ TARTALOM ÜVEGPANEL --- */
 .content {
     border: 1px solid rgba(223, 197, 159, 0.16);
     padding: 45px 25px;
@@ -189,7 +188,19 @@ body {
     position: absolute; inset: 6px; border: 1px solid rgba(223, 197, 159, 0.08); pointer-events: none;
 }
 
-.panel { display: none; animation: fadeInContent 0.5s ease forwards; }
+/* --- DOBOZON BELÜLI SKICC / RÚNA RAJZOK --- */
+.box-doodle {
+    position: absolute;
+    font-family: sans-serif;
+    color: rgba(223, 197, 159, 0.15);
+    pointer-events: none;
+    font-size: 14px;
+    user-select: none;
+}
+.bd-1 { top: 20px; right: 25px; transform: rotate(15deg); font-size: 20px; }
+.bd-2 { bottom: 35px; left: 20px; transform: rotate(-10deg); }
+
+.panel { display: none; position: relative; z-index: 6; animation: fadeInContent 0.5s ease forwards; }
 .panel.active { display: block; }
 
 @keyframes fadeInContent {
@@ -207,14 +218,27 @@ body {
     text-transform: uppercase;
 }
 .panel p {
-    font-size: 13px; /* Sűrűbb, kódex hatású méret */
+    font-size: 13px;
     line-height: 2.3;
     color: #fffaf0;
     text-align: justify;
     letter-spacing: 0.5px;
+    position: relative;
 }
 
-/* --- KÖZÉPSŐ JÓSLATBLOKK --- */
+/* --- DOBOZON BELÜLI SZÉLJYJEGYZETEK --- */
+.box-note {
+    position: absolute;
+    color: rgba(223, 197, 159, 0.25);
+    font-size: 11.5px;
+    font-style: italic;
+    line-height: 1.4;
+    pointer-events: none;
+}
+.bn-1 { top: 115px; right: -10px; transform: rotate(4deg); text-align: right; width: 90px; }
+.bn-2 { bottom: 5px; left: -12px; transform: rotate(-5deg); width: 100px; }
+
+/* --- JÓSLATBLOKK --- */
 .omen-wrap {
     margin: 30px auto 15px auto;
     text-align: center;
@@ -226,7 +250,7 @@ body {
     letter-spacing: 2px;
 }
 
-/* --- LÁBLÉC ELRENDEZÉS --- */
+/* --- LÁBLÉC --- */
 .footer-container {
     display: grid;
     grid-template-columns: 1fr 90px;
@@ -278,27 +302,29 @@ body {
     border: 1px dashed rgba(223, 197, 159, 0.18); border-radius: 50%;
 }
 
-/* --- INTEGRÁLT, FINOMABB SZÉLJYJEGYZETEK (A DOBOZON KÍVÜL, DE SZEGÉLYEN BELÜL) --- */
+/* --- FÖLSŐ RÉTEGŰ SZÉLJYJEGYZETEK (Z-INDEX: 20) --- */
 .hand {
     position: absolute;
-    color: rgba(223, 197, 159, 0.28); /* 28% opacity, hogy ne zavarja a főszöveget, de olvasható legyen */
+    color: rgba(223, 197, 159, 0.38); /* Markáns kontraszt, de kézírásos árnyalat */
     font-size: 12px;
     line-height: 1.4;
     font-style: italic;
     pointer-events: none;
-    z-index: 2;
+    z-index: 20; /* Szigorúan minden más réteg felett */
 }
-.hand.n1 { left: 15px; top: 165px; transform: rotate(-5deg); }
-.hand.n2 { left: 15px; top: 410px; transform: rotate(-8deg); }
-.hand.n3 { left: 20px; top: 680px; transform: rotate(-4deg); }
-.hand.n4 { left: 15px; top: 880px; transform: rotate(-6deg); }
 
-.hand.n5 { right: 15px; top: 210px; transform: rotate(5deg); text-align: right; }
-.hand.n6 { right: 15px; top: 480px; transform: rotate(7deg); text-align: right; }
-.hand.n7 { right: 20px; top: 740px; transform: rotate(4deg); text-align: right; }
-.hand.n8 { right: 15px; top: 930px; transform: rotate(5deg); text-align: right; }
+/* Elhelyezés a doboz külső ívei mentén, de a belső biztonsági sávban */
+.hand.n1 { left: 16px; top: 165px; transform: rotate(-5deg); }
+.hand.n2 { left: 20px; top: 385px; transform: rotate(-9deg); }
+.hand.n3 { left: 22px; top: 735px; transform: rotate(-4deg); }
+.hand.n4 { left: 15px; top: 925px; transform: rotate(-6deg); }
 
-.hand hr { border: none; height: 1px; background: rgba(223, 197, 159, 0.12); margin-top: 4px; width: 35px; }
+.hand.n5 { right: 16px; top: 200px; transform: rotate(5deg); text-align: right; }
+.hand.n6 { right: 20px; top: 395px; transform: rotate(8deg); text-align: right; }
+.hand.n7 { right: 24px; top: 745px; transform: rotate(4deg); text-align: right; }
+.hand.n8 { right: 15px; top: 945px; transform: rotate(6deg); text-align: right; }
+
+.hand hr { border: none; height: 1px; background: rgba(223, 197, 159, 0.15); margin-top: 4px; width: 35px; }
 .hand.n5 hr, .hand.n6 hr, .hand.n7 hr, .hand.n8 hr { margin-left: auto; }
 
 @keyframes pulse { 0%, 100% { opacity: 0.1; } 50% { opacity: 0.4; } }
@@ -322,7 +348,7 @@ body {
     <div class="header">
         <div class="portrait-container">
             <div class="portrait-scaler"></div>
-            <div class="portrait animate-stars"></div>
+            <div class="portrait"></div>
         </div>
 
         <div class="title">
@@ -356,14 +382,19 @@ body {
 
     <div class="content">
         <div class="content-inner-frame"></div>
+        
+        <div class="box-doodle bd-1">✧</div>
+        <div class="box-doodle bd-2">⚙</div>
 
         <div class="panel active">
             <h2>✦ Sötétedő Égbolt ✦</h2>
+            <div class="box-note bn-1">Kiszámíthatatlan pályamódosulás.</div>
             <p>Az ikrek hava különös feszültséget hozott az obszervatórium falai közé. A Mars retrográd mozgása rányomja bélyegét a látomásokra; a lángok már nem tiszta képeket, csak vészjósló árnyakat vetítenek a jövő parazsára. A csillagok állása makacsul ugyanazt az elkerülhetetlen feszültséget jósolja, amiről oly régóta hallgatni kényszerülök. A horizont peremén felizzó vörös fények nem hagynak kétséget afelől, hogy az idő kerekét halandó kéz többé nem forgathatja vissza az eredeti medrébe.</p>
         </div>
 
         <div class="panel">
             <h2>A Csillagok Társasága</h2>
+            <div class="box-note bn-2">A szövetség megköttetett. ✦</div>
             <p>Vannak emberek, akiket nem a véletlen, hanem a pályák találkozása sodor egymás mellé. A torony magányát ritkán töri meg olyan jelenlét, amely képes olvasni az éjszakai égbolt néma morajlásából, és nem riad vissza az árnyaktól. A közösen megfigyelt tranzitok súlya kötelékké válik, amit az eljövendő viharok sem tudnak majd könnyen szétszakítani a fejünk felett.</p>
         </div>
 
